@@ -1,2 +1,2 @@
-# Department_of_Computer_Science_and_Informatics_Website
-Angular application
+# Angular website
+Angular web application for the department of Computer Science and Informatics
