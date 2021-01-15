@@ -1,0 +1,2 @@
+# Department_of_Computer_Science_and_Informatics_Website
+Angular application
