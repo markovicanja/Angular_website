@@ -1,0 +1,79 @@
+<div class="wrapper">
+  <div class="main">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a routerLink='home' class="navbar-brand">
+          <img src="assets/images/logo.png" alt="RTI Katedra" style="height:80px">
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                  <a routerLink='home' class="nav-link">Početna</a>
+              </li>
+
+              <li class="nav-item">
+                <a routerLink='' class="nav-link">Zaposleni</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                  <a routerLink='' class="nav-link" id="navbarDropdown"
+                      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Obaveštenja
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item">Pozivi za studentska takmičenja</a>
+                      <a class="dropdown-item">Obaveštenja o konferencijama</a>
+                      <a class="dropdown-item">Ponude za praksu</a>
+                      <a class="dropdown-item">Ponude za posao</a>
+                  </div>
+              </li>
+
+              <li class="nav-item">
+                  <a routerLink='' class="nav-link">Osnovne studije</a>
+              </li>
+
+              <li class="nav-item">
+                  <a routerLink='' class="nav-link">Master studije</a>
+              </li>
+
+              <li class="nav-item">
+                  <a routerLink='' class="nav-link">Projekti</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a routerLink='' class="nav-link" id="navbarDropdown"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Nauka
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item">Istraživanja</a>
+                    <a class="dropdown-item">Projekti</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink='' class="nav-link">Kontakt</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
+  <footer class="containter-fluid bg-light">
+    <div class="row">
+        <div class="col-sm-12 copyright">
+            &copy; 2021 Katedra za računarsku tehniku i informatiku.
+            <br/>
+            <small>Elektrotehnički fakultet, Univerzitet u Beogradu POB 35-54, 11120 Beograd, Srbija</small>
+        </div>
+    </div>
+  </footer>
