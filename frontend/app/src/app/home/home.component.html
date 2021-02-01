@@ -1,20 +1,79 @@
-<div class="container">
-    Katedra za računarsku tehniku i informatiku ima kao generalni cilj savremenu i 
-    vrhunsku edukaciju u oblasti računarstva, u skladu sa savremenim evropskim i 
-    svetskim trendovima, preporukama i standardima, te kreiranje, primenu i širenje 
-    novih znanja kroz naučno-istraživački rad, saradnju sa privrednim subjektima i 
-    drugim institucijama na razvojnim i primienjenim projektima, a u skladu sa 
-    potrebama društvene zajednice. Specifični cilj studijskog programa Računarstvo 
-    i informatika je da studenti, pored osnovnih znanja iz oblasti elektrotehnike, 
-    steknu teoretska znanja i praktične veštine iz sledećih oblasti informacionih 
-    tehnologija, softverskog i računarskog inženjeringa: teoretske osnove računarstva, 
-    principi programiranja, arhitektura računara, operativni sistemi, 
-    objektno-orijentisano i Web/Internet programiranje, sistemi sa bazama podataka, 
-    razvoj, implementacija i verifikacija računarski baziranih sistema, 
-    računarske mreže i paralelni sistemi, sigurnost računarskih sistema, 
-    razvoj periferijskih interfejsa, softversko/hardversko održavanje i 
-    administracija računarskih sistema itd. Sticanjem navednih znanja i 
-    veština studenti treba da budu osposobljeni za brzo i uspešno uključivanje 
-    na konkretne projekte i radne zadatke iz oblasti informaciono-komunikacionih 
-    tehnologija na radnim mestima na kojima se zapošljavaju.
+<div class="container text-center">
+    <div class="slider">
+        <!--TODO-->
+        SLIDER
+    </div>
+    <div class="aboutText">
+        Katedra za računarsku tehniku i informatiku ima kao generalni cilj savremenu i 
+        vrhunsku edukaciju u oblasti računarstva, u skladu sa savremenim evropskim i 
+        svetskim trendovima, preporukama i standardima, te kreiranje, primenu i širenje 
+        novih znanja kroz naučno-istraživački rad, saradnju sa privrednim subjektima i 
+        drugim institucijama na razvojnim i primienjenim projektima, a u skladu sa 
+        potrebama društvene zajednice. Specifični cilj studijskog programa Računarstvo 
+        i informatika je da studenti, pored osnovnih znanja iz oblasti elektrotehnike, 
+        steknu teoretska znanja i praktične veštine iz sledećih oblasti informacionih 
+        tehnologija, softverskog i računarskog inženjeringa: teoretske osnove računarstva, 
+        principi programiranja, arhitektura računara, operativni sistemi, 
+        objektno-orijentisano i Web/Internet programiranje, sistemi sa bazama podataka, 
+        razvoj, implementacija i verifikacija računarski baziranih sistema, 
+        računarske mreže i paralelni sistemi, sigurnost računarskih sistema, 
+        razvoj periferijskih interfejsa, softversko/hardversko održavanje i 
+        administracija računarskih sistema itd. Sticanjem navednih znanja i 
+        veština studenti treba da budu osposobljeni za brzo i uspešno uključivanje 
+        na konkretne projekte i radne zadatke iz oblasti informaciono-komunikacionih 
+        tehnologija na radnim mestima na kojima se zapošljavaju.
+    </div>
+    <br/>
+    <hr/>
+    <h3 class="my-4">
+        Prijavi se
+    </h3>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <form>
+                <table class="table table-white">
+                    <tr>
+                        <td>
+                            Korisnicko ime
+                        </td>
+                        <td>
+                            <input type="text" name="username" [(ngModel)]="username">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lozinka
+                        </td>
+                        <td>
+                            <input type="password" name="password" [(ngModel)]="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            <input type="radio" name="type" id="student" value="student" [(ngModel)]="type">
+                            <label for="student" class="mx-2">Student</label>
+                            <br/>
+                            <input type="radio" name="type" id="zaposleni" value="zaposleni" [(ngModel)]="type">  
+                            <label for="zaposleni" class="mx-2">Zaposleni</label>
+                            <br/>
+                            <input type="radio" name="type" id="administrator" value="administrator" [(ngModel)]="type">  
+                            <label for="administrator" class="mx-2">Administrator</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            <button class="btn btn-secondary" (click)="login()">Prijavi se</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            Nemaš nalog? <a routerLink="/register">Registruj se</a>
+                        </td>                        
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    
 </div>
