@@ -1,5 +1,7 @@
-.aboutText {
-    padding: 20px 200px;
+@media screen and (min-width: 800px) {
+    .aboutText {
+        padding: 20px 200px;
+    }
 }
 
 .slider img {
