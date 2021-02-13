@@ -1,7 +1,31 @@
 <div class="container text-center">
     <div class="slider">
-        <!--TODO-->
-        SLIDER
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="../assets/images/etf1.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/images/etf2.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/images/etf3.jpg" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
     <div class="aboutText">
         Katedra za računarsku tehniku i informatiku ima kao generalni cilj savremenu i 
@@ -22,58 +46,5 @@
         veština studenti treba da budu osposobljeni za brzo i uspešno uključivanje 
         na konkretne projekte i radne zadatke iz oblasti informaciono-komunikacionih 
         tehnologija na radnim mestima na kojima se zapošljavaju.
-    </div>
-    <br/>
-    <hr/>
-    <h3 class="my-4">
-        Prijavi se
-    </h3>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <form>
-                <table class="table table-white">
-                    <tr>
-                        <td>
-                            Korisnicko ime
-                        </td>
-                        <td>
-                            <input type="text" name="username" [(ngModel)]="username">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Lozinka
-                        </td>
-                        <td>
-                            <input type="password" name="password" [(ngModel)]="password">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            <input type="radio" name="type" id="student" value="student" [(ngModel)]="type">
-                            <label for="student" class="mx-2">Student</label>
-                            <br/>
-                            <input type="radio" name="type" id="zaposleni" value="zaposleni" [(ngModel)]="type">  
-                            <label for="zaposleni" class="mx-2">Zaposleni</label>
-                            <br/>
-                            <input type="radio" name="type" id="administrator" value="administrator" [(ngModel)]="type">  
-                            <label for="administrator" class="mx-2">Administrator</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            <button class="btn btn-secondary" (click)="login()">Prijavi se</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            Nemaš nalog? <a routerLink="/register">Registruj se</a>
-                        </td>                        
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
-    
+    </div>    
 </div>

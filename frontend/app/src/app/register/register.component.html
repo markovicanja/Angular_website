@@ -1,0 +1,85 @@
+<h3 class="my-4 text-center">
+    Registraciona forma za studenta
+</h3>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <form>
+            <table class="table table-white text-center">
+                <tr>
+                    <td>
+                        Ime
+                    </td>
+                    <td>
+                        <input type="text" name="name" [(ngModel)]="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prezime
+                    </td>
+                    <td>
+                        <input type="text" name="surname" [(ngModel)]="surname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Korisnicko ime
+                    </td>
+                    <td>
+                        <input type="text" name="username" [(ngModel)]="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Lozinka
+                    </td>
+                    <td>
+                        <input type="password" name="password" [(ngModel)]="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ponovljena lozinka
+                    </td>
+                    <td>
+                        <input type="password" name="repeatedPassword" [(ngModel)]="repeatedPassword">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Broj indeksa
+                    </td>
+                    <td>
+                        <input type="text" name="index" [(ngModel)]="index">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tip studija
+                    </td>
+                    <td colspan=2>
+                        <input type="radio" name="type" id="osnovne" value="osnovne" [(ngModel)]="type">
+                        <label for="osnovne" class="mx-2">Osnovne akademske</label>
+                        <br/>
+                        <input type="radio" name="type" id="master" value="master" [(ngModel)]="type">  
+                        <label for="master" class="mx-2">Master akademske</label>
+                        <br/>
+                        <input type="radio" name="type" id="doktorske" value="doktorske" [(ngModel)]="type">  
+                        <label for="doktorske" class="mx-2">Doktorske</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <button class="btn btn-secondary" (click)="register()">Registruj se</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        Već imaš nalog? <a routerLink="/login">Uloguj se</a>
+                    </td>                        
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

@@ -59,6 +59,37 @@
               <a routerLink='' class="nav-link">Kontakt</a>
             </li>
           </ul>
+
+          <ul *ngIf="!sessionValid" class="nav navbar-nav ml-auto">
+            <li>
+                <a routerLink='login' class="btn btn-light ml-auto mt-1 mb-1">
+                  Prijavi se
+                  <i class="fas fa-user-alt ml-1"></i>
+                </a>
+              </li>
+              <li>
+                <a routerLink="register" class="btn btn-light ml-auto mt-1 mb-1">
+                  Registruj se
+                  <i class="fas fa-user-plus"></i>
+                </a>
+              </li>
+          </ul>  
+          
+          <ul *ngIf="sessionValid" class="nav navbar-nav ml-auto">
+            <li>
+                <a routerLink='' class="btn btn-light ml-auto mt-1 mb-1">
+                  Profil
+                  <i class="fas fa-user-alt ml-1"></i>
+                </a>
+              </li>
+              <li>
+                <a routerLink="" class="btn btn-light ml-auto mt-1 mb-1">
+                  Odjavi se
+                  <i class="fas fa-sign-out-alt"></i>
+                </a>
+              </li>
+          </ul>  
+
       </div>
     </nav>
 
