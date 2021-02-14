@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import seed from './seeds/seed';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import user from './model/user';
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/RTI_katedra');
 const conn = mongoose.connection;
 
 conn.once('open', () => {
+    seed();
     console.log('mongo open');
 });
 
