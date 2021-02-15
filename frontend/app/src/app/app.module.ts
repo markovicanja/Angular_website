@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { MasterComponent } from './master/master.component';
 import { ResearchComponent } from './research/research.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResearchComponent } from './research/research.component';
     RegisterComponent,
     ContactComponent,
     MasterComponent,
-    ResearchComponent
+    ResearchComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
