@@ -5,24 +5,37 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
-const User = new Schema({
+const Student = new Schema({
     username: {
         type: String,
         required: true
     },
-    password: {
+    index: {
         type: String,
         required: true
     },
     type: {
         type: String,
         required: true,
-        enum: ["admin", "zaposleni", "student"]
+        enum: ["d", "m", "p"]
     },
-    changedPassword: {
-        type: Boolean,
+    firstName: {
+        type: String,
         required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: ["aktivan", "neaktivan"]
+    },
+    subjects: {
+        type: [String],
+        required: false
     }
 });
-exports.default = mongoose_1.default.model('User', User, 'users');
-//# sourceMappingURL=user.js.map
+exports.default = mongoose_1.default.model('Student', Student, 'students');
+//# sourceMappingURL=student.js.map

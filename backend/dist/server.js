@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_1 = __importDefault(require("./model/user"));
+const notification_1 = __importDefault(require("./model/notification"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -24,6 +25,16 @@ router.route('/login').post((req, res) => {
             console.log(err);
         else
             res.json(user);
+    });
+});
+router.route('/getAllNotifications').get((req, res) => {
+    let currentDate = new Date(Date.now());
+    currentDate.setMonth(currentDate.getMonth() - 3);
+    notification_1.default.find({ dateCreation: { $gt: currentDate } }, (err, notifications) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(notifications);
     });
 });
 app.use('/', router);

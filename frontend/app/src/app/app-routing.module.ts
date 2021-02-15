@@ -4,6 +4,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MasterComponent } from './master/master.component';
+import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'master', component: MasterComponent },
-  { path: 'research', component: ResearchComponent }
+  { path: 'research', component: ResearchComponent },
+  { path: 'notifications', component: NotificationComponent }
 ];
 
 @NgModule({

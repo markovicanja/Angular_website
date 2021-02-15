@@ -17,4 +17,8 @@ export class ServiceService {
     return this.http.post(`${this.uri}/login`, data);
   }
 
+  getAllNotifications() {
+    return this.http.get(`${this.uri}/getAllNotifications`);
+  }
+
 }

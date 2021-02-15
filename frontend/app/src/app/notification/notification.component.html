@@ -1,1 +1,81 @@
-<p>notification works!</p>
+<div class="container">
+
+    <div id="accordion">
+        <div class="card my-4">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Pozivi za studentska takmicenja
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body pb-0" *ngFor="let n of poziviZaTakmicenja">
+                <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                <h5>{{n.title}}</h5>
+                <p>{{n.content}}</p>
+                <hr>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapswTwo" aria-expanded="true" aria-controls="collapswTwo">
+                    Obavestenja o konferencijama
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body pb-0" *ngFor="let n of obavestenjaOKonferencijama">
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <h5>{{n.title}}</h5>
+                    <p>{{n.content}}</p>
+                    <hr>
+              </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    Ponude za prakse
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body pb-0" *ngFor="let n of ponudeZaPrakse">
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <h5>{{n.title}}</h5>
+                    <p>{{n.content}}</p>
+                    <hr>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card my-4">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    Ponude za posao
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0" *ngFor="let n of ponudeZaPosao">
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <h5>{{n.title}}</h5>
+                    <p>{{n.content}}</p>
+                    <hr>
+                </div>
+              </div>
+        </div>
+    </div>
+
+</div>

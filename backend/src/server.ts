@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import seed from './seeds/seed';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import user from './model/user';
+import notification from './model/notification';
 
 const app = express();
 
@@ -15,7 +15,6 @@ mongoose.connect('mongodb://localhost:27017/RTI_katedra');
 const conn = mongoose.connection;
 
 conn.once('open', () => {
-    seed();
     console.log('mongo open');
 });
 
@@ -27,6 +26,16 @@ router.route('/login').post((req, res) => {
     user.findOne({'username' : username}, (err, user) => {
         if (err) console.log(err);
         else res.json(user);
+    });
+});
+
+router.route('/getAllNotifications').get((req, res) => {
+    let currentDate = new Date(Date.now())
+    currentDate.setMonth(currentDate.getMonth() - 3);
+
+    notification.find({dateCreation: { $gt: currentDate }}, (err, notifications) => {
+        if (err) console.log(err);
+        else res.json(notifications);
     });
 });
 
