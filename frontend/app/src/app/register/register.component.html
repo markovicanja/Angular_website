@@ -1,85 +1,74 @@
-<h3 class="my-4 text-center">
-    Registraciona forma za studenta
-</h3>
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-        <form>
-            <table class="table table-white text-center">
-                <tr>
-                    <td>
-                        Ime
-                    </td>
-                    <td>
-                        <input type="text" name="name" [(ngModel)]="name">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Prezime
-                    </td>
-                    <td>
-                        <input type="text" name="surname" [(ngModel)]="surname">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Korisnicko ime
-                    </td>
-                    <td>
-                        <input type="text" name="username" [(ngModel)]="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Lozinka
-                    </td>
-                    <td>
-                        <input type="password" name="password" [(ngModel)]="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Ponovljena lozinka
-                    </td>
-                    <td>
-                        <input type="password" name="repeatedPassword" [(ngModel)]="repeatedPassword">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Broj indeksa
-                    </td>
-                    <td>
-                        <input type="text" name="index" [(ngModel)]="index">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Tip studija
-                    </td>
-                    <td colspan=2>
-                        <input type="radio" name="type" id="osnovne" value="osnovne" [(ngModel)]="type">
-                        <label for="osnovne" class="mx-2">Osnovne akademske</label>
-                        <br/>
-                        <input type="radio" name="type" id="master" value="master" [(ngModel)]="type">  
-                        <label for="master" class="mx-2">Master akademske</label>
-                        <br/>
-                        <input type="radio" name="type" id="doktorske" value="doktorske" [(ngModel)]="type">  
-                        <label for="doktorske" class="mx-2">Doktorske</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <button class="btn btn-secondary" (click)="register()">Registruj se</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        Već imaš nalog? <a routerLink="/login">Uloguj se</a>
-                    </td>                        
-                </tr>
-            </table>
-        </form>
+<div class="card-body mx-auto" style="max-width: 600px;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+        <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
+        </li>
+        <li class="nav-item" >
+        <a class="nav-link" id="zaposleni-tab" data-toggle="tab" href="#zaposleni" role="tab" aria-controls="zaposleni" aria-selected="false">Zaposleni</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="student" role="tabpanel" aria-labelledby="student-tab">
+        
+            <form class="text-center">
+                <input name="studentName" class="form-control" placeholder="Ime *" [(ngModel)]="studentName">
+                <input name="studentSurname" class="form-control" placeholder="Prezime *" [(ngModel)]="studentSurname">
+                <input name="studentUsername" class="form-control" placeholder="Korisnicko ime *" [(ngModel)]="studentUsername">
+                <input name="studentPassword" class="form-control" placeholder="Lozinka *" [(ngModel)]="studentPassword">
+                <input name="studentRepeatedPassword" class="form-control" placeholder="Ponovljena lozinka *" [(ngModel)]="studentRepeatedPassword">
+                <input name="studentIndex" class="form-control" placeholder="Broj indeksa *" [(ngModel)]="studentIndex">
+                <select name="studentStatus" class="form-control select" [(ngModel)]="studentStatus">
+                    <option value='' disabled selected hidden class="select-placeholder">Status *</option>
+                    <option>aktivan</option>
+                    <option>neaktivan</option>
+                </select>
+                <select name="studentType" class="form-control select" [(ngModel)]="studentType">
+                    <option value='' disabled selected hidden class="select-placeholder">Tip studija *</option>
+                    <option value='d'>Osnovne akademske</option>
+                    <option value='m'>Master akademske</option>
+                    <option value='p'>Doktorske studije</option>
+                </select>
+                <button class="btn btn-secondary mt-3" (click)="registerStudent()">Registracija</button>
+            </form>
+            <small class="text-warning">Podaci sa * su obavezni</small>
+
+        </div>
+
+        <div class="tab-pane fade" id="zaposleni" role="tabpanel" aria-labelledby="zaposleni-tab">
+        
+            <form class="text-center">
+                <input name="employeeName" class="form-control" placeholder="Ime *" [(ngModel)]="employeeName">
+                <input name="employeeSurname" class="form-control" placeholder="Prezime *" [(ngModel)]="employeeSurname">
+                <input name="employeeUsername" class="form-control" placeholder="Korisnicko ime *" [(ngModel)]="employeeUsername">
+                <input name="employeePassword" class="form-control" placeholder="Lozinka *" [(ngModel)]="employeePassword">
+                <input name="employeeRepeatedPassword" class="form-control" placeholder="Ponovljena lozinka *" [(ngModel)]="employeeRepeatedPassword">
+                <input name="employeeAddress" class="form-control" placeholder="Ulica i broj, grad *" [(ngModel)]="employeeAddress">
+                <input name="employeePhone" class="form-control" placeholder="Telefon" [(ngModel)]="employeePhone">
+                <input name="employeeWebsite" class="form-control" placeholder="Vebsajt" [(ngModel)]="employeeWebsite">
+                <input name="employeeInfo" class="form-control" placeholder="Licni podaci" [(ngModel)]="employeeInfo">
+                <input name="employeeRoom" class="form-control" placeholder="Broj kabineta *" [(ngModel)]="employeeRoom">
+                <select name="employeeStatus" class="form-control select" [(ngModel)]="employeeStatus">
+                    <option value='' disabled selected hidden class="select-placeholder">Status *</option>
+                    <option>aktivan</option>
+                    <option>neaktivan</option>
+                </select>
+                <select name="employeeTitle" class="form-control select" [(ngModel)]="employeeTitle">
+                    <option value='' disabled selected hidden class="select-placeholder">Zvanje *</option>
+                    <option>redovni profesor</option>
+                    <option>vanredni profesor</option>
+                    <option>docent</option>
+                    <option>asistent</option>
+                    <option>saradnik u nastavi</option>
+                    <option>istrazivac</option>
+                    <option>laboratorijski inzenjer</option>
+                    <option>laboratorijski tehnicar</option>
+                </select>
+                <button class="btn btn-secondary mt-3" (click)="registerEmployee()">Registracija</button>
+            </form>
+            <small class="text-warning">Podaci sa * su obavezni</small>
+        </div>
     </div>
+</div>
+<div class="text-danger text-center">
+    {{ error }}
 </div>

@@ -36,7 +36,7 @@
               </li>
 
               <li class="nav-item dropdown">
-                <a routerLink='' class="nav-link" id="navbarDropdown"
+                <a class="nav-link" id="navbarDropdown"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Nauka
                 </a>
@@ -74,10 +74,10 @@
                 </a>
               </li>
               <li>
-                <a routerLink="" class="btn btn-light ml-auto mt-1 mb-1">
+                <button (click)="logout()" class="btn btn-light ml-auto mt-1 mb-1">
                   Odjavi se
                   <i class="fas fa-sign-out-alt"></i>
-                </a>
+                </button>
               </li>
           </ul>  
 

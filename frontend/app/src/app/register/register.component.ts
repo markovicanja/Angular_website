@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-register',
@@ -7,21 +9,104 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("user") == "admin") this.adminLogged = false;
+    else this.adminLogged = true;
+    
+    this.studentName = "";
+    this.studentSurname = "";
+    this.studentUsername = "";
+    this.studentPassword = "";
+    this.studentRepeatedPassword = "";
+    this.studentIndex = "";
+    this.studentStatus = "";
+    this.studentType = "";
+
+    this.employeeName = "";
+    this.employeeSurname = "";
+    this.employeeUsername = "";
+    this.employeePassword = "";
+    this.employeeRepeatedPassword = "";
+    this.employeeAddress = "";
+    this.employeePhone = "";
+    this.employeeWebsite = "";
+    this.employeeInfo = "";
+    this.employeeTitle = "";
+    this.employeeRoom = "";
+    this.employeeStatus = "";
   }
 
-  name: string;
-  surname: string;
-  username: string;
-  password: string;
-  repeatedPassword: string;
-  index: string;
-  type: string;
+  adminLogged: boolean;
+  error: string;
 
-  register() {
-  
+  studentName: string;
+  studentSurname: string;
+  studentUsername: string;
+  studentPassword: string;
+  studentRepeatedPassword: string;
+  studentIndex: string;
+  studentType: string;
+  studentStatus: string;
+
+  employeeName: string;
+  employeeSurname: string;
+  employeeUsername: string;
+  employeePassword: string;
+  employeeRepeatedPassword: string;
+  employeeAddress: string;
+  employeePhone: string;
+  employeeWebsite: string;
+  employeeInfo: string;
+  employeeTitle: string;
+  employeeRoom: string;
+  employeeStatus: string;
+
+  registerStudent() {
+    this.error = "";
+    if (this.studentName == "" || this.studentSurname == "" || this.studentUsername == "" || this.studentPassword == "" || 
+    this.studentRepeatedPassword == "" || this.studentIndex == "" || this.studentType == "" || this.studentStatus == "") {
+      this.error = "Morate uneti sva obavezna polja."
+    }
+    else if (this.studentRepeatedPassword != this.studentPassword) {
+      this.error = "Lozinke se ne poklapaju."
+    }
+    else {
+      this.service.registerStudent(this.studentUsername, this.studentPassword, this.studentIndex, this.studentType, 
+        this.studentName, this.studentSurname, this.studentStatus).subscribe(res => {
+          if (this.adminLogged) this.router.navigate(["home"]);
+            //this.router.navigate(["registerUsers"]);
+          else {
+            this.router.navigate(["login"]);
+          } 
+      });
+    }
+  }
+
+  registerEmployee() {
+    this.error = "";
+    let empolyeeType = "nastavnik";
+    if (this.employeeName == "" || this.employeeSurname == "" || this.employeeUsername == "" || this.employeePassword == "" || 
+    this.employeeRepeatedPassword == "" || this.employeeAddress == "" || this.employeePhone == "" || this.employeeWebsite == "" || 
+    this.employeeInfo == "" || this.employeeTitle == "" || this.employeeRoom == "" || this.employeeStatus == "") {
+      this.error = "Morate uneti sva obavezna polja."
+    }
+    else if (this.employeeRepeatedPassword != this.employeePassword) {
+      this.error = "Lozinke se ne poklapaju."
+    }
+    else {
+      if (this.employeeTitle == "istrazivac" || this.employeeTitle == "laboratorijski inzenjer" || this.employeeTitle == "laboratorijski tehnicar") {
+        empolyeeType = "laborant";
+      }
+      this.service.registerEmployee(this.employeeUsername, this.employeePassword, this.employeeName, this.employeeSurname, 
+        this.employeeAddress,  this.employeePhone, this.employeeTitle, this.employeeRoom,
+        this.employeeStatus, this.employeeWebsite, empolyeeType, this.employeeInfo).subscribe(res => {
+          if (this.adminLogged) this.router.navigate(["home"]);
+            //this.router.navigate(["registerUsers"]);
+          else this.router.navigate(["login"]);
+      });
+    }
   }
 
 }

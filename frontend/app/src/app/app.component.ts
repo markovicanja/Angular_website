@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-    this.sessionValid = false;
+    if (localStorage.getItem("user") == "")
+      this.sessionValid = false;
+    else this.sessionValid = true;
   }    
 
   sessionValid: boolean;
+
+  logout() {
+    localStorage.setItem("user", "");
+    this.router.navigate(["home"]);
+    window.location.reload();
+  }
 
 }

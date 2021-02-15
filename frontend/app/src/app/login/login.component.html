@@ -1,53 +1,17 @@
-<h3 class="my-4 text-center">
-    Prijavi se
-</h3>
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-        <form>
-            <table class="table table-white text-center">
-                <tr>
-                    <td>
-                        Korisnicko ime
-                    </td>
-                    <td>
-                        <input type="text" name="username" [(ngModel)]="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Lozinka
-                    </td>
-                    <td>
-                        <input type="password" name="password" [(ngModel)]="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <input type="radio" name="type" id="student" value="student" [(ngModel)]="type">
-                        <label for="student" class="mx-2">Student</label>
-                        <br/>
-                        <input type="radio" name="type" id="zaposleni" value="zaposleni" [(ngModel)]="type">  
-                        <label for="zaposleni" class="mx-2">Zaposleni</label>
-                        <br/>
-                        <input type="radio" name="type" id="administrator" value="administrator" [(ngModel)]="type">  
-                        <label for="administrator" class="mx-2">Administrator</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <button class="btn btn-secondary" (click)="login()">Prijavi se</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        Nemaš nalog? <a routerLink="/register">Registruj se</a>
-                    </td>                        
-                </tr>
-            </table>
-            <div *ngFor="let e of error" style="color: red" class="text-center">
-                {{ e }}
-            </div>
-        </form>
-    </div>
+
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+    <form class="text-center mx-5" style="width: 100%;">
+        <input name="username" class="form-control" placeholder="Korisnicko ime" [(ngModel)]="username">
+        <input name="password" class="form-control" placeholder="Lozinka" [(ngModel)]="password">
+        <select name="type" [(ngModel)]="type" class="form-control select">
+            <option disabled selected class="select-placeholder">Tip studija</option>
+            <option value='student'>Student</option>
+            <option value='zaposleni'>Zaposleni</option>
+            <option value='administrator'>Administrator</option>
+        </select>
+        <button class="btn btn-secondary mt-3" (click)="login()">Prijavi se</button>
+    </form>
+</div>
+<div class="text-danger text-center" *ngFor="let e of error" >
+    {{ e }}
 </div>

@@ -9,6 +9,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_1 = __importDefault(require("./model/user"));
 const notification_1 = __importDefault(require("./model/notification"));
+const student_1 = __importDefault(require("./model/student"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -18,6 +19,7 @@ conn.once('open', () => {
     console.log('mongo open');
 });
 const router = express_1.default.Router();
+// LOGIN
 router.route('/login').post((req, res) => {
     let username = req.body.username;
     user_1.default.findOne({ 'username': username }, (err, user) => {
@@ -27,6 +29,34 @@ router.route('/login').post((req, res) => {
             res.json(user);
     });
 });
+router.route('/getStudent').post((req, res) => {
+    let username = req.body.username;
+    student_1.default.findOne({ 'username': username }, (err, s) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(s);
+    });
+});
+router.route('/getStudent').post((req, res) => {
+    let username = req.body.username;
+    student_1.default.findOne({ 'username': username }, (err, s) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(s);
+    });
+});
+router.route('/getEmployee').post((req, res) => {
+    let username = req.body.username;
+    user_1.default.findOne({ 'username': username }, (err, e) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(e);
+    });
+});
+// NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());
     currentDate.setMonth(currentDate.getMonth() - 3);

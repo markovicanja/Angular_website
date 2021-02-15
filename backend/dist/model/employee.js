@@ -54,7 +54,7 @@ const Employee = new Schema({
         enum: ["nastavnik", "laborant"]
     },
     profilePicture: {
-        type: {},
+        type: String,
         required: false
     }
 });
