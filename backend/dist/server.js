@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -11,6 +30,7 @@ const user_1 = __importDefault(require("./model/user"));
 const notification_1 = __importDefault(require("./model/notification"));
 const student_1 = __importDefault(require("./model/student"));
 const employee_1 = __importDefault(require("./model/employee"));
+const fs = __importStar(require("fs"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -81,11 +101,6 @@ router.route('/registerEmployee').post((req, res) => {
         'type': type, 'profilePicture': {} });
     res.json({ poruka: 1 });
 });
-// router.route('/registerAdmin').post((req, res) => {
-//     let username = req.body.username;
-//     let password = req.body.password;
-//     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'admin', 'changedPassword': false});
-// });
 // RESET PASSWORD
 router.route('/resetPassword').post((req, res) => {
     let username = req.body.username;
@@ -112,6 +127,88 @@ router.route('/getAllNotifications').get((req, res) => {
         else
             res.json(notifications);
     });
+});
+// UPLOAD PROFILE PICTURE
+const profilePictureUrl = "src/uploaded_files/profile_pictures";
+const subjectInfoFilesUrl = "src/uploaded_files/subjects";
+const multer = require('multer');
+var sizeOf = require('image-size');
+var fileExtension = require('file-extension');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, profilePictureUrl);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname));
+    }
+});
+var upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 2000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            cb(new Error('Please upload JPG and PNG images only!'));
+        }
+        cb(undefined, true);
+    }
+});
+app.post('/uploadfile', upload.single('uploadedImage'), (req, res, next) => {
+    const username = req.body.employeeUsername;
+    const file = req.file;
+    if (!file) {
+        res.status(400).json({ error: "Greska pri otpremanju slike." });
+        return;
+    }
+    let fileUrl = file.destination + '/' + file.filename;
+    const dimensions = sizeOf(fileUrl);
+    if (dimensions.width > 300 || dimensions.height > 300) {
+        res.status(400).json({ error: "Slika ne moze da bude vecih dimenzija od 300x300." });
+        return;
+    }
+    let newFileUrl = file.destination + '/' + username + "." + fileExtension(file.originalname);
+    fs.renameSync(fileUrl, newFileUrl);
+    var img = fs.readFileSync(newFileUrl);
+    var encode_image = Buffer.from(img).toString('base64');
+    var finalImg = {
+        contentType: file.mimetype,
+        image: encode_image
+    };
+    employee_1.default.findOneAndUpdate({ username: username }, { profilePicture: finalImg }, (err, result) => {
+        if (err) {
+            res.status(400).send({
+                error: "GRESKA"
+            });
+        }
+        res.status(200).send({
+            statusCode: 200,
+            status: 'success',
+            finalImg: finalImg
+        });
+    });
+});
+var storageInfoFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, subjectInfoFilesUrl);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname));
+    }
+});
+var uploadInfoFile = multer({
+    storage: storageInfoFile,
+    limits: {
+        fileSize: 10000000 //2MBs
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(pdf|pptx|zip|7z)$/)) {
+            //Error
+            cb(new Error('Please upload PDF, PPTX, ZIP, 7Z files only!'));
+        }
+        //Success
+        cb(undefined, true);
+    }
 });
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

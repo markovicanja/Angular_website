@@ -83,4 +83,10 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getAllNotifications`);
   }
 
+  // POST IMAGE
+  public postImage(formData: FormData){
+    alert("Service post image");
+    return this.http.post(`${this.uri}/register/uploadFile`, formData);
+  }
+
 }

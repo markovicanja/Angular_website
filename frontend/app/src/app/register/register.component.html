@@ -64,6 +64,13 @@
                     <option>laboratorijski inzenjer</option>
                     <option>laboratorijski tehnicar</option>
                 </select>
+                <div class="form-group input-group mt-3">                    
+                    <input type="file" class="custom-file-input form-control profile-pic-input" id="customFile" name="uploadedImage"
+                        (change)="onFileSelect($event)" #UploadFileInput>
+                    <div class="input-group-append">
+                        <label class="custom-file-label profile-pic-label" for="customFile">{{fileInputLabel || 'Izaberite fajl'}}</label>
+                    </div>
+                </div>
                 <button class="btn btn-secondary mt-3" (click)="registerEmployee()">Registracija</button>
             </form>
             <small class="text-warning">Podaci sa * su obavezni</small>

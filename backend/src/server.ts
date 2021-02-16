@@ -6,6 +6,7 @@ import user from './model/user';
 import notification from './model/notification';
 import student from './model/student';
 import employee from './model/employee';
+import * as fs from "fs"
 
 const app = express();
 
@@ -113,6 +114,97 @@ router.route('/getAllNotifications').get((req, res) => {
         if (err) console.log(err);
         else res.json(notifications);
     });
+});
+
+// UPLOAD PROFILE PICTURE
+
+const profilePictureUrl = "src/uploaded_files/profile_pictures";
+const subjectInfoFilesUrl = "src/uploaded_files/subjects";
+const multer = require('multer');
+var sizeOf = require('image-size');
+var fileExtension = require('file-extension');
+
+var storage = multer.diskStorage({
+    destination: function (req: any, file: any, cb: any) {
+        cb(null, profilePictureUrl);
+    },
+    filename: function (req: any, file: any, cb: any) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname))
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 2000000
+    },
+    fileFilter(req: any, file: any, cb: any) {
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            cb(new Error('Please upload JPG and PNG images only!'))
+        }
+        cb(undefined, true)
+    }
+});
+
+app.post('/uploadfile', upload.single('uploadedImage'), (req, res, next) => {
+    const username = req.body.employeeUsername;
+    const file = (req as any).file;
+    
+    if (!file) {
+        res.status(400).json({error: "Greska pri otpremanju slike."})
+        return;
+    }
+    let fileUrl = file.destination + '/' + file.filename;
+    const dimensions = sizeOf(fileUrl);
+    if (dimensions.width > 300 || dimensions.height > 300) {
+        res.status(400).json({error: "Slika ne moze da bude vecih dimenzija od 300x300."})
+        return;
+    }
+    let newFileUrl = file.destination + '/' + username + "." + fileExtension(file.originalname);
+    fs.renameSync(fileUrl, newFileUrl);
+    var img = fs.readFileSync(newFileUrl);
+    var encode_image = Buffer.from(img).toString('base64');
+    var finalImg = {
+        contentType: file.mimetype,
+        image: encode_image
+    };
+    employee.findOneAndUpdate({username: username}, {profilePicture: finalImg}, (err, result) => {
+        if (err) {
+            res.status(400).send({
+                error: "GRESKA"
+            })
+        }
+        res.status(200).send({
+            statusCode: 200,
+            status: 'success',
+            finalImg: finalImg
+        })
+    })
+})
+
+
+var storageInfoFile = multer.diskStorage({
+    destination: function (req: any, file: any, cb: any) {
+        cb(null, subjectInfoFilesUrl);
+    },
+    filename: function (req: any, file: any, cb: any) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname))
+    }
+});
+
+var uploadInfoFile = multer({
+    storage: storageInfoFile,
+    limits: {
+        fileSize: 10000000 //2MBs
+    },
+    fileFilter(req: any, file: any, cb: any) {
+        if (!file.originalname.match(/\.(pdf|pptx|zip|7z)$/)) {
+            //Error
+            cb(new Error('Please upload PDF, PPTX, ZIP, 7Z files only!'))
+        }
+        //Success
+        cb(undefined, true)
+    }
 });
 
 app.use('/', router);
