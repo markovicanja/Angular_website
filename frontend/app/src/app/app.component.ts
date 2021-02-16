@@ -25,8 +25,8 @@ export class AppComponent {
     localStorage.setItem("admin", null);
     localStorage.setItem("student", null);
     localStorage.setItem("employee", null);
+    this.sessionValid = false;
     this.router.navigate(["home"]);
-    window.location.reload();
   }
 
 }

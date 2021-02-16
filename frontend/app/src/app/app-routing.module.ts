@@ -7,6 +7,7 @@ import { MasterComponent } from './master/master.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'master', component: MasterComponent },
   { path: 'research', component: ResearchComponent },
-  { path: 'notifications', component: NotificationComponent }
+  { path: 'notifications', component: NotificationComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent }
 ];
 
 @NgModule({

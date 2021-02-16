@@ -86,6 +86,13 @@ router.route('/registerEmployee').post((req, res) => {
 //     let password = req.body.password;
 //     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'admin', 'changedPassword': false});
 // });
+// RESET PASSWORD
+router.route('/resetPassword').post((req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    user_1.default.collection.updateOne({ 'username': username }, { $set: { "password": password, "changedPassword": true } });
+    res.json({ poruka: 1 });
+});
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());

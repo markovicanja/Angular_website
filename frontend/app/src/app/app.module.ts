@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MasterComponent } from './master/master.component';
 import { ResearchComponent } from './research/research.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NotificationComponent } from './notification/notification.component';
     ContactComponent,
     MasterComponent,
     ResearchComponent,
-    NotificationComponent
+    NotificationComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

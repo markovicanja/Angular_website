@@ -18,9 +18,14 @@ export class LoginComponent implements OnInit {
     this.username = "";
     this.password = "";
     this.type = "";
-    if (localStorage.getItem("user") != "") this.router.navigate(["home"]);
+    if (localStorage.getItem("user") != "") {
+      this.loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+      if (this.loggedUser.changedPassword == false) this.router.navigate(["resetPassword"]); 
+      else this.router.navigate(["home"]);
+    }
   }
 
+  loggedUser: User;
   username: string;
   password: string;
   type: string;
@@ -32,9 +37,10 @@ export class LoginComponent implements OnInit {
     if (this.password == "") this.error.push("Morate uneti lozinku");
     if (this.username == "" || this.password == "") return;
     this.service.login(this.username).subscribe((user: User) => {
-      if (user) {
+      if (user) {        
         if (user.password == this.password && user.type == this.type) {
           localStorage.setItem('user', this.type);
+          localStorage.setItem('loggedUser', JSON.stringify(user));
           if (user.type == "administrator") {
             localStorage.setItem('admin', JSON.stringify(user));
             window.location.reload();

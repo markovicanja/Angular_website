@@ -72,6 +72,15 @@ export class ServiceService {
   //   return this.http.post(`${this.uri}/registerAdmin`, data);
   // }
 
+  // RESET PASSWORD
+  resetPassword(username, password) {
+    const data = {
+      username: username,
+      password: password
+    }
+    return this.http.post(`${this.uri}/resetPassword`, data);
+  }
+
   // NOTIFICATIONS
   getAllNotifications() {
     return this.http.get(`${this.uri}/getAllNotifications`);
