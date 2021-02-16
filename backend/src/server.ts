@@ -87,13 +87,6 @@ router.route('/registerEmployee').post((req, res) => {
     res.json({poruka: 1});
 });
 
-// router.route('/registerAdmin').post((req, res) => {
-//     let username = req.body.username;
-//     let password = req.body.password;
-
-//     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'admin', 'changedPassword': false});
-// });
-
 // RESET PASSWORD
 router.route('/resetPassword').post((req, res) => {
     let username = req.body.username;
@@ -101,6 +94,14 @@ router.route('/resetPassword').post((req, res) => {
     
     user.collection.updateOne({'username': username}, {$set: {"password": password, "changedPassword": true}});
     res.json({poruka: 1});
+});
+
+// GET EMPLOYEES
+router.route('/getAllEmployees').get((req, res) => {
+    employee.find({}, (err, employees) => {
+        if (err) console.log(err);
+        else res.json(employees);
+    });
 });
 
 // NOTIFICATIONS

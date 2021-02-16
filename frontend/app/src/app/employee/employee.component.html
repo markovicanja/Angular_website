@@ -1,0 +1,26 @@
+<div class="card-body">
+    <h2 class="card-title text-center">{{employee.firstName}} {{employee.lastName}}</h2>
+</div>
+
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+    <table class="table table-white text-center">
+        <tr>
+            <td> Zvanje: <i>{{ employee.title }}</i></td>
+        </tr>
+        <tr>
+            <td> Stauts: <i>{{ employee.status }}</i></td>
+        </tr>
+        <tr>
+            <td> Adresa: <i>{{ employee.address }}</i></td>
+        </tr>
+        <tr>
+            <td> Vebsajt: <i>{{ employee.webpage }}</i> </td>
+        </tr>
+        <tr>
+            <td> Licni podaci: <i>{{ employee.personalInfo }}</i></td>
+        </tr>
+        <tr>
+            <td> Kabinet: <i>{{ employee.room }}</i></td>
+        </tr>
+    </table>
+</div>

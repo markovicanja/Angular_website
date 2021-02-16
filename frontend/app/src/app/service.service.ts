@@ -64,14 +64,6 @@ export class ServiceService {
     return this.http.post(`${this.uri}/registerEmployee`, data);
   }
 
-  // registerAdmin(username, password) {
-  //   const data = {
-  //     username: username,
-  //     password: password
-  //   }
-  //   return this.http.post(`${this.uri}/registerAdmin`, data);
-  // }
-
   // RESET PASSWORD
   resetPassword(username, password) {
     const data = {
@@ -79,6 +71,11 @@ export class ServiceService {
       password: password
     }
     return this.http.post(`${this.uri}/resetPassword`, data);
+  }
+
+  // GET EMPLOYEES
+  getAllEmployees() {
+    return this.http.get(`${this.uri}/getAllEmployees`);
   }
 
   // NOTIFICATIONS

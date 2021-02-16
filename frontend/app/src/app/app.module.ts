@@ -17,6 +17,8 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
 import { ProfileEmployeeComponent } from './profile-employee/profile-employee.component';
 import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileStudentComponent,
     ProfileEmployeeComponent,
     ProfileAdminComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmployeesComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -53,4 +53,12 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  register() {
+    // registracija korisnika
+  }
+
+  edit() {
+    // izmena podataka korisnika
+  }
 }

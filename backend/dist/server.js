@@ -93,6 +93,15 @@ router.route('/resetPassword').post((req, res) => {
     user_1.default.collection.updateOne({ 'username': username }, { $set: { "password": password, "changedPassword": true } });
     res.json({ poruka: 1 });
 });
+// GET EMPLOYEES
+router.route('/getAllEmployees').get((req, res) => {
+    employee_1.default.find({}, (err, employees) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(employees);
+    });
+});
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());
