@@ -19,6 +19,7 @@ import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EmployeeComponent } from './employee/employee.component';
     ProfileAdminComponent,
     ProfileComponent,
     EmployeesComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -105,6 +105,14 @@ router.route('/getAllEmployees').get((req, res) => {
     });
 });
 
+// GET ALL USERS
+router.route('/getAllUsers').get((req, res) => {
+    user.find({}, (err, users) => {
+        if (err) console.log(err);
+        else res.json(users);
+    });
+});
+
 // UPDATE EMPLOYEE
 router.route('/updateEmployee').post((req, res) => {
     let username = req.body.username;
@@ -114,6 +122,29 @@ router.route('/updateEmployee').post((req, res) => {
     let room = req.body.room;
 
     employee.collection.updateOne({'username': username}, {$set: {"address": address, "phoneNumber": phoneNumber, "personalInfo": personalInfo, "room": room}});
+    res.json({poruka: 1});
+});
+
+// DELETE USER
+router.route('/deleteUser').post((req, res) => {
+    let username = req.body.username;
+    let type = req.body.type;
+
+    user.collection.deleteOne({'username': username}, (err, res) => {
+        if (err) console.log(err);
+        // else console.log("1 document deleted");
+    });
+
+    if (type == "student") {
+        student.collection.deleteOne({'username': username}, (err, res) => {
+            if (err) console.log(err);
+        });
+    }
+    else {
+        employee.collection.deleteOne({'username': username}, (err, res) => {
+            if (err) console.log(err);
+        });
+    }
     res.json({poruka: 1});
 });
 

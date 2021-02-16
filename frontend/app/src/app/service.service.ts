@@ -78,6 +78,20 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getAllEmployees`);
   }
 
+  // GET ALL USERS
+  getAllUsers() {
+    return this.http.get(`${this.uri}/getAllUsers`);
+  }
+
+  // DELETE USER
+  deleteUser(username, type) {
+    const data = {
+      username: username,
+      type: type
+    }
+    return this.http.post(`${this.uri}/deleteUser`, data);
+  }
+
   // NOTIFICATIONS
   getAllNotifications() {
     return this.http.get(`${this.uri}/getAllNotifications`);

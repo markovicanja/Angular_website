@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'profileAdmin', component: ProfileAdminComponent },
   { path: 'employees', component: EmployeesComponent },
   { path: 'employee', component: EmployeeComponent },
+  { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({

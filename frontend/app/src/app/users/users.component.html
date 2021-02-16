@@ -1,0 +1,30 @@
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="users">
+    <table class="table table-white text-center">
+        <thead>
+            <tr>
+                <th>Korisnicko ime</th>
+                <th>Tip</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.type}}</td>
+                <td>
+                    <button (click)="editUser(user)" type="button" class="btn btn-outline-primary mx-2">
+                        <i class="fas fa-edit"></i>
+                    </button>
+
+                    <button *ngIf="user?.type!='admin'" (click)="deleteUser(user)" type="button" class="btn btn-outline-danger mx-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    
+                    <button *ngIf="user?.type=='admin'" (click)="addUser()" type="button" class="btn btn-outline-success mx-2">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,4 @@
-<h4 class="mt-3 text-center">Licni podaci</h4>
+<h4 class="mt-3 text-center" *ngIf="user.type != 'admin'">Licni podaci</h4>
 
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'student'">
     <table class="table table-white text-center">
@@ -28,22 +28,14 @@
     </form>
 </div>
 
+<h4 class="mt-3 text-center" *ngIf="user.type == 'admin'">Dodaj/azuriraj/obrisi</h4>
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'admin'">
     <table class="table table-white text-center">
         <tr>
-            <td> Korisnicko ime: {{ user.username }} </td>
-        </tr>
-    </table>
-</div>
-
-<h4 class="mt-3 text-center" *ngIf="user.type == 'admin'">Upravljanje korisnicima</h4>
-<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'admin'">
-    <table class="table table-white text-center">
-        <tr>
-            <td> <button class="btn btn-outline-secondary btn-sm" (click)="register()">Registracija korisnika</button> </td>
+            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/users">Korisnika</button> </td>
         </tr>
         <tr>
-            <td> <button class="btn btn-outline-secondary btn-sm" (click)="edit()">Izmena podataka korisnika</button> </td>
+            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/subjects">Predmet</button> </td>
         </tr>
     </table>
 </div>
