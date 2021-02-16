@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
       this.service.registerStudent(this.studentUsername, this.studentPassword, this.studentIndex, this.studentType, 
         this.studentName, this.studentSurname, this.studentStatus).subscribe(res => {
           if (!this.adminLogged) this.router.navigate(["login"]);
-          // else this.router.navigate(["registerUsers"]);
+          else this.router.navigate(["users"]);
       });
     }
   }
@@ -119,7 +119,7 @@ export class RegisterComponent implements OnInit {
           if (!this.adminLogged) this.router.navigate(["login"]);
           else {
             this.uploadImage(res);
-            // this.router.navigate(["registerUsers"]);
+            this.router.navigate(["users"]);
           } 
       });
     }

@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
   }
 
   addUser(user: User) {
-
+    this.router.navigate(["register"]);
   }
 
 }
