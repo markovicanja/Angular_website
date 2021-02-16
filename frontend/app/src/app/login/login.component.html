@@ -2,9 +2,9 @@
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
     <form class="text-center mx-5" style="width: 100%;">
         <input name="username" class="form-control" placeholder="Korisnicko ime" [(ngModel)]="username">
-        <input name="password" class="form-control" placeholder="Lozinka" [(ngModel)]="password">
+        <input type="password" name="password" class="form-control" placeholder="Lozinka" [(ngModel)]="password">
         <select name="type" [(ngModel)]="type" class="form-control select">
-            <option disabled selected class="select-placeholder">Tip studija</option>
+            <option value='' disabled selected hidden class="select-placeholder">Tip studija</option>
             <option value='student'>Student</option>
             <option value='zaposleni'>Zaposleni</option>
             <option value='administrator'>Administrator</option>

@@ -12,8 +12,8 @@ export class RegisterComponent implements OnInit {
   constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem("user") == "admin") this.adminLogged = false;
-    else this.adminLogged = true;
+    if (localStorage.getItem("user") == "admin") this.adminLogged = true;
+    else this.adminLogged = false;
     
     this.studentName = "";
     this.studentSurname = "";
@@ -75,11 +75,8 @@ export class RegisterComponent implements OnInit {
     else {
       this.service.registerStudent(this.studentUsername, this.studentPassword, this.studentIndex, this.studentType, 
         this.studentName, this.studentSurname, this.studentStatus).subscribe(res => {
-          if (this.adminLogged) this.router.navigate(["home"]);
-            //this.router.navigate(["registerUsers"]);
-          else {
-            this.router.navigate(["login"]);
-          } 
+          if (!this.adminLogged) this.router.navigate(["login"]);
+          // else this.router.navigate(["registerUsers"]);
       });
     }
   }
@@ -88,8 +85,7 @@ export class RegisterComponent implements OnInit {
     this.error = "";
     let empolyeeType = "nastavnik";
     if (this.employeeName == "" || this.employeeSurname == "" || this.employeeUsername == "" || this.employeePassword == "" || 
-    this.employeeRepeatedPassword == "" || this.employeeAddress == "" || this.employeePhone == "" || this.employeeWebsite == "" || 
-    this.employeeInfo == "" || this.employeeTitle == "" || this.employeeRoom == "" || this.employeeStatus == "") {
+    this.employeeRepeatedPassword == "" || this.employeeAddress == "" || this.employeeTitle == "") {
       this.error = "Morate uneti sva obavezna polja."
     }
     else if (this.employeeRepeatedPassword != this.employeePassword) {
@@ -99,12 +95,15 @@ export class RegisterComponent implements OnInit {
       if (this.employeeTitle == "istrazivac" || this.employeeTitle == "laboratorijski inzenjer" || this.employeeTitle == "laboratorijski tehnicar") {
         empolyeeType = "laborant";
       }
+      if (empolyeeType == "nastavnik" && this.employeeRoom == "") {
+        this.error = "Nastavnik mora imati unet broj kabineta.";
+        return;
+      }
       this.service.registerEmployee(this.employeeUsername, this.employeePassword, this.employeeName, this.employeeSurname, 
         this.employeeAddress,  this.employeePhone, this.employeeTitle, this.employeeRoom,
         this.employeeStatus, this.employeeWebsite, empolyeeType, this.employeeInfo).subscribe(res => {
-          if (this.adminLogged) this.router.navigate(["home"]);
-            //this.router.navigate(["registerUsers"]);
-          else this.router.navigate(["login"]);
+          if (!this.adminLogged) this.router.navigate(["login"]);
+          // else this.router.navigate(["registerUsers"]);
       });
     }
   }

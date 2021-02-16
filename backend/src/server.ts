@@ -59,7 +59,7 @@ router.route('/registerStudent').post((req, res) => {
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let status = req.body.status;
-    
+
     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'student', 'changedPassword': false});
     student.collection.insertOne({'username' : username, 'index' : index, 'type' : type, 'firstName': firstName, 'lastName': lastName, 'status': status});
     res.json({poruka: 1});

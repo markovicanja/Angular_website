@@ -10,6 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const user_1 = __importDefault(require("./model/user"));
 const notification_1 = __importDefault(require("./model/notification"));
 const student_1 = __importDefault(require("./model/student"));
+const employee_1 = __importDefault(require("./model/employee"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -38,15 +39,6 @@ router.route('/getStudent').post((req, res) => {
             res.json(s);
     });
 });
-router.route('/getStudent').post((req, res) => {
-    let username = req.body.username;
-    student_1.default.findOne({ 'username': username }, (err, s) => {
-        if (err)
-            console.log(err);
-        else
-            res.json(s);
-    });
-});
 router.route('/getEmployee').post((req, res) => {
     let username = req.body.username;
     user_1.default.findOne({ 'username': username }, (err, e) => {
@@ -56,6 +48,44 @@ router.route('/getEmployee').post((req, res) => {
             res.json(e);
     });
 });
+// REGISTER
+router.route('/registerStudent').post((req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    let index = req.body.index;
+    let type = req.body.type;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let status = req.body.status;
+    user_1.default.collection.insertOne({ 'username': username, 'password': password, 'type': 'student', 'changedPassword': false });
+    student_1.default.collection.insertOne({ 'username': username, 'index': index, 'type': type, 'firstName': firstName, 'lastName': lastName, 'status': status });
+    res.json({ poruka: 1 });
+});
+router.route('/registerEmployee').post((req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let address = req.body.address;
+    let phoneNumber = req.body.phoneNumber;
+    let personalInfo = req.body.personalInfo;
+    let title = req.body.title;
+    let room = req.body.room;
+    let status = req.body.status;
+    let webpage = req.body.webpage;
+    let type = req.body.type;
+    // let profilePicture = req.body.profilePicture;
+    user_1.default.collection.insertOne({ 'username': username, 'password': password, 'type': 'zaposlen', 'changedPassword': false });
+    employee_1.default.collection.insertOne({ 'username': username, 'firstName': firstName, 'lastName': lastName, 'address': address,
+        'phoneNumber': phoneNumber, 'webpage': webpage, 'personalInfo': personalInfo, 'title': title, 'room': room, 'status': status,
+        'type': type, 'profilePicture': {} });
+    res.json({ poruka: 1 });
+});
+// router.route('/registerAdmin').post((req, res) => {
+//     let username = req.body.username;
+//     let password = req.body.password;
+//     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'admin', 'changedPassword': false});
+// });
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());

@@ -22,6 +22,9 @@ export class AppComponent {
 
   logout() {
     localStorage.setItem("user", "");
+    localStorage.setItem("admin", null);
+    localStorage.setItem("student", null);
+    localStorage.setItem("employee", null);
     this.router.navigate(["home"]);
     window.location.reload();
   }
