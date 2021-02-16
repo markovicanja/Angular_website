@@ -17,24 +17,15 @@
     </table>
 </div>
 
+<p class="mt-3 text-center" *ngIf="user.type == 'zaposlen'"><i>{{ employee.firstName }} {{ employee.lastName }}</i></p>
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'zaposlen'">
-    <table class="table table-white text-center">
-        <tr>
-            <td> Ime: {{ employee.firstName }} </td>
-        </tr>
-        <tr>
-            <td> Prezime: {{ employee.lastName }} </td>
-        </tr>
-        <tr>
-            <td> Korisnicko ime: {{ user.username }} </td>
-        </tr>
-        <tr>
-            <td> Zvanje: {{ employee.title }} </td>
-        </tr>
-        <tr>
-            <td> Adresa: {{ employee.address }} </td>
-        </tr>
-    </table>
+    <form class="text-center mx-5" style="width: 100%;">
+        <input type="text" name="address" class="form-control" placeholder="Adresa" [(ngModel)]="employee.address">
+        <input type="text" name="phone" class="form-control" placeholder="Telefon" [(ngModel)]="employee.phoneNumber">
+        <input type="text" name="personalInfo" class="form-control" placeholder="Biografija" [(ngModel)]="employee.personalInfo">
+        <input type="text" name="room" class="form-control" placeholder="Kabinet" [(ngModel)]="employee.room">
+        <button class="btn btn-secondary mt-3" (click)="updateData()">Azuriraj</button>
+    </form>
 </div>
 
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'admin'">

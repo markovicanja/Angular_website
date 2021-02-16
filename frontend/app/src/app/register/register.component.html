@@ -5,7 +5,7 @@
         <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
         </li>
         <li class="nav-item" >
-        <a class="nav-link" id="zaposleni-tab" data-toggle="tab" href="#zaposleni" role="tab" aria-controls="zaposleni" aria-selected="false">Zaposleni</a>
+        <a class="nav-link" id="zaposleni-tab" data-toggle="tab" href="#zaposleni" role="tab" aria-controls="zaposleni" aria-selected="false" *ngIf="adminLogged">Zaposleni</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">

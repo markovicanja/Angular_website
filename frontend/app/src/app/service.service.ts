@@ -83,6 +83,18 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getAllNotifications`);
   }
 
+  // UPDATE EMPLOYEE
+  updateEmployee(username, address, phoneNumber, personalInfo, room) {
+    const data = {
+      username: username,
+      address: address,
+      phoneNumber: phoneNumber,
+      personalInfo: personalInfo,
+      room: room
+    }
+    return this.http.post(`${this.uri}/updateEmployee`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

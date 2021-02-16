@@ -61,4 +61,11 @@ export class ProfileComponent implements OnInit {
   edit() {
     // izmena podataka korisnika
   }
+
+  updateData() {
+    this.service.updateEmployee(this.user.username, this.employee.address, this.employee.phoneNumber, this.employee.personalInfo, this.employee.room).subscribe(res => {
+      this.msg = "Uspesno ste promenili podatke";
+      localStorage.setItem("employee", JSON.stringify(this.employee));
+    })
+  }
 }

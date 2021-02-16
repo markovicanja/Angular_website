@@ -117,6 +117,16 @@ router.route('/getAllEmployees').get((req, res) => {
             res.json(employees);
     });
 });
+// UPDATE EMPLOYEE
+router.route('/updateEmployee').post((req, res) => {
+    let username = req.body.username;
+    let address = req.body.address;
+    let phoneNumber = req.body.phoneNumber;
+    let personalInfo = req.body.personalInfo;
+    let room = req.body.room;
+    employee_1.default.collection.updateOne({ 'username': username }, { $set: { "address": address, "phoneNumber": phoneNumber, "personalInfo": personalInfo, "room": room } });
+    res.json({ poruka: 1 });
+});
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());
