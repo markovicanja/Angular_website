@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         if (user.password == this.password && user.type == this.type) {
           localStorage.setItem('user', this.type);
           localStorage.setItem('loggedUser', JSON.stringify(user));
-          if (user.type == "administrator") {
+          if (user.type == "admin") {
             localStorage.setItem('admin', JSON.stringify(user));
             window.location.reload();
           }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
               window.location.reload();
             })
           }
-          else if (user.type == "zaposleni") {
+          else if (user.type == "zaposlen") {
             this.service.getEmployee(this.username).subscribe((employee: Employee) => {
               localStorage.setItem('employee', JSON.stringify(employee));
               window.location.reload();

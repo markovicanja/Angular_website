@@ -41,7 +41,7 @@ router.route('/getStudent').post((req, res) => {
 });
 router.route('/getEmployee').post((req, res) => {
     let username = req.body.username;
-    user_1.default.findOne({ 'username': username }, (err, e) => {
+    employee_1.default.findOne({ 'username': username }, (err, e) => {
         if (err)
             console.log(err);
         else

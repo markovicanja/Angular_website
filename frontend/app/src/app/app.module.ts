@@ -13,6 +13,10 @@ import { MasterComponent } from './master/master.component';
 import { ResearchComponent } from './research/research.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ProfileStudentComponent } from './profile-student/profile-student.component';
+import { ProfileEmployeeComponent } from './profile-employee/profile-employee.component';
+import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MasterComponent,
     ResearchComponent,
     NotificationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ProfileStudentComponent,
+    ProfileEmployeeComponent,
+    ProfileAdminComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
