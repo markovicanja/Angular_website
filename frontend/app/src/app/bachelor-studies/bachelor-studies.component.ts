@@ -37,6 +37,7 @@ export class BachelorStudiesComponent implements OnInit {
   }
 
   openSubject(s) {
+    if (localStorage.getItem("user") == "") return;
     localStorage.setItem("chosenSubject", JSON.stringify(s));
     this.router.navigate(['subject']);
   }
