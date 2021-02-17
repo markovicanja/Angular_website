@@ -31,6 +31,7 @@ const notification_1 = __importDefault(require("./model/notification"));
 const student_1 = __importDefault(require("./model/student"));
 const employee_1 = __importDefault(require("./model/employee"));
 const fs = __importStar(require("fs"));
+const subject_1 = __importDefault(require("./model/subject"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -188,6 +189,15 @@ router.route('/deleteUser').post((req, res) => {
         });
     }
     res.json({ poruka: 1 });
+});
+// GET ALL SUBJECTS
+router.route('/getAllSubjects').get((req, res) => {
+    subject_1.default.find({}, (err, s) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(s);
+    });
 });
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {

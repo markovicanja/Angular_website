@@ -1,0 +1,102 @@
+{
+    "type": "obavezni",
+    "semestar": 1,
+    "department": "si",
+    "title": "Programiranje 1",
+    "code": "13S111P1",
+    "fond": {
+        "lecture": 2,
+        "exercise": 2,
+        "lab": 1
+    },
+    "espb": 5,
+    "examMaterials" : {
+        "hidden": false,
+        "examText" : [                "PIA_Lekcija1_Uvod.zip``Petar`Petrovic`2614.7763671875`1612380803288.zip"
+        ],
+        "examSolution" : [                "PIA_Lekcija1_Uvod.zip``Petar`Petrovic`2614.7763671875`1612380814674.zip"
+        ]
+    },
+    "propositions": "Barem 50 poena da bi se polozio ispit.",
+    "goal": "Cilj je savladati osnove programiranja.",
+    "classTime": ["Utorak 16", "Cetvrtak 10"],
+    "excerciseTime": ["Utorak 18", "Cetvrtak 12"],
+    "hasLab": true,
+    "lab" : {
+        "hidden": false,
+        "numberOfLabs" : 3,
+        "basicInfo": "Lab se radi u paviljonu.",
+        "labDetails" : [
+            {
+                "description" : "Prva lab vezba obuhvata pptx 1-5",
+                "materials" : [                      "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380829225.pdf"
+                ]
+            },
+            {
+                "description" : "Druga lab vezba obuhvata pttx 6-10",
+                "materials" : [                        "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380829225.pdf"
+                ]
+            },
+            {
+                "description" : "Treca lab vezba obuhvata pptx 11-15",
+                "materials" : [
+                    "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380829225.pdf"
+                ]
+            }
+        ]
+    },
+    "lectureMaterials" : [
+        "PIA_Lekcija1_Uvod.pdf``Petar`Petrovic`2874.3115234375`1612380773696.pdf",
+        "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380783831.pdf",
+        "PIA_Lekcija4_JSF.pdf``Petar`Petrovic`1929.515625`1612380783850.pdf"
+    ],
+    "exerciseMaterials" : [
+        "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380791666.pdf",
+        "PIA_Lekcija4_JSF.pdf``Petar`Petrovic`1929.515625`1612380791697.pdf"
+    ],
+    "project": {
+        "hidden": false,
+        "projects": [{
+            "basicInfo": "DZ1",
+            "description": "Potrebno je odraditi modifikaciju.",
+            "projectMaterials": [          "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380791666.pdf",
+"PIA_Lekcija4_JSF.pdf``Petar`Petrovic`1929.515625`1612380791697.pdf"
+    ]
+        },
+        {
+            "basicInfo": "DZ2",
+            "description": "Potrebno je odraditi modifikaciju.",
+            "projectMaterials": [          "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380791666.pdf",
+"PIA_Lekcija4_JSF.pdf``Petar`Petrovic`1929.515625`1612380791697.pdf"
+    ]
+        },
+        {
+            "basicInfo": "DZ3",
+            "description": "Potrebno je odraditi modifikaciju.",
+            "projectMaterials":[          "PIA_Lekcija3_JSP.pdf``Petar`Petrovic`1153.5576171875`1612380791666.pdf",
+"PIA_Lekcija4_JSF.pdf``Petar`Petrovic`1929.515625`1612380791697.pdf"
+    ]
+        }]
+    },
+    "notifications": [
+        {
+            "title": "Obavestenje 1",
+            "content": "Obavezno prijavite ovaj predmet kako biste bili u toku s informacijama.1",
+            "creator": "pera@etf.bg.ac.rs",
+            "dateCreation": "2021-01-02 16:40:32.690Z",
+            "files" : [
+                "PIA_Lekcija4_JSF.pdf`Obavestenje 2`pera@etf.bg.ac.rs`1929.515625`1612381719031.pdf"
+            ]
+        },
+        {
+            "title": "Obavestenje 2",
+            "content": "Obavezno prijavite ovaj predmet kako biste bili u toku s informacijama.2",
+            "creator": "pera@etf.bg.ac.rs"
+        },
+        {
+            "title": "Obavestenje 3",
+            "content": "Obavezno prijavite ovaj predmet kako biste bili u toku s informacijama.3",
+            "creator": "mika@etf.bg.ac.rs"
+        }
+    ]
+}

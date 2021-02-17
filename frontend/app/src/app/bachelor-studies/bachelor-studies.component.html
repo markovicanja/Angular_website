@@ -1,0 +1,215 @@
+<div class="container">
+
+    <div id="accordion">
+        <div class="card my-4">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Odsek za racunarsku tehniku i informatiku
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body pb-0">
+                Semestar 1:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 1'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 2:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 2'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 3:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 3'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 4:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 4'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 5:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 5'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 6:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 6'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 7:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 7'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+                <hr>
+                Semestar 8:
+                <ul class="mx-3" *ngFor="let s of subjectsRTI">
+                    <li *ngIf='s.semestar == 8'>
+                      <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapswTwo" aria-expanded="true" aria-controls="collapswTwo">
+                    Odsek za softversko inzenjerstvo
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                  Semestar 1:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 1'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 2:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 2'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 3:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 3'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 4:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 4'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 5:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 5'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 6:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 6'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 7:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 7'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 8:
+                  <ul class="mx-3" *ngFor="let s of subjectsSI">
+                      <li *ngIf='s.semestar == 8'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    Ostali odseci
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                  Semestar 1:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 1'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 2:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 2'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 3:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 3'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 4:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 4'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 5:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 5'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 6:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 6'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 7:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 7'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                  <hr>
+                  Semestar 8:
+                  <ul class="mx-3" *ngFor="let s of subjectsRest">
+                      <li *ngIf='s.semestar == 8'>
+                        <button class="btn btn-white btn-sm" (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+                      </li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+    </div>
+
+</div>

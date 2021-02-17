@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -7,6 +7,7 @@ import notification from './model/notification';
 import student from './model/student';
 import employee from './model/employee';
 import * as fs from "fs"
+import subject from './model/subject';
 
 const app = express();
 
@@ -181,6 +182,14 @@ router.route('/deleteUser').post((req, res) => {
     }
     res.json({poruka: 1});
 });
+
+// GET ALL SUBJECTS
+router.route('/getAllSubjects').get((req, res) => {
+    subject.find({}, (err, s) => {
+        if (err) console.log(err);
+        else res.json(s);
+    })
+})
 
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {

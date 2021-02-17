@@ -94,11 +94,6 @@ export class ServiceService {
     return this.http.post(`${this.uri}/deleteUser`, data);
   }
 
-  // NOTIFICATIONS
-  getAllNotifications() {
-    return this.http.get(`${this.uri}/getAllNotifications`);
-  }
-
   // UPDATE EMPLOYEE
   updateEmployee(username, address, phoneNumber, personalInfo, room) {
     const data = {
@@ -137,6 +132,17 @@ export class ServiceService {
     }
     return this.http.post(`${this.uri}/adminUpdateStudent`, data);
   }
+
+  // GET ALL SUBJECTS
+  getAllSubjects() {
+    return this.http.get(`${this.uri}/getAllSubjects`);
+  }
+
+
+  // NOTIFICATIONS
+  getAllNotifications() {
+    return this.http.get(`${this.uri}/getAllNotifications`);
+  } 
 
   // POST IMAGE
   public postImage(formData: FormData){
