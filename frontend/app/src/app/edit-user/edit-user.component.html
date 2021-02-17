@@ -1,0 +1,46 @@
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'student'">
+    <form class="text-center mx-5" style="width: 100%;">
+        <input type="text" name="firstname" class="form-control" placeholder="Ime" [(ngModel)]="student.firstName" readonly="readonly">
+        <input type="text" name="lastname" class="form-control" placeholder="Prezime" [(ngModel)]="student.lastName" readonly="readonly">
+        <input type="text" name="username" class="form-control" placeholder="Korisnicko ime" [(ngModel)]="student.username">
+        <input type="text" name="index" class="form-control" placeholder="Indeks" [(ngModel)]="student.index">
+        <select name="status" class="form-control select" [(ngModel)]="student.status">
+            <option>aktivan</option>
+            <option>neaktivan</option>
+        </select>
+        <select name="type" class="form-control select" [(ngModel)]="student.type">
+            <option value='d'>Osnovne akademske</option>
+            <option value='m'>Master akademske</option>
+            <option value='p'>Doktorske studije</option>
+        </select>
+        <button class="btn btn-secondary mt-3" (click)="updateStudent()">Azuriraj</button>
+    </form>
+</div>
+
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'zaposlen'">
+    <form class="text-center mx-5" style="width: 100%;">
+        <input type="text" name="firstname" class="form-control" placeholder="Ime" [(ngModel)]="employee.firstName" readonly="readonly">
+        <input type="text" name="lastname" class="form-control" placeholder="Prezime" [(ngModel)]="employee.lastName" readonly="readonly">
+        <input type="text" name="username" class="form-control" placeholder="Korisnicko ime" [(ngModel)]="employee.username" readonly="readonly">
+        <input type="text" name="address" class="form-control" placeholder="Adresa" [(ngModel)]="employee.address">
+        <input type="text" name="phone" class="form-control" placeholder="Telefon" [(ngModel)]="employee.phoneNumber">
+        <input type="text" name="webpage" class="form-control" placeholder="Vebsajt" [(ngModel)]="employee.webpage">
+        <input type="text" name="personalInfo" class="form-control" placeholder="Biografija" [(ngModel)]="employee.personalInfo">
+        <input type="text" name="room" class="form-control" placeholder="Kabinet" [(ngModel)]="employee.room">
+        <select name="status" class="form-control select" [(ngModel)]="employee.status">
+            <option>aktivan</option>
+            <option>neaktivan</option>
+        </select>
+        <select name="title" class="form-control select" [(ngModel)]="employee.title">
+            <option *ngIf="employee.type == 'nastavnik'">redovni profesor</option>
+            <option *ngIf="employee.type == 'nastavnik'">vanredni profesor</option>
+            <option *ngIf="employee.type == 'nastavnik'">docent</option>
+            <option *ngIf="employee.type == 'nastavnik'">asistent</option>
+            <option *ngIf="employee.type == 'nastavnik'">saradnik u nastavi</option>
+            <option *ngIf="employee.type == 'laborant'">istrazivac</option>
+            <option *ngIf="employee.type == 'laborant'">laboratorijski inzenjer</option>
+            <option *ngIf="employee.type == 'laborant'">laboratorijski tehnicar</option>
+        </select>
+        <button class="btn btn-secondary mt-3" (click)="updateEmployee()">Azuriraj</button>
+    </form>
+</div>

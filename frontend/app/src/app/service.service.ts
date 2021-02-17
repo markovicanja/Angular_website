@@ -18,6 +18,7 @@ export class ServiceService {
     return this.http.post(`${this.uri}/login`, data);
   }
   
+  // GET STUDENT
   getStudent(username) {
     const data = {
       username: username
@@ -25,6 +26,7 @@ export class ServiceService {
     return this.http.post(`${this.uri}/getStudent`, data);
   }
   
+  // GET EMPLOYEE
   getEmployee(username) {
     const data = {
       username: username
@@ -107,6 +109,33 @@ export class ServiceService {
       room: room
     }
     return this.http.post(`${this.uri}/updateEmployee`, data);
+  }
+
+  // ADMIN UPDATE EMPLOYEE
+  adminUpdateEmployee(username, address, phoneNumber, personalInfo, room, webpage, title, status) {
+    const data = {
+      username: username,
+      address: address,
+      phoneNumber: phoneNumber,
+      personalInfo: personalInfo,
+      room: room,
+      webpage: webpage,
+      title: title,
+      status: status
+    }
+    return this.http.post(`${this.uri}/adminUpdateEmployee`, data);
+  }
+
+  // ADMIN UPDATE STUDENT 
+  adminUpdateStudent(oldUsername, username, index, status, type) {
+    const data = {
+      oldUsername: oldUsername,
+      username: username,
+      index: index,
+      status: status,
+      type: type
+    }
+    return this.http.post(`${this.uri}/adminUpdateStudent`, data);
   }
 
   // POST IMAGE

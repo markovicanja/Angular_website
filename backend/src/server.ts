@@ -33,6 +33,7 @@ router.route('/login').post((req, res) => {
     });
 });
 
+// GET STUDENT
 router.route('/getStudent').post((req, res) => {
     let username = req.body.username;
     
@@ -42,6 +43,7 @@ router.route('/getStudent').post((req, res) => {
     });
 });
 
+// GET EMPLOYEE
 router.route('/getEmployee').post((req, res) => {
     let username = req.body.username;
     
@@ -62,7 +64,8 @@ router.route('/registerStudent').post((req, res) => {
     let status = req.body.status;
 
     user.collection.insertOne({'username' : username, 'password' : password, 'type' : 'student', 'changedPassword': false});
-    student.collection.insertOne({'username' : username, 'index' : index, 'type' : type, 'firstName': firstName, 'lastName': lastName, 'status': status});
+    student.collection.insertOne({'username' : username, 'index' : index, 'type' : type, 'firstName': firstName, 
+    'lastName': lastName, 'status': status});
     res.json({poruka: 1});
 });
 
@@ -121,7 +124,38 @@ router.route('/updateEmployee').post((req, res) => {
     let personalInfo = req.body.personalInfo;
     let room = req.body.room;
 
-    employee.collection.updateOne({'username': username}, {$set: {"address": address, "phoneNumber": phoneNumber, "personalInfo": personalInfo, "room": room}});
+    employee.collection.updateOne({'username': username}, {$set: {"address": address, "phoneNumber": phoneNumber, 
+    "personalInfo": personalInfo, "room": room}});
+    res.json({poruka: 1});
+});
+
+// ADMIN UPDATE EMPLOYEE
+router.route('/adminUpdateEmployee').post((req, res) => {
+    let username = req.body.username;
+    let address = req.body.address;
+    let phoneNumber = req.body.phoneNumber;
+    let personalInfo = req.body.personalInfo;
+    let room = req.body.room;
+    let webpage = req.body.webpage;
+    let title = req.body.title;
+    let status = req.body.status;
+
+    employee.collection.updateOne({'username': username}, {$set: {"address": address, "phoneNumber": phoneNumber, 
+    "webpage": webpage, "title": title, "status": status, "personalInfo": personalInfo, "room": room }});
+    res.json({poruka: 1});
+});
+
+// ADMIN UPDATE STUDENT 
+router.route('/adminUpdateStudent').post((req, res) => {
+    let oldUsername = req.body.oldUsername;
+    let username = req.body.username;
+    let index = req.body.index;
+    let status = req.body.status;
+    let type = req.body.type;
+
+    student.collection.updateOne({'username': oldUsername}, {$set: {"index": index, "status": status, 
+    "type": type, "username": username}});
+    user.collection.updateOne({'username' : oldUsername}, {$set: {"username": username}});
     res.json({poruka: 1});
 });
 

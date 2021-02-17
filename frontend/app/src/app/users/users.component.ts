@@ -25,7 +25,8 @@ export class UsersComponent implements OnInit {
   }
 
   editUser(user: User) {
-
+    localStorage.setItem("editUser", JSON.stringify(user));
+    this.router.navigate(['editUser']);
   }
 
   deleteUser(user: User) {

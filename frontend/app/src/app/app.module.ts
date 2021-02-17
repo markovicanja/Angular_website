@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UsersComponent } from './users/users.component';
     ProfileComponent,
     EmployeesComponent,
     EmployeeComponent,
-    UsersComponent
+    UsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@
                 <td>{{user.username}}</td>
                 <td>{{user.type}}</td>
                 <td>
-                    <button (click)="editUser(user)" type="button" class="btn btn-outline-primary mx-2">
+                    <button *ngIf="user?.type!='admin'" (click)="editUser(user)" type="button" class="btn btn-outline-primary mx-2">
                         <i class="fas fa-edit"></i>
                     </button>
 
