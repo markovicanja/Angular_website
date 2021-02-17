@@ -7,15 +7,49 @@ export class Subject {
     espb: number;
     goal: string;
     propositions: string;
-    fond: object;
+    fond: {
+        lecture: string;
+        exercise: string;
+        lab: string;
+    };
     classTime: Array<string>;
     excerciseTime: Array<string>;
     lectureMaterials: Array<string>;
     exerciseMaterials: Array<string>;
-    examMaterials: object;
+    examMaterials: {
+        hidden: boolean;
+        examText: Array<string>;
+        examSolution: Array<string>;
+    };
     hasLab: boolean;
-    lab: object;
-    project: object;
-    lecturers: Array<string>;
-    notifications: object;
+    lab: {
+        hidden: boolean;
+        basicInfo: string;
+        numberOfLabs: number;
+        labDetails: [
+            {
+                description: string,
+                materials: Array<string>
+            }
+        ]
+    };
+    project: {
+        hidden: boolean, 
+        projects: [
+            {
+                basicInfo: string,
+                description: string,
+                projectMaterials: Array<String>
+            }
+        ]
+    };
+    notifications: [
+        {
+            title: string;
+            content: string;
+            creator: string;
+            dateCreation: Date;
+            files: Array<string>;
+        }
+    ];
 }

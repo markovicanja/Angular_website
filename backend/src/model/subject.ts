@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import employee from './employee';
 
 const Schema = mongoose.Schema;
 
@@ -144,10 +143,6 @@ const Subject = new Schema({
                 required: true
             }
         },
-        required: true
-    },
-    lecturers: {
-        type: [String],
         required: true
     },
     notifications: {
