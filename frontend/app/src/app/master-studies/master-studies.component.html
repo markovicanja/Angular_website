@@ -1,0 +1,11 @@
+<div class="container text-center">
+    <h4 class="my-3">Semestar 1:</h4>
+    <div *ngFor="let s of subjects">
+        <button class="btn btn-white btn-sm" *ngIf='s.semestar == 1' (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+    </div>
+    <hr>
+    <h4 class="my-3">Semestar 2:</h4>
+    <div *ngFor="let s of subjects">
+        <button class="btn btn-white btn-sm" *ngIf='s.semestar == 2' (click)='openSubject(s)'>{{ s.title }} - {{ s.code }}</button>
+    </div>
+</div>

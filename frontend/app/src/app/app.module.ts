@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
-import { MasterComponent } from './master/master.component';
 import { ResearchComponent } from './research/research.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -20,6 +19,7 @@ import { UsersComponent } from './users/users.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { BachelorStudiesComponent } from './bachelor-studies/bachelor-studies.component';
 import { SubjectComponent } from './subject/subject.component';
+import { MasterStudiesComponent } from './master-studies/master-studies.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { SubjectComponent } from './subject/subject.component';
     LoginComponent,
     RegisterComponent,
     ContactComponent,
-    MasterComponent,
     ResearchComponent,
     NotificationComponent,
     ResetPasswordComponent,
@@ -38,7 +37,8 @@ import { SubjectComponent } from './subject/subject.component';
     UsersComponent,
     EditUserComponent,
     BachelorStudiesComponent,
-    SubjectComponent
+    SubjectComponent,
+    MasterStudiesComponent
   ],
   imports: [
     BrowserModule,

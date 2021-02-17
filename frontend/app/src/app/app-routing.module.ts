@@ -7,7 +7,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { MasterComponent } from './master/master.component';
+import { MasterStudiesComponent } from './master-studies/master-studies.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'master', component: MasterComponent },
   { path: 'research', component: ResearchComponent },
   { path: 'notifications', component: NotificationComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
@@ -33,6 +32,7 @@ const routes: Routes = [
   { path: 'editUser', component: EditUserComponent },
   { path: 'subject', component: SubjectComponent },
   { path: 'bachelorStudies', component: BachelorStudiesComponent },
+  { path: 'masterStudies', component: MasterStudiesComponent },
 ];
 
 @NgModule({
