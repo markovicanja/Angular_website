@@ -49,6 +49,18 @@
             <li class="nav-item">
               <a routerLink='/contact' class="nav-link">Kontakt</a>
             </li>
+
+            <li class="nav-item" *ngIf="employeeLogged">
+              <a routerLink='/subjects' class="nav-link">Predmeti</a>
+            </li>
+
+            <li class="nav-item" *ngIf="employeeLogged">
+              <a routerLink='/' class="nav-link">Obavestenja o predmetima</a>
+            </li>
+
+            <li class="nav-item" *ngIf="employeeLogged">
+              <a routerLink='/' class="nav-link">Spiskovi</a>
+            </li>
           </ul>
 
           <ul *ngIf="!sessionValid" class="nav navbar-nav ml-auto">
