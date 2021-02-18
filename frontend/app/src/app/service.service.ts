@@ -147,7 +147,7 @@ export class ServiceService {
   }
 
   // INSERT SUBJECT
-  insertSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExcercise, fondLab, classTime, excerciseTime) {
+  insertSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExercise, fondLab, classTime, excerciseTime) {
     const data = {
       code: code,
       title: title,
@@ -158,7 +158,7 @@ export class ServiceService {
       goal: goal,
       propositions: propositions,
       fondLecture: fondLecture,
-      fondExcercise: fondExcercise,
+      fondExercise: fondExercise,
       fondLab: fondLab,
       classTime: classTime,
       excerciseTime: excerciseTime
@@ -167,7 +167,7 @@ export class ServiceService {
   }
 
   // UPDATE SUBJECT
-  updateSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExcercise, fondLab, classTime, excerciseTime) {
+  updateSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExercise, fondLab, classTime, excerciseTime) {
     const data = {
       code: code,
       title: title,
@@ -178,7 +178,7 @@ export class ServiceService {
       goal: goal,
       propositions: propositions,
       fondLecture: fondLecture,
-      fondExcercise: fondExcercise,
+      fondExercise: fondExercise,
       fondLab: fondLab,
       classTime: classTime,
       excerciseTime: excerciseTime

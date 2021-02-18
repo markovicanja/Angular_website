@@ -203,13 +203,13 @@ router.route('/insertSubject').post((req, res) => {
     let goal = req.body.goal;
     let propositions = req.body.propositions;
     let fondLecture = req.body.fondLecture;
-    let fondExcercise = req.body.fondExcercise;
+    let fondExercise = req.body.fondExercise;
     let fondLab = req.body.fondLab;
     let classTime = req.body.classTime;
     let excerciseTime = req.body.excerciseTime;
 
     subject.collection.insertOne({'code' : code, 'title' : title, 'type' : type, 'department': department, 'semestar': semestar,
-    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExcercise': fondExcercise,
+    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExercise': fondExercise,
     'fondLab' : fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime, 'lectureMaterials' : [], 'exerciseMaterials': [],
     'examMaterials': {}, 'hasLab': false, 'lab': {}, 'project': {}, 'notifications': []
     });
@@ -227,13 +227,13 @@ router.route('/updateSubject').post((req, res) => {
     let goal = req.body.goal;
     let propositions = req.body.propositions;
     let fondLecture = req.body.fondLecture;
-    let fondExcercise = req.body.fondExcercise;
+    let fondExercise = req.body.fondExercise;
     let fondLab = req.body.fondLab;
     let classTime = req.body.classTime;
     let excerciseTime = req.body.excerciseTime;
 
     subject.collection.updateOne({'code' : code}, {$set : {'title' : title, 'type' : type, 'department': department, 'semestar': semestar,
-    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExcercise': fondExcercise,
+    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExercise': fondExercise,
     'fondLab' : fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime }});
     res.json({poruka: 1});
 });
