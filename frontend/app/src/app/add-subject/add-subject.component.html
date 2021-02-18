@@ -1,0 +1,29 @@
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+    <form class="text-center mx-5" style="width: 100%;">
+        <input type="text" name="code" class="form-control" placeholder="Sifra" [(ngModel)]="subject.code">
+        <input type="text" name="title" class="form-control" placeholder="Naziv" [(ngModel)]="subject.title">
+        <select name="type" class="form-control select" [(ngModel)]="subject.type">
+            <option value='' disabled selected hidden class="select-placeholder">Tip</option>
+            <option>obavezni</option>
+            <option>izborni</option>
+        </select>
+        <select name="department" multiple class="form-control select" [(ngModel)]="subject.department">
+            <option value='' disabled selected hidden class="select-placeholder">Odsek</option>
+            <option>si</option>
+            <option>rti</option>
+            <option>ostali</option>
+            <option>master</option>
+        </select>
+        <input type="text" name="semestar" class="form-control" placeholder="Semestar" [(ngModel)]="subject.semestar">
+        <input type="text" name="espb" class="form-control" placeholder="ESPB" [(ngModel)]="subject.espb">
+        <input type="text" name="goal" class="form-control" placeholder="Cilj" [(ngModel)]="subject.goal">
+        <input type="text" name="propositions" class="form-control" placeholder="Propozicije" [(ngModel)]="subject.propositions">
+        <input type="text" name="fondLecture" class="form-control" placeholder="Fond predavanja" [(ngModel)]="subject.fondLecture">
+        <input type="text" name="fondExercise" class="form-control" placeholder="Fond vezbi" [(ngModel)]="subject.fondExercise">
+        <input type="text" name="fondLab" class="form-control" placeholder="Fond laboratorijskih vezbi" [(ngModel)]="subject.fondLab">
+        <input type="text" name="classTime" class="form-control" placeholder="Termini predavanja(odvojeni zarezom)" [(ngModel)]="classTime">
+        <input type="text" name="excerciseTime" class="form-control" placeholder="Termini vezbi(odvojeni zarezom)" [(ngModel)]="excerciseTime">
+
+        <button class="btn btn-secondary my-3" (click)="addSubject()">Dodaj</button>
+    </form>
+</div>

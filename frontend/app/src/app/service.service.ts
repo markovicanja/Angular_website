@@ -146,6 +146,46 @@ export class ServiceService {
     return this.http.post(`${this.uri}/deleteSubject`, data);
   }
 
+  // INSERT SUBJECT
+  insertSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExcercise, fondLab, classTime, excerciseTime) {
+    const data = {
+      code: code,
+      title: title,
+      type: type,
+      department: department,
+      semestar: semestar,
+      espb: espb,
+      goal: goal,
+      propositions: propositions,
+      fondLecture: fondLecture,
+      fondExcercise: fondExcercise,
+      fondLab: fondLab,
+      classTime: classTime,
+      excerciseTime: excerciseTime
+    }
+    return this.http.post(`${this.uri}/insertSubject`, data);
+  }
+
+  // UPDATE SUBJECT
+  updateSubject(code, title, type, department, semestar, espb, goal, propositions, fondLecture, fondExcercise, fondLab, classTime, excerciseTime) {
+    const data = {
+      code: code,
+      title: title,
+      type: type,
+      department: department,
+      semestar: semestar,
+      espb: espb,
+      goal: goal,
+      propositions: propositions,
+      fondLecture: fondLecture,
+      fondExcercise: fondExcercise,
+      fondLab: fondLab,
+      classTime: classTime,
+      excerciseTime: excerciseTime
+    }
+    return this.http.post(`${this.uri}/updateSubject`, data);
+  }
+
   // NOTIFICATIONS
   getAllNotifications() {
     return this.http.get(`${this.uri}/getAllNotifications`);

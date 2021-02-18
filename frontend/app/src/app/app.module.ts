@@ -22,6 +22,7 @@ import { SubjectComponent } from './subject/subject.component';
 import { MasterStudiesComponent } from './master-studies/master-studies.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { EditSubjectComponent } from './edit-subject/edit-subject.component';
     SubjectComponent,
     MasterStudiesComponent,
     SubjectsComponent,
-    EditSubjectComponent
+    EditSubjectComponent,
+    AddSubjectComponent
   ],
   imports: [
     BrowserModule,

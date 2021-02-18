@@ -7,11 +7,9 @@ export class Subject {
     espb: number;
     goal: string;
     propositions: string;
-    fond: {
-        lecture: string;
-        exercise: string;
-        lab: string;
-    };
+    fondLecture: number;
+    fondExercise: number;
+    fondLab: number;
     classTime: Array<string>;
     excerciseTime: Array<string>;
     lectureMaterials: Array<string>;

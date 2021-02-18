@@ -35,23 +35,18 @@ const Subject = new Schema({
         type: String,
         required: true
     },
-    fond: {
-        type: {
-            lecture: {
-                type: Number,
-                required: true
-            },
-            exercise: {
-                type: Number,
-                required: true
-            },
-            lab: {
-                type: Number,
-                required: true
-            }
-        },
+    fondLecture: {
+        type: Number,
         required: true
-    },   
+    },
+    fondExercise: {
+        type: Number,
+        required: true
+    },
+    fondLab: {
+        type: Number,
+        required: true
+    },     
     classTime: {
         type: [String],
         required: true

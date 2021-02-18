@@ -192,6 +192,52 @@ router.route('/getAllSubjects').get((req, res) => {
     })
 })
 
+// INSERT SUBJECT
+router.route('/insertSubject').post((req, res) => {
+    let code = req.body.code;
+    let title = req.body.title;
+    let type = req.body.type;
+    let department = req.body.department;
+    let semestar = req.body.semestar;
+    let espb = req.body.espb;
+    let goal = req.body.goal;
+    let propositions = req.body.propositions;
+    let fondLecture = req.body.fondLecture;
+    let fondExcercise = req.body.fondExcercise;
+    let fondLab = req.body.fondLab;
+    let classTime = req.body.classTime;
+    let excerciseTime = req.body.excerciseTime;
+
+    subject.collection.insertOne({'code' : code, 'title' : title, 'type' : type, 'department': department, 'semestar': semestar,
+    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExcercise': fondExcercise,
+    'fondLab' : fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime, 'lectureMaterials' : [], 'exerciseMaterials': [],
+    'examMaterials': {}, 'hasLab': false, 'lab': {}, 'project': {}, 'notifications': []
+    });
+    res.json({poruka: 1});
+});
+
+// UPDATE SUBJECT
+router.route('/updateSubject').post((req, res) => {
+    let code = req.body.code;
+    let title = req.body.title;
+    let type = req.body.type;
+    let department = req.body.department;
+    let semestar = req.body.semestar;
+    let espb = req.body.espb;
+    let goal = req.body.goal;
+    let propositions = req.body.propositions;
+    let fondLecture = req.body.fondLecture;
+    let fondExcercise = req.body.fondExcercise;
+    let fondLab = req.body.fondLab;
+    let classTime = req.body.classTime;
+    let excerciseTime = req.body.excerciseTime;
+
+    subject.collection.updateOne({'code' : code}, {$set : {'title' : title, 'type' : type, 'department': department, 'semestar': semestar,
+    'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExcercise': fondExcercise,
+    'fondLab' : fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime }});
+    res.json({poruka: 1});
+});
+
 // DELETE SUBJECT
 router.route('/deleteSubject').post((req, res) => {
     let code = req.body.code;
