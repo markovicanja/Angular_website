@@ -32,6 +32,7 @@ const student_1 = __importDefault(require("./model/student"));
 const employee_1 = __importDefault(require("./model/employee"));
 const fs = __importStar(require("fs"));
 const subject_1 = __importDefault(require("./model/subject"));
+const engagementPlan_1 = __importDefault(require("./model/engagementPlan"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -208,6 +209,15 @@ router.route('/getAllNotifications').get((req, res) => {
             console.log(err);
         else
             res.json(notifications);
+    });
+});
+// GET ENGAGEMENT PLAN
+router.route('/getEngagementPlan').get((req, res) => {
+    engagementPlan_1.default.find({}, (err, ep) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(ep);
     });
 });
 // UPLOAD PROFILE PICTURE

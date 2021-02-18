@@ -8,6 +8,7 @@ import student from './model/student';
 import employee from './model/employee';
 import * as fs from "fs"
 import subject from './model/subject';
+import engagementPlan from './model/engagementPlan';
 
 const app = express();
 
@@ -199,6 +200,14 @@ router.route('/getAllNotifications').get((req, res) => {
     notification.find({dateCreation: { $gt: currentDate }}, (err, notifications) => {
         if (err) console.log(err);
         else res.json(notifications);
+    });
+});
+
+// GET ENGAGEMENT PLAN
+router.route('/getEngagementPlan').get((req, res) => {
+    engagementPlan.find({}, (err, ep) => {
+        if (err) console.log(err);
+        else res.json(ep);
     });
 });
 

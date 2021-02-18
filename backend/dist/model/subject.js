@@ -148,10 +148,6 @@ const Subject = new Schema({
         },
         required: true
     },
-    lecturers: {
-        type: [String],
-        required: true
-    },
     notifications: {
         type: [{
                 title: {

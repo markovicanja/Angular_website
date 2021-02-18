@@ -1,10 +1,15 @@
 <div class="container">
     <div class="row card-row" *ngIf="employees">
-        <div class="col-md-6" *ngFor="let emp of employees">
+        <div class="col-md-6" *ngFor="let emp of employees; index as i">
             <div class="card my-3">
                 <div class="card-body" (click)="open(emp)">
                     <h5 class="card-title">{{emp.firstName}} {{emp.lastName}}</h5>
                     <p><i class="far fa-bookmark"></i> {{emp.title}}</p>
+                    <hr/>
+                    <p><i>Predmeti:</i></p>
+                    <ul class="mx-3">
+                        <li *ngFor="let s of subjectsAll[i]">{{ s }}</li>
+                    </ul>
                 </div>             
             </div>
         </div>

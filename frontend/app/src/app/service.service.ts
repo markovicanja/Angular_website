@@ -144,6 +144,11 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getAllNotifications`);
   } 
 
+  // GET ENGAGEMENT PLAN
+  getEngagementPlan() {
+    return this.http.get(`${this.uri}/getEngagementPlan`);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

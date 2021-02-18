@@ -16,8 +16,7 @@ const User = new Schema({
     },
     type: {
         type: String,
-        required: true,
-        enum: ["admin", "zaposleni", "student"]
+        required: true
     },
     changedPassword: {
         type: Boolean,
