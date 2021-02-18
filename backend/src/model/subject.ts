@@ -16,7 +16,7 @@ const Subject = new Schema({
         required: true
     },
     department: { // master, si, rti, ostali
-        type: String,
+        type: [String],
         required: true
     },
     semestar: {

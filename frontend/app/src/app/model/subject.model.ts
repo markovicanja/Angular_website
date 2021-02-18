@@ -2,7 +2,7 @@ export class Subject {
     code: string;
     title: string;
     type: string;
-    department: string;
+    department: Array<string>;
     semestar: number;
     espb: number;
     goal: string;

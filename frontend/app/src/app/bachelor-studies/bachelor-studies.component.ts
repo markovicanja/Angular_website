@@ -31,9 +31,11 @@ export class BachelorStudiesComponent implements OnInit {
         return a.semestar - b.semestar;
       });
       subjects.forEach(s => {
-        if (s.department == 'rti') this.subjectsRTI.push(s);
-        else if (s.department == 'si') this.subjectsSI.push(s);
-        else if (s.department == 'ostali') this.subjectsRest.push(s);
+        s.department.forEach(d => {
+          if (d == 'si' ) this.subjectsSI.push(s);
+          else if (d == 'rti') this.subjectsRTI.push(s);
+          else if (d == 'ostali') this.subjectsRest.push(s);
+        });
       })
     })
   }
