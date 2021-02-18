@@ -192,6 +192,16 @@ router.route('/getAllSubjects').get((req, res) => {
     })
 })
 
+// DELETE SUBJECT
+router.route('/deleteSubject').post((req, res) => {
+    let code = req.body.code;
+
+    subject.collection.deleteOne({'code': code}, (err, res) => {
+        if (err) console.log(err);
+    });
+    res.json({poruka: 1});
+});
+
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now())
@@ -222,7 +232,6 @@ router.route('/getSubjectEngagementPlan').post((req, res) => {
 });
 
 // UPLOAD PROFILE PICTURE
-
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
 const subjectInfoFilesUrl = "src/uploaded_files/subjects";
 const multer = require('multer');

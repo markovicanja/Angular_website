@@ -20,6 +20,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { BachelorStudiesComponent } from './bachelor-studies/bachelor-studies.component';
 import { SubjectComponent } from './subject/subject.component';
 import { MasterStudiesComponent } from './master-studies/master-studies.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { MasterStudiesComponent } from './master-studies/master-studies.componen
     EditUserComponent,
     BachelorStudiesComponent,
     SubjectComponent,
-    MasterStudiesComponent
+    MasterStudiesComponent,
+    SubjectsComponent,
+    EditSubjectComponent
   ],
   imports: [
     BrowserModule,

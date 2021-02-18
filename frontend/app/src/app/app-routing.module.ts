@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BachelorStudiesComponent } from './bachelor-studies/bachelor-studies.component';
 import { ContactComponent } from './contact/contact.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeesComponent } from './employees/employees.component';
@@ -14,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SubjectComponent } from './subject/subject.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'subject', component: SubjectComponent },
   { path: 'bachelorStudies', component: BachelorStudiesComponent },
   { path: 'masterStudies', component: MasterStudiesComponent },
+  { path: 'subjects', component: SubjectsComponent },
+  { path: 'editSubject', component: EditSubjectComponent },
 ];
 
 @NgModule({

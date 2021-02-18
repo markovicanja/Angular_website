@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
     }) 
   }
 
-  addUser(user: User) {
+  addUser() {
     this.router.navigate(["register"]);
   }
 

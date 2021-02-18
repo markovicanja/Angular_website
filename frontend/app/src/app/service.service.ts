@@ -138,6 +138,13 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getAllSubjects`);
   }
 
+  // DELETE SUBJECT
+  deleteSubject(code) {
+    const data = {
+      code: code
+    }
+    return this.http.post(`${this.uri}/deleteSubject`, data);
+  }
 
   // NOTIFICATIONS
   getAllNotifications() {
