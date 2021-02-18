@@ -71,7 +71,11 @@
             </tr>
             <tr>
                 <td> Predavaci:</td>
-                <td><i>Plan angazovanja</i></td>
+                <td><i>
+                    <span *ngFor="let e of employees" (click)="open(e)">
+                        {{ e.firstName }} {{ e.lastName }}<br/><br/>
+                    </span>
+                </i></td>
             </tr>
             <tr *ngIf="subject.hasLab">
                 <td> Broj laboratorijskih vezbi:</td>

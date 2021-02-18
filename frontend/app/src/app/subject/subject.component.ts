@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Employee } from '../model/employee.model';
+import { EngagementPlan } from '../model/engagementPlan.model';
 import { Subject } from '../model/subject.model';
 import { ServiceService } from '../service.service';
 
@@ -19,9 +21,18 @@ export class SubjectComponent implements OnInit {
       var bDate = new Date(b.dateCreation);
       return bDate.getTime() - aDate.getTime();
     });
+    this.employees = [];
+    this.service.getSubjectEngagementPlan(this.subject.code).subscribe((plan: EngagementPlan) => {
+      plan.employees.forEach(e =>{
+        this.service.getEmployee(e).subscribe((emp: Employee) => {
+          this.employees.push(emp);
+        })
+      })
+    });
   }
 
   subject: Subject;
+  employees: Employee[];
 
   inLastWeek(date) {
     if (date == null) return false;
@@ -32,6 +43,11 @@ export class SubjectComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  open(employee) {
+    localStorage.setItem("chosenEmployee", JSON.stringify(employee));
+    this.router.navigate(['employee']);
   }
 
 }

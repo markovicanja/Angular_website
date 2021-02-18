@@ -149,6 +149,14 @@ export class ServiceService {
     return this.http.get(`${this.uri}/getEngagementPlan`);
   }
 
+  // GET SUBJECT ENGAGEMENT PLAN
+  getSubjectEngagementPlan(subjectCode) {
+    const data = {
+      subjectCode: subjectCode
+    }
+    return this.http.post(`${this.uri}/getSubjectEngagementPlan`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

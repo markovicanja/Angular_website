@@ -211,6 +211,16 @@ router.route('/getEngagementPlan').get((req, res) => {
     });
 });
 
+// GET ENGAGEMENT PLAN FOR SUBJECT
+router.route('/getSubjectEngagementPlan').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+
+    engagementPlan.findOne({'subject': subjectCode}, (err, ep) => {
+        if (err) console.log(err);
+        else res.json(ep);
+    });
+});
+
 // UPLOAD PROFILE PICTURE
 
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
