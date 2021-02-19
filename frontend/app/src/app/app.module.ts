@@ -24,6 +24,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EngagementPlanComponent } from './engagement-plan/engagement-plan.component';
+import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EngagementPlanComponent } from './engagement-plan/engagement-plan.compo
     SubjectsComponent,
     EditSubjectComponent,
     AddSubjectComponent,
-    EngagementPlanComponent
+    EngagementPlanComponent,
+    SubjectsEmployeeComponent
   ],
   imports: [
     BrowserModule,

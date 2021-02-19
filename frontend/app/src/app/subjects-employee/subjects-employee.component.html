@@ -1,0 +1,129 @@
+<h4 class="my-4 text-center">
+    Podesavanje stranica predmeta na kojima ste angazovani
+</h4>
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf='subjects'>
+    <form class="text-center mx-5" style="width: 100%;">
+        <select name="selectedSubject" class="form-control select" [(ngModel)]="selectedSubject">
+            <option [ngValue]=null disabled selected hidden class="select-placeholder">Predmet</option>
+            <option *ngFor='let sub of subjects' [ngValue]='sub'>{{ sub.code }} - {{ sub.title }}</option>
+        </select>
+    </form>
+</div>
+
+<div class="container" *ngIf='selectedSubject'>
+    <div id="accordion">
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    O predmetu
+                </button>
+                </h5>
+            </div>
+        
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                    <h6 class="my-4 text-center">Osnovne informacije o predmetu</h6>
+                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                        <form class="text-center mx-5" style="width: 100%;">
+                            <input type="text" name="code" class="form-control" placeholder="Sifra" [(ngModel)]="selectedSubject.code" readonly="readonly">
+                            <select name="type" class="form-control select" [(ngModel)]="selectedSubject.type">
+                                <option>obavezni</option>
+                                <option>izborni</option>
+                            </select>                            
+                            <input type="text" name="goal" class="form-control" placeholder="Cilj predmeta" [(ngModel)]="selectedSubject.goal">
+                            <input type="text" name="propositions" class="form-control" placeholder="Propozicije" [(ngModel)]="selectedSubject.propositions">
+                            
+                            <button class="btn btn-secondary my-3" (click)="updateSubject()">Azuriraj</button>
+                        </form>
+                    </div>  
+                    <div class="text-success text-center">
+                        {{ message }}
+                    </div>                  
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapswTwo" aria-expanded="true" aria-controls="collapswTwo">
+                    Predavanja
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body pb-0">
+                Predavanja
+              </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    Vezbe
+                </button>
+            </h5>
+            </div>
+        
+            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                    Vezbe
+                </div>
+            </div>
+        </div>
+  
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseThree">
+                    Ispitna pitanja
+                </button>
+            </h5>
+            </div>
+        
+            <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                    Ispitna pitanja
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
+                    Laboratorija
+                </button>
+            </h5>
+            </div>
+        
+            <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                    Laboratorija
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseThree">
+                    Projekat
+                </button>
+            </h5>
+            </div>
+        
+            <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pb-0">
+                    Projekat
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

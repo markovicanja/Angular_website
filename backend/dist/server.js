@@ -200,6 +200,16 @@ router.route('/getAllSubjects').get((req, res) => {
             res.json(s);
     });
 });
+// GET SUBJECT
+router.route('/getSubject').post((req, res) => {
+    let code = req.body.code;
+    subject_1.default.findOne({ 'code': code }, (err, s) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(s);
+    });
+});
 // INSERT SUBJECT
 router.route('/insertSubject').post((req, res) => {
     let code = req.body.code;

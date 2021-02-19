@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SubjectComponent } from './subject/subject.component';
+import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { UsersComponent } from './users/users.component';
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'editSubject', component: EditSubjectComponent },
   { path: 'addSubject', component: AddSubjectComponent },
   { path: 'engagementPlan', component: EngagementPlanComponent },
+  { path: 'subjectsEmployee', component: SubjectsEmployeeComponent },
 ];
 
 @NgModule({
