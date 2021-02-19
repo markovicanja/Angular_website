@@ -252,6 +252,13 @@ router.route('/updateSubject').post((req, res) => {
             'fondLab': fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime } });
     res.json({ poruka: 1 });
 });
+// UPDATE SUBJECT EXAM MATERIALS
+router.route('/updateExamMaterials').post((req, res) => {
+    let code = req.body.code;
+    let examMaterials = req.body.examMaterials;
+    subject_1.default.collection.updateOne({ 'code': code }, { $set: { 'examMaterials': examMaterials } });
+    res.json({ poruka: 1 });
+});
 // DELETE SUBJECT
 router.route('/deleteSubject').post((req, res) => {
     let code = req.body.code;
@@ -339,6 +346,16 @@ app.put('/files', (req, res) => {
                         'exerciseMaterials': fileObject
                     } });
             }
+            else if (material == 'examText') {
+                subject_1.default.collection.updateOne({ 'code': subjectCode }, { $push: {
+                        'examMaterials.examText': fileObject
+                    } });
+            }
+            else if (material == 'examSolution') {
+                subject_1.default.collection.updateOne({ 'code': subjectCode }, { $push: {
+                        'examMaterials.examSolution': fileObject
+                    } });
+            }
             res.set('Location', userFiles + file.name);
             res.status(200);
             res.send(file);
@@ -371,12 +388,14 @@ router.route('/deleteFileSubject').post((req, res) => {
     let code = req.body.code;
     let material = req.body.material;
     let fileName = req.body.fileName;
-    console.log('DELETE FILE ' + material);
     if (material == 'lecture') {
         subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'lectureMaterials': { 'file': fileName } } });
     }
     else if (material == 'exercise') {
         subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'exerciseMaterials': { 'file': fileName } } });
+    }
+    else if (material == 'examText') {
+        subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'examMaterials.examText': { 'file': fileName } } });
     }
     res.json({ poruka: 1 });
 });

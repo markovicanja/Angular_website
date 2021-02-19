@@ -240,6 +240,15 @@ export class ServiceService {
     return this.http.post(`${this.uri}/deleteFileSubject`, data);
   }
 
+  // UPDATE SUBJECT EXAM MATERIALS
+  updateExamMaterials(code, examMaterials) {
+    const data = {
+      code: code, 
+      examMaterials: examMaterials
+    }
+    return this.http.post(`${this.uri}/updateExamMaterials`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

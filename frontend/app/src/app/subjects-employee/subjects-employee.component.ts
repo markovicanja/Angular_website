@@ -68,7 +68,7 @@ export class SubjectsEmployeeComponent implements OnInit {
   deleteFile(file: FileModel, material: String) {
     this.fileService.remove(file.file);
     this.service.deleteFileSubject(this.selectedSubject.code, material, file.file).subscribe(res => {
-      //
+      
     });
   }
 
@@ -100,6 +100,11 @@ export class SubjectsEmployeeComponent implements OnInit {
     this.service.getSubject(this.selectedSubject.code).subscribe((s: Subject) => {
       this.selectedSubject = s;
     })
+  }
+
+  hideExamMaterials(hide: boolean) {
+    this.selectedSubject.examMaterials.hidden = hide;
+    this.service.updateExamMaterials(this.selectedSubject.code, this.selectedSubject.examMaterials);
   }
 
   // FILE LIST COMPONENT
