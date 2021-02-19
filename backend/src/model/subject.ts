@@ -56,21 +56,105 @@ const Subject = new Schema({
         required: true
     },
     lectureMaterials: {
-        type: [String],
+        type: [{
+            file: {
+                type: String,
+                required: true
+            },
+            type: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Date,
+                required: true
+            },
+            size: {
+                type: Number,
+                required: true
+            },
+            employee: {
+                type: String,
+                required: true
+            }
+        }],
         required: false
     },
     exerciseMaterials: {
-        type: [String],
+        type: [{
+            file: {
+                type: String,
+                required: true
+            },
+            type: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Date,
+                required: true
+            },
+            size: {
+                type: Number,
+                required: true
+            },
+            employee: {
+                type: String,
+                required: true
+            }
+        }],
         required: false
     },
     examMaterials: {
         type: {
             examText: {
-                type: [String],
+                type: [{
+                    file: {
+                        type: String,
+                        required: true
+                    },
+                    type: {
+                        type: String,
+                        required: true
+                    },
+                    date: {
+                        type: Date,
+                        required: true
+                    },
+                    size: {
+                        type: Number,
+                        required: true
+                    },
+                    employee: {
+                        type: String,
+                        required: true
+                    }
+                }],
                 required: false
             },
             examSolution: {
-                type: [String],
+                type: [{
+                    file: {
+                        type: String,
+                        required: true
+                    },
+                    type: {
+                        type: String,
+                        required: true
+                    },
+                    date: {
+                        type: Date,
+                        required: true
+                    },
+                    size: {
+                        type: Number,
+                        required: true
+                    },
+                    employee: {
+                        type: String,
+                        required: true
+                    }
+                }],
                 required: false
             },
             hidden: {
@@ -105,7 +189,28 @@ const Subject = new Schema({
                         required: true
                     },
                     materials: {
-                        type: [String],
+                        type: [{
+                            file: {
+                                type: String,
+                                required: true
+                            },
+                            type: {
+                                type: String,
+                                required: true
+                            },
+                            date: {
+                                type: Date,
+                                required: true
+                            },
+                            size: {
+                                type: Number,
+                                required: true
+                            },
+                            employee: {
+                                type: String,
+                                required: true
+                            }
+                        }],
                         required: true
                     }
                 }],
@@ -131,7 +236,28 @@ const Subject = new Schema({
                         required: true
                     },
                     projectMaterials: {
-                        type: [String],
+                        type: [{
+                            file: {
+                                type: String,
+                                required: true
+                            },
+                            type: {
+                                type: String,
+                                required: true
+                            },
+                            date: {
+                                type: Date,
+                                required: true
+                            },
+                            size: {
+                                type: Number,
+                                required: true
+                            },
+                            employee: {
+                                type: String,
+                                required: true
+                            }
+                        }],
                         required: false
                     }
                 }],
@@ -159,7 +285,28 @@ const Subject = new Schema({
                 required: true
             },
             files: {
-                type: [String],
+                type: [{
+                    file: {
+                        type: String,
+                        required: true
+                    },
+                    type: {
+                        type: String,
+                        required: true
+                    },
+                    date: {
+                        type: Date,
+                        required: true
+                    },
+                    size: {
+                        type: Number,
+                        required: true
+                    },
+                    employee: {
+                        type: String,
+                        required: true
+                    }
+                }],
                 required: false
             }
         }],

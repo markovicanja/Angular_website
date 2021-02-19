@@ -24,6 +24,7 @@ export class SubjectsEmployeeComponent implements OnInit {
   message: string;
   subjects: Subject[];
   selectedSubject: Subject;
+  newFile: File;
 
   getAllSubjects() {
     let subjectStrings = [];
@@ -51,6 +52,24 @@ export class SubjectsEmployeeComponent implements OnInit {
       this.selectedSubject.fondExercise, this.selectedSubject.fondLab, this.selectedSubject.classTime, this.selectedSubject.excerciseTime).subscribe(res => {
         this.message = "Uspesno ste azurirali predmet";
       })  
+  }
+
+  deleteFile(file: File) {
+
+  }
+
+  onFileSelect(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+
+    };
+    // CITANJE FAJLA
+  }
+
+  addFile() {
+    // UNOS FAJLA U BAZU SA SVIM OSTALIM PODACIMA
   }
 
 }

@@ -55,9 +55,52 @@
             </div>
         
             <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pb-0">
-                Predavanja
-              </div>
+                <div class="card-body pb-0">
+                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                        <table class="table table-white text-center">
+                            <thead>
+                                <tr>
+                                    <th>Naziv</th>
+                                    <th>Tip</th>
+                                    <th>Datim postavljanja</th>
+                                    <th>Velicina</th>
+                                    <th>Nastavnik</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let file of selectedSubject.lectureMaterials'>
+                                    <td>{{file.file}}</td>
+                                    <td>{{file.type}}</td>
+                                    <td>{{file.date | date}}</td>
+                                    <td>{{file.size}}KB</td>
+                                    <td>{{file.employee}}</td>
+                                    <td>
+                                        <button (click)="deleteFile(file)" type="button" class="btn btn-outline-danger mx-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="form-group input-group mt-3">                    
+                                            <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                                (change)="onFileSelect($event)" #UploadFileInput>
+                                            <div class="input-group-append">
+                                                <label class="custom-file-label">{{fileInputLabel || 'Izaberite fajl'}}</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button (click)="addFile()" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -72,7 +115,50 @@
         
             <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body pb-0">
-                    Vezbe
+                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                        <table class="table table-white text-center">
+                            <thead>
+                                <tr>
+                                    <th>Naziv</th>
+                                    <th>Tip</th>
+                                    <th>Datim postavljanja</th>
+                                    <th>Velicina</th>
+                                    <th>Nastavnik</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let file of selectedSubject.exerciseMaterials'>
+                                    <td>{{file.file}}</td>
+                                    <td>{{file.type}}</td>
+                                    <td>{{file.date | date}}</td>
+                                    <td>{{file.size}}KB</td>
+                                    <td>{{file.employee}}</td>
+                                    <td>
+                                        <button (click)="deleteFile(file)" type="button" class="btn btn-outline-danger mx-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="form-group input-group mt-3">                    
+                                            <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                                (change)="onFileSelect($event)" #UploadFileInput>
+                                            <div class="input-group-append">
+                                                <label class="custom-file-label">{{fileInputLabel || 'Izaberite fajl'}}</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button (click)="addFile()" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
