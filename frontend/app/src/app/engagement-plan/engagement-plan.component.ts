@@ -18,10 +18,12 @@ export class EngagementPlanComponent implements OnInit {
     this.getEngagementPlan();
     this.fillMap();
     this.getAllSubjects();
-    this.selectedTeachersP = [];
-    this.selectedTeachersV = [];
+    this.lectureEmployees = [];
+    this.exerciseEmployees = [];
     this.selectedSubject = null;
-    this.numberGroup = 2;
+    if (localStorage.getItem("numberGroup") != null)
+      this.numberGroup = Number.parseInt(localStorage.getItem("numberGroup"));
+    else this.numberGroup = 1;
   }
 
   engagementPlan: EngagementPlan[];
@@ -30,8 +32,8 @@ export class EngagementPlanComponent implements OnInit {
   subjects: Subject[];
   selectedSubject: Subject;
   numberGroup: number;
-  selectedTeachersP: Array<Array<Employee>>;
-  selectedTeachersV: Array<Array<Employee>>;
+  lectureEmployees: Array<Array<Employee>>;
+  exerciseEmployees: Array<Array<Employee>>;
 
   getEngagementPlan() {
     this.service.getEngagementPlan().subscribe((e: EngagementPlan[]) => {
@@ -46,30 +48,65 @@ export class EngagementPlanComponent implements OnInit {
   }
 
   insertEngagementPlan() {
+    let selectedEmployeesSet = new Set();
+    this.lectureEmployees.forEach(array => {
+      array.forEach(p => {
+        selectedEmployeesSet.add(p);
+      })
+    })
+    this.exerciseEmployees.forEach(array => {
+      array.forEach(p => {
+        selectedEmployeesSet.add(p);
+      })
+    })
+    let selectedEmployees = Array.from(selectedEmployeesSet);
+    let group = [];
+    let i = 0;
+    this.lectureEmployees.forEach(array => {
+      let obj = {
+        name: 'P' + (i + 1),
+        employees: array
+      }
+      i++;
+      group.push(obj);
+    })
+    i = 0;
+    this.exerciseEmployees.forEach(array => {
+      let obj = {
+        name: 'V' + (i + 1),
+        employees: array
+      }
+      i++;
+      group.push(obj);
+    })
+
+    this.service.insertEngagementPlan(this.selectedSubject, group, selectedEmployees).subscribe(res => {
+      localStorage.setItem("numberGroup", "1");
+      this.ngOnInit();
+    })
 
   }
 
   fillMap() {
     this.map = [];
+    this.employees = [];
     this.service.getAllEmployees().subscribe((employees: Employee[]) => {
-      this.employees = employees;
       employees.forEach(e => {
         this.map[e.username] = e.firstName + " " + e.lastName;
+        if (e.type == 'nastavnik') this.employees.push(e);
       })      
     })
   }
 
   getAllSubjects() {
-    this.service.getAllSubjects().subscribe((s: Subject[]) => {      // NE RADI 
-      // s.forEach(sub => { 
-      //   let found = false;
-      //   this.engagementPlan.forEach(plan => {
-      //     if (plan.subject == sub.code) found = true;
-      //   })
-      //   if (!found) this.subjects.push(sub);
-      // })
+    this.service.getAllSubjects().subscribe((s: Subject[]) => {
       this.subjects = s;
     })
+  }
+
+  changeNumberOfGroups() {
+    localStorage.setItem("numberGroup", ""+this.numberGroup);
+    this.ngOnInit();
   }
 
 }

@@ -281,6 +281,23 @@ router.route('/getSubjectEngagementPlan').post((req, res) => {
             res.json(ep);
     });
 });
+// DELETE ENGAGEMENT PLAN
+router.route('/deleteEngagementPlan').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+    engagementPlan_1.default.collection.deleteOne({ 'subject': subjectCode }, (err, res) => {
+        if (err)
+            console.log(err);
+    });
+    res.json({ poruka: 1 });
+});
+// INSERT ENGAGEMENT PLAN
+router.route('/insertEngagementPlan').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+    let group = req.body.group;
+    let employees = req.body.employees;
+    engagementPlan_1.default.collection.insertOne({ 'subject': subjectCode, 'group': group, 'employees': employees });
+    res.json({ poruka: 1 });
+});
 // UPLOAD PROFILE PICTURE
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
 const subjectInfoFilesUrl = "src/uploaded_files/subjects";
