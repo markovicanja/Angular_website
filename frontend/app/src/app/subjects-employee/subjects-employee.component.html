@@ -285,7 +285,70 @@
         
             <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body pb-0">
-                    Laboratorija
+
+                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                        <form class="text-center mx-5 my-2" style="width: 100%;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="hideLab" [(ngModel)]="selectedSubject.lab.hidden">
+                                <label class="form-check-label" for="hideLab">
+                                    Sakrij informacije o laboratorijskim vezbama
+                                </label>
+                            </div>
+                            <input name="numberOfLabs" class="form-control" placeholder="Broj labova" [(ngModel)]="selectedSubject.lab.numberOfLabs">
+                            <input name="basicInfo" class="form-control" placeholder="Osnovne informacije" [(ngModel)]="selectedSubject.lab.basicInfo">
+                            <button class='btn btn-outline-secondary my-3' (click)='updateLab()' *ngIf="selectedSubject.lab.numberOfLabs">Azuriraj</button>
+                            <button class='btn btn-outline-secondary my-3' (click)='addLab()' *ngIf="!selectedSubject.lab.numberOfLabs">Dodaj</button>
+                        </form>
+                    </div>                  
+                    <hr/>
+                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;"
+                     *ngIf="selectedSubject.lab.numberOfLabs">
+                        <div *ngFor="let lab of selectedSubject.lab.labDetails">
+                            <table class="table table-white text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Naziv</th>
+                                        <th>Tip</th>
+                                        <th>Datim postavljanja</th>
+                                        <th>Velicina</th>
+                                        <th>Nastavnik</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let file of lab.materials'>
+                                        <td>{{file.file}}</td>
+                                        <td>{{file.type}}</td>
+                                        <td>{{file.date | date}}</td>
+                                        <td>{{file.size}}KB</td>
+                                        <td>{{file.employee}}</td>
+                                        <td>
+                                            <button (click)="deleteFile(file, 'lab')" type="button" class="btn btn-outline-danger mx-2">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="form-group input-group mt-3">                    
+                                                <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                                    (change)="onFileChange($event)" #UploadFileInput>
+                                                <div class="input-group-append">
+                                                    <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button (click)="addFile('lab')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                        </div>                        
+                    </div>
                 </div>
             </div>
         </div>

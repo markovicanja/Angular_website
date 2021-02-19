@@ -107,6 +107,14 @@ export class SubjectsEmployeeComponent implements OnInit {
     this.service.updateExamMaterials(this.selectedSubject.code, this.selectedSubject.examMaterials);
   }
 
+  updateLab() {
+
+  }
+
+  addLab() {
+    
+  }
+
   // FILE LIST COMPONENT
   public fileList$: Observable<string[]> = this.fileService.list();
 
