@@ -6,10 +6,12 @@
                     <h5 class="card-title">{{emp.firstName}} {{emp.lastName}}</h5>
                     <p><i class="far fa-bookmark"></i> {{emp.title}}</p>
                     <hr/>
-                    <p><i>Predmeti:</i></p>
-                    <ul class="mx-3">
-                        <li *ngFor="let s of subjectsAll[i]">{{ s }}</li>
-                    </ul>
+                    <div *ngIf='emp.type == "nastavnik"'>
+                        <p><i>Predmeti:</i></p>
+                        <ul class="mx-3">
+                            <li *ngFor="let s of subjectsAll[i]">{{ s }}</li>
+                        </ul>
+                    </div>                    
                 </div>             
             </div>
         </div>
