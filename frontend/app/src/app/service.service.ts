@@ -204,6 +204,14 @@ export class ServiceService {
     return this.http.post(`${this.uri}/getSubjectEngagementPlan`, data);
   }
 
+  // DELETE ENGAGEMENT PLAN
+  deleteEngagementPlan(subjectCode) {
+    const data = {
+      subjectCode: subjectCode
+    }
+    return this.http.post(`${this.uri}/deleteEngagementPlan`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

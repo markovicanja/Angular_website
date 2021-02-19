@@ -1,0 +1,79 @@
+<div class="mx-auto d-flex justify-content-center" style="max-width: 1000px;" *ngIf="engagementPlan">
+    <table class="table table-white text-center">
+        <thead>
+            <tr>
+                <th>Sifra predmeta</th>
+                <th>Broj grupa</th>
+                <th>Predavanja drze</th>
+                <th>Vezbe drze</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plan of engagementPlan; index as i">
+                <td>{{plan.subject}}</td>
+                <td>{{plan.group.length / 2}}</td>
+                <td>
+                    <div *ngFor="let group of plan.group">
+                        <div *ngIf="group.name[0] == 'P'">
+                            {{ group.name }}: 
+                            <div *ngFor="let e of group.employees">
+                               {{ map[e] }}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let group of plan.group">
+                        <div *ngIf="group.name[0] == 'V'">
+                            {{ group.name }}: 
+                            <div *ngFor="let e of group.employees">
+                                {{ map[e] }}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button (click)="deleteEngagementPlan(plan)" class="btn btn-outline-danger"> <i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <tr *ngIf="subjects">
+                <td>
+                    <select name="selectedSubject" [(ngModel)]="selectedSubject" class="form-control select">
+                        <option value=null disabled selected hidden class="select-placeholder">Predmet</option>
+                        <option *ngFor="let s of subjects">{{ s.code }}</option>
+                    </select>
+                </td>
+                <td>
+                    <input name="numberGroup" class="form-control" placeholder="Broj grupa" [(ngModel)]="numberGroup">
+                </td>
+                <td>
+                    <div *ngIf="numberGroup > 0">       
+                        <div *ngFor='let item of [].constructor(numberGroup); let j = index' class='my-2'>
+                            <div class="form-group">
+                                <select class="form-control" multiple [(ngModel)]="selectedTeachersP[j]">
+                                    <option *ngFor="let emp of employees">{{ emp.firstName }} {{ emp.lastName }}</option>
+                                </select>
+                            </div>                            
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="numberGroup > 0">
+                        <div *ngFor="let item of [].constructor(numberGroup); let j = index" class='my-2'>
+                            <div class="form-group">
+                                <select class="form-control" multiple [(ngModel)]="selectedTeachersV[j]">
+                                    <option *ngFor="let emp of employees">{{ emp.firstName }} {{ emp.lastName }}</option>
+                                </select>
+                            </div>  
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <button type="button" (click)="insertEngagementPlan()" class="btn btn-outline-success"> <i class="fas fa-plus"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

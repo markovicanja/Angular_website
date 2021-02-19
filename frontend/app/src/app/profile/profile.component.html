@@ -28,14 +28,17 @@
     </form>
 </div>
 
-<h4 class="mt-3 text-center" *ngIf="user.type == 'admin'">Dodaj/azuriraj/obrisi</h4>
+<h4 class="mt-3 text-center" *ngIf="user.type == 'admin'">Funkcionalnosti</h4>
 <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf="user.type == 'admin'">
     <table class="table table-white text-center">
         <tr>
-            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/users">Korisnika</button> </td>
+            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/users">Dodaj/azuriraj/obrisi korisnika</button> </td>
         </tr>
         <tr>
-            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/subjects">Predmet</button> </td>
+            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/subjects">Dodaj/azuriraj/obrisi predmet</button> </td>
+        </tr>
+        <tr>
+            <td> <button class="btn btn-outline-secondary btn-sm" routerLink="/engagementPlan">Plan angazovanja</button> </td>
         </tr>
     </table>
 </div>

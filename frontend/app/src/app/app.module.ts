@@ -23,6 +23,7 @@ import { MasterStudiesComponent } from './master-studies/master-studies.componen
 import { SubjectsComponent } from './subjects/subjects.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { EngagementPlanComponent } from './engagement-plan/engagement-plan.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
     MasterStudiesComponent,
     SubjectsComponent,
     EditSubjectComponent,
-    AddSubjectComponent
+    AddSubjectComponent,
+    EngagementPlanComponent
   ],
   imports: [
     BrowserModule,

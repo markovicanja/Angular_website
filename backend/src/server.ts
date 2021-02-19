@@ -277,6 +277,16 @@ router.route('/getSubjectEngagementPlan').post((req, res) => {
     });
 });
 
+// DELETE ENGAGEMENT PLAN
+router.route('/deleteEngagementPlan').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+
+    engagementPlan.collection.deleteOne({'subject': subjectCode}, (err, res) => {
+        if (err) console.log(err);
+    });
+    res.json({poruka: 1});
+});
+
 // UPLOAD PROFILE PICTURE
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
 const subjectInfoFilesUrl = "src/uploaded_files/subjects";

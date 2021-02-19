@@ -27,7 +27,9 @@ export class MasterStudiesComponent implements OnInit {
         return a.semestar - b.semestar;
       });
       subjects.forEach(s => {
-        if (s.department == 'master') this.subjects.push(s);
+        s.department.forEach(d => {
+          if (d == 'master') this.subjects.push(s);
+        })
       });      
     })
   }
