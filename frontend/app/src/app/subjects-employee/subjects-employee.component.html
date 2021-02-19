@@ -76,7 +76,7 @@
                                     <td>{{file.size}}KB</td>
                                     <td>{{file.employee}}</td>
                                     <td>
-                                        <button (click)="deleteFile(file)" type="button" class="btn btn-outline-danger mx-2">
+                                        <button (click)="deleteFile(file, 'lecture')" type="button" class="btn btn-outline-danger mx-2">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -85,14 +85,14 @@
                                     <td colspan="5">
                                         <div class="form-group input-group mt-3">                    
                                             <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                (change)="onFileSelect($event)" #UploadFileInput>
+                                                (change)="onFileChange($event)" #UploadFileInput>
                                             <div class="input-group-append">
-                                                <label class="custom-file-label">{{fileInputLabel || 'Izaberite fajl'}}</label>
+                                                <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <button (click)="addFile()" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <button (click)="addFile('lecture')" type="button" class="btn btn-outline-success mx-2 mt-3">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </td>
@@ -135,7 +135,7 @@
                                     <td>{{file.size}}KB</td>
                                     <td>{{file.employee}}</td>
                                     <td>
-                                        <button (click)="deleteFile(file)" type="button" class="btn btn-outline-danger mx-2">
+                                        <button (click)="deleteFile(file, 'exercise')" type="button" class="btn btn-outline-danger mx-2">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -144,14 +144,14 @@
                                     <td colspan="5">
                                         <div class="form-group input-group mt-3">                    
                                             <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                (change)="onFileSelect($event)" #UploadFileInput>
+                                                (change)="onFileChange($event)" #UploadFileInput>
                                             <div class="input-group-append">
-                                                <label class="custom-file-label">{{fileInputLabel || 'Izaberite fajl'}}</label>
+                                                <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <button (click)="addFile()" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <button (click)="addFile('exercise')" type="button" class="btn btn-outline-success mx-2 mt-3">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </td>

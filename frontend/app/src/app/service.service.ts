@@ -230,6 +230,16 @@ export class ServiceService {
     return this.http.post(`${this.uri}/insertEngagementPlan`, data);
   }
 
+  // DELETE FILE FROM SUBJECT
+  deleteFileSubject(code, material, fileName) {
+    const data = {
+      code: code, 
+      material: material, 
+      fileName: fileName
+    }
+    return this.http.post(`${this.uri}/deleteFileSubject`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FileService } from '../file.service';
 import { Employee } from '../model/employee.model';
 import { EngagementPlan } from '../model/engagementPlan.model';
+import { FileModel } from '../model/file.model';
 import { Subject } from '../model/subject.model';
 import { ServiceService } from '../service.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-subjects-employee',
@@ -12,7 +16,13 @@ import { ServiceService } from '../service.service';
 })
 export class SubjectsEmployeeComponent implements OnInit {
 
-  constructor(private service: ServiceService, private router: Router) { }
+  public formGroup = this.fb.group({
+    file: [null, Validators.required]
+  });
+
+  private fileName;
+
+  constructor(private service: ServiceService, private fileService: FileService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.employee = JSON.parse(localStorage.getItem("employee"));
@@ -24,7 +34,8 @@ export class SubjectsEmployeeComponent implements OnInit {
   message: string;
   subjects: Subject[];
   selectedSubject: Subject;
-  newFile: File;
+  newFile: FileModel;
+  fileToUpload: File = null;
 
   getAllSubjects() {
     let subjectStrings = [];
@@ -54,22 +65,51 @@ export class SubjectsEmployeeComponent implements OnInit {
       })  
   }
 
-  deleteFile(file: File) {
-
+  deleteFile(file: FileModel, material: String) {
+    this.fileService.remove(file.file);
+    this.service.deleteFileSubject(this.selectedSubject.code, material, file.file).subscribe(res => {
+      //
+    });
   }
 
-  onFileSelect(event) {
-    const file = event.target.files[0];
+  public onFileChange(event) {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-
-    };
-    // CITANJE FAJLA
+  
+    if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          file: reader.result
+        });
+      };
+    }
   }
 
-  addFile() {
-    // UNOS FAJLA U BAZU SA SVIM OSTALIM PODACIMA
+  addFile(material: String) {
+    let file = {
+      file: this.fileName,
+      type: "",
+      date: new Date(),
+      size: 0,
+      employee: this.employee.firstName + " " + this.employee.lastName 
+    }
+    this.fileService.upload(this.fileName, this.formGroup.get('file').value, file, this.selectedSubject.code, material);
+    this.service.getSubject(this.selectedSubject.code).subscribe((s: Subject) => {
+      this.selectedSubject = s;
+    })
+  }
+
+  // FILE LIST COMPONENT
+  public fileList$: Observable<string[]> = this.fileService.list();
+
+  public download(fileName: string):  void {
+    this.fileService.download(fileName);
   }
 
 }
+
+
+

@@ -35,7 +35,7 @@ const subject_1 = __importDefault(require("./model/subject"));
 const engagementPlan_1 = __importDefault(require("./model/engagementPlan"));
 const app = express_1.default();
 app.use(cors_1.default());
-app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.json({ limit: '50mb' }));
 mongoose_1.default.connect('mongodb://localhost:27017/RTI_katedra');
 const conn = mongoose_1.default.connection;
 conn.once('open', () => {
@@ -308,6 +308,78 @@ router.route('/insertEngagementPlan').post((req, res) => {
     engagementPlan_1.default.collection.insertOne({ 'subject': subjectCode, 'group': group, 'employees': employees });
     res.json({ poruka: 1 });
 });
+// FILES
+const userFiles = '../backend/upload-server/my_uploaded_files/';
+app.set('views', './dist/browser');
+var path = require('path');
+app.put('/files', (req, res) => {
+    const file = req.body;
+    const fileObject = req.body.file;
+    const subjectCode = req.body.subjectCode;
+    const material = req.body.material;
+    const base64data = file.content.replace(/^data:.*,/, '');
+    fs.writeFile(userFiles + file.name, base64data, 'base64', (err) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        }
+        else {
+            var stats = fs.statSync(userFiles + file.name);
+            var fileSize = stats.size / 1024;
+            var fileType = ((path.extname(file.name)).substring(1)).toUpperCase();
+            fileObject.type = fileType;
+            fileObject.size = Math.round(fileSize);
+            if (material == 'lecture') {
+                subject_1.default.collection.updateOne({ 'code': subjectCode }, { $push: {
+                        'lectureMaterials': fileObject
+                    } });
+            }
+            else if (material == 'exercise') {
+                subject_1.default.collection.updateOne({ 'code': subjectCode }, { $push: {
+                        'exerciseMaterials': fileObject
+                    } });
+            }
+            res.set('Location', userFiles + file.name);
+            res.status(200);
+            res.send(file);
+        }
+    });
+});
+app.get('/download/:name', (request, response) => {
+    const name = request.params.name;
+    const file = `${userFiles}/${name}`;
+    console.log(file);
+    response.download(file, function (err) {
+        console.log(err);
+    });
+});
+app.delete('/files/**', (req, res) => {
+    const fileName = req.url.substring(7).replace(/%20/g, ' ');
+    fs.unlink(userFiles + fileName, (err) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        }
+        else {
+            res.status(204);
+            res.send({});
+        }
+    });
+});
+// DELETE FILE FROM SUBJECT
+router.route('/deleteFileSubject').post((req, res) => {
+    let code = req.body.code;
+    let material = req.body.material;
+    let fileName = req.body.fileName;
+    console.log('DELETE FILE ' + material);
+    if (material == 'lecture') {
+        subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'lectureMaterials': { 'file': fileName } } });
+    }
+    else if (material == 'exercise') {
+        subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'exerciseMaterials': { 'file': fileName } } });
+    }
+    res.json({ poruka: 1 });
+});
 // UPLOAD PROFILE PICTURE
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
 const subjectInfoFilesUrl = "src/uploaded_files/subjects";
@@ -391,5 +463,6 @@ var uploadInfoFile = multer({
     }
 });
 app.use('/', router);
+app.use('/files', express_1.default.static(userFiles));
 app.listen(4000, () => console.log(`Express server running on port 4000`));
 //# sourceMappingURL=server.js.map

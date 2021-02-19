@@ -1,4 +1,4 @@
-import { File } from "./file.model";
+import { FileModel } from "./file.model";
 
 export class Subject {
     code: string;
@@ -14,12 +14,12 @@ export class Subject {
     fondLab: number;
     classTime: Array<string>;
     excerciseTime: Array<string>;
-    lectureMaterials: Array<File>;
-    exerciseMaterials: Array<File>;
+    lectureMaterials: Array<FileModel>;
+    exerciseMaterials: Array<FileModel>;
     examMaterials: {
         hidden: boolean;
-        examText: Array<File>;
-        examSolution: Array<File>;
+        examText: Array<FileModel>;
+        examSolution: Array<FileModel>;
     };
     hasLab: boolean;
     lab: {
@@ -29,7 +29,7 @@ export class Subject {
         labDetails: [
             {
                 description: string,
-                materials: Array<File>
+                materials: Array<FileModel>
             }
         ]
     };
@@ -39,7 +39,7 @@ export class Subject {
             {
                 basicInfo: string,
                 description: string,
-                projectMaterials: Array<File>
+                projectMaterials: Array<FileModel>
             }
         ]
     };
@@ -49,7 +49,7 @@ export class Subject {
             content: string;
             creator: string;
             dateCreation: Date;
-            files: Array<File>;
+            files: Array<FileModel>;
         }
     ];
 }

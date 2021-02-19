@@ -1,4 +1,4 @@
-export class File {
+export class FileModel {
     file: string;
     type: string;
     date: Date;
