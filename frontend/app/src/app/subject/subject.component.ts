@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FileService } from '../file.service';
 import { Employee } from '../model/employee.model';
 import { EngagementPlan } from '../model/engagementPlan.model';
 import { Subject } from '../model/subject.model';
@@ -12,7 +13,7 @@ import { ServiceService } from '../service.service';
 })
 export class SubjectComponent implements OnInit {
 
-  constructor(private service: ServiceService, private router: Router) { }
+  constructor(private service: ServiceService, private router: Router, private fileService: FileService) { }
 
   ngOnInit(): void {
     this.subject = JSON.parse(localStorage.getItem("chosenSubject"));
@@ -48,6 +49,10 @@ export class SubjectComponent implements OnInit {
   open(employee) {
     localStorage.setItem("chosenEmployee", JSON.stringify(employee));
     this.router.navigate(['employee']);
+  }
+
+  download(fileName) {
+    this.fileService.download(fileName);
   }
 
 }

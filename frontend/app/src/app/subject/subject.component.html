@@ -29,7 +29,7 @@
                     <div class="card" [class.grayBackgroud]="!inLastWeek(n.dateCreation)">
                         <div class="card-body" (click)="open(emp)">
                             <h6 class="card-title">{{ n.title }}</h6>
-                            <p>{{ n.content }}</p>
+                            <p [innerHTML]="n.content"></p>
                             <i>{{ n.creator }} - {{ n.dateCreation | date: 'dd/MM/yyyy'}}</i>
                         </div>             
                     </div>
@@ -113,7 +113,7 @@
         <div class="tab-pane fade" id="predavanja" role="tabpanel" aria-labelledby="predavanja-tab">
             <div class="card-body pb-0">
                 <div *ngFor="let s of subject.lectureMaterials">
-                    {{ s }}
+                    <a (click)="download(s.file)">{{ s.file }}</a>
                 </div>
           </div>
         </div>
@@ -121,19 +121,19 @@
         <div class="tab-pane fade" id="vezbe" role="tabpanel" aria-labelledby="vezbe-tab">
             <div class="card-body pb-0">
                 <div *ngFor="let s of subject.exerciseMaterials">
-                    {{ s }}
+                    <a (click)="download(s.file)">{{ s.file }}</a>
                 </div>
             </div>
         </div>
 
         <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab" *ngIf="!subject.examMaterials.hidden">
             <h6 class="text-center my-3">Tekstovi ispitnih rokova i kolokvijuma</h6>
-            <div *ngFor="let e of subject.examMaterials.examText">
-                {{ e }}
+            <div *ngFor="let s of subject.examMaterials.examText">
+                <a (click)="download(s.file)">{{ s.file }}</a>
             </div>
             <h6 class="text-center my-3">Resenja ispitnih rokova i kolokvijuma</h6>
-            <div *ngFor="let e of subject.examMaterials.examSolution">
-                {{ e }}
+            <div *ngFor="let s of subject.examMaterials.examSolution">
+                <a (click)="download(s.file)">{{ s.file }}</a>
             </div>
         </div>
         
@@ -161,8 +161,8 @@
                             {{ l.description }}
                         </td>
                         <td>                    
-                            <div *ngFor="let m of l.materials">
-                                {{ m }}
+                            <div *ngFor="let s of l.materials">
+                                <a (click)="download(s.file)">{{ s.file }}</a>
                             </div>
                         </td>
                     </tr>
@@ -191,7 +191,7 @@
                         </td>
                         <td>                    
                             <div *ngFor="let m of p.projectMaterials">
-                                {{ m }}
+                                <a (click)="download(s.file)">{{ s.file }}</a>
                             </div>
                         </td>
                     </tr>

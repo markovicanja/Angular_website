@@ -134,13 +134,6 @@ export class SubjectsEmployeeComponent implements OnInit {
     })
   }
 
-  // FILE LIST COMPONENT
-  // public fileList$: Observable<string[]> = this.fileService.list();
-
-  // public download(fileName: string):  void {
-  //   this.fileService.download(fileName);
-  // }
-
 }
 
 
