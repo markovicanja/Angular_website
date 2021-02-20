@@ -81,6 +81,11 @@ export class ServiceService {
   }
 
   // GET ALL USERS
+  getAllStudents() {
+    return this.http.get(`${this.uri}/getAllStudents`);
+  }
+
+  // GET ALL USERS
   getAllUsers() {
     return this.http.get(`${this.uri}/getAllUsers`);
   }
@@ -131,6 +136,15 @@ export class ServiceService {
       type: type
     }
     return this.http.post(`${this.uri}/adminUpdateStudent`, data);
+  }
+
+  // ADMIN ADD STUDENT SUBJECT
+  addStudentSubject(username, subject) {
+    const data = {
+      username: username,
+      subject: subject
+    }
+    return this.http.post(`${this.uri}/addStudentSubject`, data);
   }
 
   // GET ALL SUBJECTS

@@ -29,6 +29,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SubjectNotificationsComponent } from './subject-notifications/subject-notifications.component';
 import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 import { ListComponent } from './list/list.component';
+import { StudentSubjectsComponent } from './student-subjects/student-subjects.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ListComponent } from './list/list.component';
     SubjectsEmployeeComponent,
     SubjectNotificationsComponent,
     EditNotificationComponent,
-    ListComponent
+    ListComponent,
+    StudentSubjectsComponent
   ],
   imports: [
     BrowserModule,

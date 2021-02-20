@@ -124,6 +124,15 @@ router.route('/getAllEmployees').get((req, res) => {
     });
 });
 // GET ALL USERS
+router.route('/getAllStudents').get((req, res) => {
+    student_1.default.find({}, (err, s) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(s);
+    });
+});
+// GET ALL USERS
 router.route('/getAllUsers').get((req, res) => {
     user_1.default.find({}, (err, users) => {
         if (err)
@@ -167,6 +176,13 @@ router.route('/adminUpdateStudent').post((req, res) => {
     student_1.default.collection.updateOne({ 'username': oldUsername }, { $set: { "index": index, "status": status,
             "type": type, "username": username } });
     user_1.default.collection.updateOne({ 'username': oldUsername }, { $set: { "username": username } });
+    res.json({ poruka: 1 });
+});
+// ADMIN ADD STUDENT SUBJECT
+router.route('/addStudentSubject').post((req, res) => {
+    let username = req.body.username;
+    let subject = req.body.subject;
+    student_1.default.collection.updateOne({ 'username': username }, { $push: { "subjects": subject } });
     res.json({ poruka: 1 });
 });
 // DELETE USER
