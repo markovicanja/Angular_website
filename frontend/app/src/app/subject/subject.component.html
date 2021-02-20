@@ -12,13 +12,13 @@
         <li class="nav-item" >
             <a class="nav-link" id="vezbe-tab" data-toggle="tab" href="#vezbe" role="tab" aria-controls="vezbe" aria-selected="false">Materijali sa vezbi</a>
         </li>
-        <li class="nav-item"  >
+        <li class="nav-item" *ngIf="!subject.examMaterials.hidden">
             <a class="nav-link" id="ispit-tab" data-toggle="tab" href="#ispit" role="tab" aria-controls="ispit" aria-selected="false">Materijali sa ispitnih rokova</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!subject.lab.hidden">
             <a class="nav-link" id="lab-tab" data-toggle="tab" href="#lab" role="tab" aria-controls="lab" aria-selected="false">Laboratorijske vezbe</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!subject.project.hidden">
             <a class="nav-link" id="projekat-tab" data-toggle="tab" href="#projekat" role="tab" aria-controls="projekat" aria-selected="false">Projekat</a>
         </li>
     </ul>
@@ -126,7 +126,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab" *ngIf="!subject.examMaterials.hidden">
+        <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab">
             <h6 class="text-center my-3">Tekstovi ispitnih rokova i kolokvijuma</h6>
             <div *ngFor="let s of subject.examMaterials.examText">
                 <a class="link" (click)="download(s.file)">{{ s.file }}</a>
@@ -137,7 +137,7 @@
             </div>
         </div>
         
-        <div class="tab-pane fade" id="lab" role="tabpanel" aria-labelledby="lab-tab" *ngIf="!subject.lab.hidden">
+        <div class="tab-pane fade" id="lab" role="tabpanel" aria-labelledby="lab-tab">
             <div class=" text-center my-3">
                 {{ subject.lab.basicInfo }} <br/>
                 Broj laboratorijskih vezbi: {{ subject.lab.numberOfLabs }}
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab" *ngIf="!subject.project.hidden">
+        <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab">
             <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
                 <table class="table table-white text-center">
                     <thead>

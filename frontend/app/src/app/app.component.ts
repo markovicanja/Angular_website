@@ -30,6 +30,7 @@ export class AppComponent {
     localStorage.setItem("student", null);
     localStorage.setItem("employee", null);
     this.sessionValid = false;
+    this.employeeLogged = false;
     this.router.navigate(["home"]);
   }
 
