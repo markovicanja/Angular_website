@@ -268,8 +268,11 @@
                 {{ messageLabDetails }}
             </div>    
             <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;"
-             *ngFor="let lab of selectedSubject.lab.labDetails">
+             *ngFor="let lab of selectedSubject.lab.labDetails; index as i" [class.bgGray]='i%2==1'>                
                 <div> 
+                    <div class="text-center my-3"> 
+                        <h6>Laboratorijska vezba {{ i + 1 }}</h6>
+                    </div> 
                     <div class="text-center">
                         <input name="basicInfo" class="form-control" placeholder="Opis" [(ngModel)]="lab.description">  
                         <button class='btn btn-outline-secondary my-3' (click)='updateLab(lab)'>Azuriraj</button>
@@ -294,7 +297,7 @@
                                 <td>{{file.size}}KB</td>
                                 <td>{{file.employee}}</td>
                                 <td>
-                                    <button (click)="deleteFile(file, 'lab')" type="button" class="btn btn-outline-danger mx-2">
+                                    <button (click)="deleteFile(file, 'lab.' + i)" type="button" class="btn btn-outline-danger mx-2">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -310,16 +313,18 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button (click)="addFile('lab')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                    <button (click)="addFile('lab.' + i)" type="button" class="btn btn-outline-success mx-2 mt-3">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
-                </div>                        
+                </div>                    
             </div>
+            <div class="text-center"> 
+                <button class='btn btn-outline-secondary my-3' (click)='addNewLab()'>Dodaj novu laboratorijsku vezbu</button>
+            </div>   
         </div>
 
         <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab">

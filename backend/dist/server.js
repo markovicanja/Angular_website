@@ -268,6 +268,16 @@ router.route('/deleteSubject').post((req, res) => {
     });
     res.json({ poruka: 1 });
 });
+// ADD NEW LAB
+router.route('/addNewLab').post((req, res) => {
+    let code = req.body.code;
+    let lab = {
+        "description": "",
+        "materials": []
+    };
+    subject_1.default.collection.updateOne({ 'code': code }, { $push: { 'lab.labDetails': lab }, $inc: { 'lab.numberOfLabs': 1 } });
+    res.json({ poruka: 1 });
+});
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());
@@ -319,7 +329,6 @@ router.route('/insertEngagementPlan').post((req, res) => {
 router.route('/updateLabInfo').post((req, res) => {
     let code = req.body.code;
     let lab = req.body.lab;
-    console.log(code + " " + lab.basicInfo);
     subject_1.default.collection.updateOne({ 'code': code }, { $set: { 'lab': lab, 'hasLab': true } });
     res.json({ poruka: 1 });
 });
@@ -364,6 +373,13 @@ app.put('/files', (req, res) => {
                         'examMaterials.examSolution': fileObject
                     } });
             }
+            else if (material.substring(0, 3) == 'lab') {
+                let index = (material.split("."))[1];
+                let position = 'lab.labDetails.' + index + '.materials';
+                subject_1.default.collection.updateOne({ 'code': subjectCode }, { $push: {
+                        [position]: fileObject
+                    } });
+            }
             res.set('Location', userFiles + file.name);
             res.status(200);
             res.send(file);
@@ -404,6 +420,11 @@ router.route('/deleteFileSubject').post((req, res) => {
     }
     else if (material == 'examText') {
         subject_1.default.collection.updateOne({ 'code': code }, { $pull: { 'examMaterials.examText': { 'file': fileName } } });
+    }
+    else if (material.substring(0, 3) == 'lab') {
+        let index = (material.split("."))[1];
+        let position = 'lab.labDetails.' + index + '.materials';
+        subject_1.default.collection.updateOne({ 'code': code }, { $pull: { [position]: { 'file': fileName } } });
     }
     res.json({ poruka: 1 });
 });

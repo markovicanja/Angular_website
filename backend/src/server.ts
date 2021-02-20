@@ -249,7 +249,7 @@ router.route('/updateSubject').post((req, res) => {
 });
 
 // UPDATE SUBJECT EXAM MATERIALS
-router.route('/updateExamMaterials').post((req, res) => { // NOT WORKING
+router.route('/updateExamMaterials').post((req, res) => {
     let code = req.body.code;
     let examMaterials = req.body.examMaterials;
 
@@ -264,6 +264,18 @@ router.route('/deleteSubject').post((req, res) => {
     subject.collection.deleteOne({'code': code}, (err, res) => {
         if (err) console.log(err);
     });
+    res.json({poruka: 1});
+});
+
+// ADD NEW LAB
+router.route('/addNewLab').post((req, res) => {
+    let code = req.body.code;
+    let lab:any = {
+        "description": "",
+        "materials": []
+    };
+
+    subject.collection.updateOne({'code' : code}, {$push : {'lab.labDetails' : lab }, $inc: {'lab.numberOfLabs': 1 }});
     res.json({poruka: 1});
 });
 
@@ -369,6 +381,13 @@ app.put('/files', (req, res) => {
                     'examMaterials.examSolution' : fileObject
                 }});
             }
+            else if (material.substring(0, 3) == 'lab') {
+                let index = (material.split("."))[1];
+                let position = 'lab.labDetails.' + index + '.materials';
+                subject.collection.updateOne({'code' : subjectCode}, { $push : {
+                    [position] : fileObject
+                }});
+            }
 
             res.set('Location', userFiles + file.name);
             res.status(200);
@@ -413,6 +432,11 @@ router.route('/deleteFileSubject').post((req, res) => {
     }
     else if (material == 'examText') {        
         subject.collection.updateOne({'code' : code}, {$pull : {'examMaterials.examText' : { 'file': fileName } }});
+    }
+    else if (material.substring(0, 3) == 'lab') {     
+        let index = (material.split("."))[1];
+        let position = 'lab.labDetails.' + index + '.materials';
+        subject.collection.updateOne({'code' : code}, {$pull : {[position] : { 'file': fileName } }});
     }
     
     res.json({poruka: 1});

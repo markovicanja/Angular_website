@@ -258,6 +258,14 @@ export class ServiceService {
     return this.http.post(`${this.uri}/updateLabInfo`, data);
   }
 
+  // ADD NEW LAB
+  addNewLab(code) {
+    const data = {
+      code: code,
+    }
+    return this.http.post(`${this.uri}/addNewLab`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");
