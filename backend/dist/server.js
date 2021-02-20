@@ -315,6 +315,14 @@ router.route('/insertEngagementPlan').post((req, res) => {
     engagementPlan_1.default.collection.insertOne({ 'subject': subjectCode, 'group': group, 'employees': employees });
     res.json({ poruka: 1 });
 });
+// UPDATE SUBJECT LAB
+router.route('/updateLabInfo').post((req, res) => {
+    let code = req.body.code;
+    let lab = req.body.lab;
+    console.log(code + " " + lab.basicInfo);
+    subject_1.default.collection.updateOne({ 'code': code }, { $set: { 'lab': lab, 'hasLab': true } });
+    res.json({ poruka: 1 });
+});
 // FILES
 const userFiles = '../backend/upload-server/my_uploaded_files/';
 app.set('views', './dist/browser');

@@ -1,7 +1,7 @@
 <h4 class="my-4 text-center">
     Podesavanje stranica predmeta na kojima ste angazovani
 </h4>
-<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;" *ngIf='subjects'>
+<div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
     <form class="text-center mx-5" style="width: 100%;">
         <select name="selectedSubject" class="form-control select" [(ngModel)]="selectedSubject">
             <option [ngValue]=null disabled selected hidden class="select-placeholder">Predmet</option>
@@ -9,364 +9,321 @@
         </select>
     </form>
 </div>
+<div class="card-body mx-auto" style="max-width: 1200px;" *ngIf="selectedSubject">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="predmet-tab" data-toggle="tab" href="#predmet" role="tab" aria-controls="predmet" aria-selected="true">O predmetu</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="predavanja-tab" data-toggle="tab" href="#predavanja" role="tab" aria-controls="predavanja" aria-selected="false">Predavanja</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="vezbe-tab" data-toggle="tab" href="#vezbe" role="tab" aria-controls="vezbe" aria-selected="false">Vezbe</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="ispit-tab" data-toggle="tab" href="#ispit" role="tab" aria-controls="ispit" aria-selected="false">Ispitna pitanja</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="lab-tab" data-toggle="tab" href="#lab" role="tab" aria-controls="lab" aria-selected="false">Laboratorija</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="projekat-tab" data-toggle="tab" href="#projekat" role="tab" aria-controls="projekat" aria-selected="false">Projekat</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
 
-<div class="container" *ngIf='selectedSubject'>
-    <div id="accordion">
+        <div class="tab-pane fade show active" id="predmet" role="tabpanel" aria-labelledby="predmet-tab">
+            <h6 class="my-4 text-center">Osnovne informacije o predmetu</h6>
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <form class="text-center mx-5" style="width: 100%;">
+                    <input type="text" name="code" class="form-control" placeholder="Sifra" [(ngModel)]="selectedSubject.code" readonly="readonly">
+                    <select name="type" class="form-control select" [(ngModel)]="selectedSubject.type">
+                        <option>obavezni</option>
+                        <option>izborni</option>
+                    </select>                            
+                    <input type="text" name="goal" class="form-control" placeholder="Cilj predmeta" [(ngModel)]="selectedSubject.goal">
+                    <input type="text" name="propositions" class="form-control" placeholder="Propozicije" [(ngModel)]="selectedSubject.propositions">
+                    
+                    <button class="btn btn-secondary my-3" (click)="updateSubject()">Azuriraj</button>
+                </form>
+            </div>  
+            <div class="text-success text-center">
+                {{ message }}
+            </div>     
+        </div>
 
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    O predmetu
-                </button>
-                </h5>
-            </div>
-        
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <h6 class="my-4 text-center">Osnovne informacije o predmetu</h6>
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <form class="text-center mx-5" style="width: 100%;">
-                            <input type="text" name="code" class="form-control" placeholder="Sifra" [(ngModel)]="selectedSubject.code" readonly="readonly">
-                            <select name="type" class="form-control select" [(ngModel)]="selectedSubject.type">
-                                <option>obavezni</option>
-                                <option>izborni</option>
-                            </select>                            
-                            <input type="text" name="goal" class="form-control" placeholder="Cilj predmeta" [(ngModel)]="selectedSubject.goal">
-                            <input type="text" name="propositions" class="form-control" placeholder="Propozicije" [(ngModel)]="selectedSubject.propositions">
-                            
-                            <button class="btn btn-secondary my-3" (click)="updateSubject()">Azuriraj</button>
-                        </form>
-                    </div>  
-                    <div class="text-success text-center">
-                        {{ message }}
-                    </div>                  
-                </div>
+        <div class="tab-pane fade" id="predavanja" role="tabpanel" aria-labelledby="predavanja-tab">
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Tip</th>
+                            <th>Datim postavljanja</th>
+                            <th>Velicina</th>
+                            <th>Nastavnik</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let file of selectedSubject.lectureMaterials'>
+                            <td>{{file.file}}</td>
+                            <td>{{file.type}}</td>
+                            <td>{{file.date | date}}</td>
+                            <td>{{file.size}}KB</td>
+                            <td>{{file.employee}}</td>
+                            <td>
+                                <button (click)="deleteFile(file, 'lecture')" type="button" class="btn btn-outline-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="form-group input-group mt-3">                    
+                                    <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                        (change)="onFileChange($event)" #UploadFileInput>
+                                    <div class="input-group-append">
+                                        <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="addFile('lecture')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapswTwo" aria-expanded="true" aria-controls="collapswTwo">
-                    Predavanja
-                </button>
-              </h5>
+        <div class="tab-pane fade show" id="vezbe" role="tabpanel" aria-labelledby="vezbe-tab">
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Tip</th>
+                            <th>Datim postavljanja</th>
+                            <th>Velicina</th>
+                            <th>Nastavnik</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let file of selectedSubject.exerciseMaterials'>
+                            <td>{{file.file}}</td>
+                            <td>{{file.type}}</td>
+                            <td>{{file.date | date}}</td>
+                            <td>{{file.size}}KB</td>
+                            <td>{{file.employee}}</td>
+                            <td>
+                                <button (click)="deleteFile(file, 'exercise')" type="button" class="btn btn-outline-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="form-group input-group mt-3">                    
+                                    <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                        (change)="onFileChange($event)" #UploadFileInput>
+                                    <div class="input-group-append">
+                                        <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="addFile('exercise')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        
-            <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <table class="table table-white text-center">
-                            <thead>
-                                <tr>
-                                    <th>Naziv</th>
-                                    <th>Tip</th>
-                                    <th>Datim postavljanja</th>
-                                    <th>Velicina</th>
-                                    <th>Nastavnik</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor='let file of selectedSubject.lectureMaterials'>
-                                    <td>{{file.file}}</td>
-                                    <td>{{file.type}}</td>
-                                    <td>{{file.date | date}}</td>
-                                    <td>{{file.size}}KB</td>
-                                    <td>{{file.employee}}</td>
-                                    <td>
-                                        <button (click)="deleteFile(file, 'lecture')" type="button" class="btn btn-outline-danger mx-2">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="form-group input-group mt-3">                    
-                                            <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                (change)="onFileChange($event)" #UploadFileInput>
-                                            <div class="input-group-append">
-                                                <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                            </div>
+        </div>
+
+        <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab">
+            <div class="card-body pb-0">
+                <div class="mx-auto d-flex justify-content-center mb-4" style="max-width: 600px;">
+                    <button class='btn btn-outline-secondary' *ngIf='!selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(true)'>Sakrij materijale sa ispitnih rokova</button>
+                    <button class='btn btn-outline-secondary' *ngIf='selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(false)'>Prikazi materijale sa ispitnih rokova</button>
+                </div>                        
+                <h6 class="text-center">Tekstovi ispitnih rokova</h6>
+                <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                    <table class="table table-white text-center">
+                        <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Tip</th>
+                                <th>Datim postavljanja</th>
+                                <th>Velicina</th>
+                                <th>Nastavnik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
+                                <td>{{file.file}}</td>
+                                <td>{{file.type}}</td>
+                                <td>{{file.date | date}}</td>
+                                <td>{{file.size}}KB</td>
+                                <td>{{file.employee}}</td>
+                                <td>
+                                    <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="form-group input-group mt-3">                    
+                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                            (change)="onFileChange($event)" #UploadFileInput>
+                                        <div class="input-group-append">
+                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <button (click)="addFile('lecture')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    Vezbe
-                </button>
-            </h5>
-            </div>
-        
-            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <table class="table table-white text-center">
-                            <thead>
-                                <tr>
-                                    <th>Naziv</th>
-                                    <th>Tip</th>
-                                    <th>Datim postavljanja</th>
-                                    <th>Velicina</th>
-                                    <th>Nastavnik</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor='let file of selectedSubject.exerciseMaterials'>
-                                    <td>{{file.file}}</td>
-                                    <td>{{file.type}}</td>
-                                    <td>{{file.date | date}}</td>
-                                    <td>{{file.size}}KB</td>
-                                    <td>{{file.employee}}</td>
-                                    <td>
-                                        <button (click)="deleteFile(file, 'exercise')" type="button" class="btn btn-outline-danger mx-2">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="form-group input-group mt-3">                    
-                                            <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                (change)="onFileChange($event)" #UploadFileInput>
-                                            <div class="input-group-append">
-                                                <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                            </div>
+                <h6 class="text-center">Resenja ispitnih rokova</h6>
+                <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                    <table class="table table-white text-center">
+                        <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Tip</th>
+                                <th>Datim postavljanja</th>
+                                <th>Velicina</th>
+                                <th>Nastavnik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
+                                <td>{{file.file}}</td>
+                                <td>{{file.type}}</td>
+                                <td>{{file.date | date}}</td>
+                                <td>{{file.size}}KB</td>
+                                <td>{{file.employee}}</td>
+                                <td>
+                                    <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="form-group input-group mt-3">                    
+                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                            (change)="onFileChange($event)" #UploadFileInput>
+                                        <div class="input-group-append">
+                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <button (click)="addFile('exercise')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-  
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseThree">
-                        Ispitna pitanja
-                    </button>
-                </h5>
-            </div>
-        
-            <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <div class="card-body pb-0">
-                        <div class="mx-auto d-flex justify-content-center mb-4" style="max-width: 600px;">
-                            <button class='btn btn-outline-secondary' *ngIf='!selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(true)'>Sakrij materijale sa ispitnih rokova</button>
-                            <button class='btn btn-outline-secondary' *ngIf='selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(false)'>Prikazi materijale sa ispitnih rokova</button>
-                        </div>                        
-                        <h6 class="text-center">Tekstovi ispitnih rokova</h6>
-                        <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                            <table class="table table-white text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Naziv</th>
-                                        <th>Tip</th>
-                                        <th>Datim postavljanja</th>
-                                        <th>Velicina</th>
-                                        <th>Nastavnik</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
-                                        <td>{{file.file}}</td>
-                                        <td>{{file.type}}</td>
-                                        <td>{{file.date | date}}</td>
-                                        <td>{{file.size}}KB</td>
-                                        <td>{{file.employee}}</td>
-                                        <td>
-                                            <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <div class="form-group input-group mt-3">                    
-                                                <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                    (change)="onFileChange($event)" #UploadFileInput>
-                                                <div class="input-group-append">
-                                                    <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <h6 class="text-center">Resenja ispitnih rokova</h6>
-                        <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                            <table class="table table-white text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Naziv</th>
-                                        <th>Tip</th>
-                                        <th>Datim postavljanja</th>
-                                        <th>Velicina</th>
-                                        <th>Nastavnik</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
-                                        <td>{{file.file}}</td>
-                                        <td>{{file.type}}</td>
-                                        <td>{{file.date | date}}</td>
-                                        <td>{{file.size}}KB</td>
-                                        <td>{{file.employee}}</td>
-                                        <td>
-                                            <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <div class="form-group input-group mt-3">                    
-                                                <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                    (change)="onFileChange($event)" #UploadFileInput>
-                                                <div class="input-group-append">
-                                                    <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
-                    Laboratorija
-                </button>
-            </h5>
-            </div>
-        
-            <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <form class="text-center mx-5 my-2" style="width: 100%;">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="hideLab" [(ngModel)]="selectedSubject.lab.hidden">
-                                <label class="form-check-label" for="hideLab">
-                                    Sakrij informacije o laboratorijskim vezbama
-                                </label>
-                            </div>
-                            <input name="numberOfLabs" class="form-control" placeholder="Broj labova" [(ngModel)]="selectedSubject.lab.numberOfLabs">
-                            <input name="basicInfo" class="form-control" placeholder="Osnovne informacije" [(ngModel)]="selectedSubject.lab.basicInfo">
-                            <button class='btn btn-outline-secondary my-3' (click)='updateLab()' *ngIf="selectedSubject.lab.numberOfLabs">Azuriraj</button>
-                            <button class='btn btn-outline-secondary my-3' (click)='addLab()' *ngIf="!selectedSubject.lab.numberOfLabs">Dodaj</button>
-                        </form>
-                    </div>                  
-                    <hr/>
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;"
-                     *ngIf="selectedSubject.lab.numberOfLabs">
-                        <div *ngFor="let lab of selectedSubject.lab.labDetails">
-                            <table class="table table-white text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Naziv</th>
-                                        <th>Tip</th>
-                                        <th>Datim postavljanja</th>
-                                        <th>Velicina</th>
-                                        <th>Nastavnik</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor='let file of lab.materials'>
-                                        <td>{{file.file}}</td>
-                                        <td>{{file.type}}</td>
-                                        <td>{{file.date | date}}</td>
-                                        <td>{{file.size}}KB</td>
-                                        <td>{{file.employee}}</td>
-                                        <td>
-                                            <button (click)="deleteFile(file, 'lab')" type="button" class="btn btn-outline-danger mx-2">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <div class="form-group input-group mt-3">                    
-                                                <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                                    (change)="onFileChange($event)" #UploadFileInput>
-                                                <div class="input-group-append">
-                                                    <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button (click)="addFile('lab')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br/>
-                        </div>                        
+        <div class="tab-pane fade show" id="lab" role="tabpanel" aria-labelledby="lab-tab">
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <form class="text-center mx-5 my-2" style="width: 100%;">
+                    <input name="basicInfo" class="form-control" placeholder="Osnovne informacije" [(ngModel)]="selectedSubject.lab.basicInfo">
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="checkbox" value="" name='hidden' id="hideLab" [(ngModel)]="selectedSubject.lab.hidden">
+                        <label class="form-check-label" for="hideLab">
+                            Sakrij informacije o laboratorijskim vezbama
+                        </label>
                     </div>
-                </div>
+                    <button class='btn btn-outline-secondary my-3' (click)='updateLab()' *ngIf="selectedSubject.lab.numberOfLabs">Azuriraj</button>
+                    <button class='btn btn-outline-secondary my-3' (click)='updateLab()' *ngIf="!selectedSubject.lab.numberOfLabs">Dodaj</button>
+                </form>
+            </div>     
+            <div class="text-success text-center">
+                {{ message }}
+            </div>             
+            <hr/>
+
+            <div class="text-success text-center">
+                {{ messageLabDetails }}
+            </div>    
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;"
+             *ngFor="let lab of selectedSubject.lab.labDetails">
+                <div> 
+                    <div class="text-center">
+                        <input name="basicInfo" class="form-control" placeholder="Opis" [(ngModel)]="lab.description">  
+                        <button class='btn btn-outline-secondary my-3' (click)='updateLab(lab)'>Azuriraj</button>
+                    </div>                     
+
+                    <table class="table table-white text-center">
+                        <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Tip</th>
+                                <th>Datim postavljanja</th>
+                                <th>Velicina</th>
+                                <th>Nastavnik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let file of lab.materials'>
+                                <td>{{file.file}}</td>
+                                <td>{{file.type}}</td>
+                                <td>{{file.date | date}}</td>
+                                <td>{{file.size}}KB</td>
+                                <td>{{file.employee}}</td>
+                                <td>
+                                    <button (click)="deleteFile(file, 'lab')" type="button" class="btn btn-outline-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="form-group input-group mt-3">                    
+                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                            (change)="onFileChange($event)" #UploadFileInput>
+                                        <div class="input-group-append">
+                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button (click)="addFile('lab')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>                        
             </div>
         </div>
 
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseThree">
-                    Projekat
-                </button>
-            </h5>
-            </div>
-        
-            <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    Projekat
-                </div>
-            </div>
+        <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab">
+            Projekat
         </div>
 
     </div>

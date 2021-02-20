@@ -20,8 +20,6 @@ export class SubjectsEmployeeComponent implements OnInit {
     file: [null, Validators.required]
   });
 
-  private fileName;
-
   constructor(private service: ServiceService, private fileService: FileService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -32,10 +30,12 @@ export class SubjectsEmployeeComponent implements OnInit {
 
   employee: Employee;
   message: string;
+  messageLabDetails: string;
   subjects: Subject[];
   selectedSubject: Subject;
   newFile: FileModel;
   fileToUpload: File = null;
+  fileName: string;
 
   getAllSubjects() {
     let subjectStrings = [];
@@ -45,13 +45,12 @@ export class SubjectsEmployeeComponent implements OnInit {
         p.employees.forEach(e => {
           if (e == this.employee.username) {
             subjectStrings.push(p.subject);
-            
           }
         })
       })
       subjectStrings.forEach(ss => {
         this.service.getSubject(ss).subscribe((subject: Subject) => {
-          this.subjects.push(subject);
+          this.subjects.push(subject);   
         })
       })
     })
@@ -107,20 +106,23 @@ export class SubjectsEmployeeComponent implements OnInit {
     this.service.updateExamMaterials(this.selectedSubject.code, this.selectedSubject.examMaterials);
   }
 
-  updateLab() {
-
+  updateLab(lab) {
+    this.service.updateLabInfo(this.selectedSubject.code, this.selectedSubject.lab).subscribe(res => {
+      if (lab == null) this.message = "Uspesno ste azurirali informacije";
+      else this.messageLabDetails = "Uspesno ste azurirali informacije";
+    })
   }
 
-  addLab() {
-    
+  updateLabDescription(lab) {
+
   }
 
   // FILE LIST COMPONENT
-  public fileList$: Observable<string[]> = this.fileService.list();
+  // public fileList$: Observable<string[]> = this.fileService.list();
 
-  public download(fileName: string):  void {
-    this.fileService.download(fileName);
-  }
+  // public download(fileName: string):  void {
+  //   this.fileService.download(fileName);
+  // }
 
 }
 

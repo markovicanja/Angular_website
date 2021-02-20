@@ -316,6 +316,15 @@ router.route('/insertEngagementPlan').post((req, res) => {
     res.json({poruka: 1});
 });
 
+// UPDATE SUBJECT LAB
+router.route('/updateLabInfo').post((req, res) => {
+    let code = req.body.code;
+    let lab = req.body.lab;
+
+    subject.collection.updateOne({'code': code}, {$set: {'lab': lab, 'hasLab': true }});
+    res.json({poruka: 1});
+});
+
 // FILES
 const userFiles = '../backend/upload-server/my_uploaded_files/';
 app.set('views', './dist/browser');
