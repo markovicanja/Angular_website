@@ -107,16 +107,29 @@ export class EditNotificationComponent implements OnInit {
     });
   }
 
-  addFile() {
-
+  addFile(subject: Subject, index) {
+    let file = {
+      file: this.fileName,
+      type: "",
+      date: new Date(),
+      size: 0,
+      employee: this.employee.firstName + " " + this.employee.lastName 
+    }
+    this.fileService.uploadNotificationFiles(this.fileName, this.formGroup.get('file').value, file, subject.code, index).subscribe((file: FileModel) => {
+      this.getAllNotifications();
+    });    
   }
 
-  edit(subject: Subject, notification: SubjectNotification) {
-
+  edit(subject: Subject, index: number, notification: SubjectNotification) {
+    this.service.updateNotificationInfo(subject.code, index, notification).subscribe(res => {
+      this.getAllNotifications();
+    })
   }
 
   delete(subject: Subject, notification: SubjectNotification) {
-
+    this.service.deleteNotification(subject.code, notification.title).subscribe(res => {
+      this.getAllNotifications();
+    })
   }
 
 }

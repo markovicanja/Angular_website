@@ -368,6 +368,29 @@ router.route('/updateLabInfo').post((req, res) => {
     res.json({poruka: 1});
 });
 
+// UPDATE NOTIFICATION
+router.route('/updateNotificationInfo').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+    let index = req.body.index;
+    let notification = req.body.notification;
+
+    let positionTitle = 'notifications.' + index + '.title';
+    let positionContent = 'notifications.' + index + '.content';
+    subject.collection.updateOne({'code' : subjectCode}, { $set : 
+        { [positionTitle] : notification.title, [positionContent] : notification.content }});  
+    res.json({poruka: 1});
+});
+
+// DELETE NOTIFICATION
+router.route('/deleteNotification').post((req, res) => {
+    let subjectCode = req.body.subjectCode;
+    let title = req.body.title;
+
+    subject.collection.updateOne({'code' : subjectCode}, { $pull : 
+        { "notifications" : { 'title' : title } }});  
+    res.json({poruka: 1});
+});
+
 // FILES
 const userFiles = '../backend/upload-server/my_uploaded_files/';
 app.set('views', './dist/browser');
@@ -454,6 +477,35 @@ app.put('/notificationFiles', (req, res) => {
             res.set('Location', userFiles + file.name);
             res.status(200);
             res.send(fileObject);
+        }
+    });
+});
+
+app.put('/uploadNotificationFiles', (req, res) => {
+    const file = req.body;
+    const fileObject = req.body.file;
+    const subjectCode = req.body.subjectCode;
+    const index = req.body.index;
+
+    const base64data = file.content.replace(/^data:.*,/, '');
+    fs.writeFile(userFiles + file.name, base64data, 'base64', (err) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        } else {
+            var stats = fs.statSync(userFiles + file.name);
+            var fileSize = stats.size / 1024;
+            
+            var fileType = ((path.extname(file.name)).substring(1)).toUpperCase();
+            fileObject.type = fileType;
+            fileObject.size = Math.round(fileSize);
+
+            let position = 'notifications.' + index + '.files';
+            subject.collection.updateOne({'code' : subjectCode}, { $push : { [position] : fileObject }});                
+
+            res.set('Location', userFiles + file.name);
+            res.status(200);
+            res.send(file);
         }
     });
 });

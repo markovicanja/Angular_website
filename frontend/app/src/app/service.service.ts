@@ -302,6 +302,25 @@ export class ServiceService {
     return this.http.post(`${this.uri}/addNotification`, data);
   }
 
+  // UPDATE NOTIFICATION
+  updateNotificationInfo(subjectCode, index, notification) {
+    const data = {
+      subjectCode: subjectCode,
+      index: index,
+      notification: notification
+    }
+    return this.http.post(`${this.uri}/updateNotificationInfo`, data);
+  }
+
+  // DELETE NOTIFICATION
+  deleteNotification(subjectCode, title) {
+    const data = {
+      subjectCode: subjectCode,
+      title: title
+    }
+    return this.http.post(`${this.uri}/deleteNotification`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");
