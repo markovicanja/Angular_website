@@ -240,6 +240,16 @@ export class ServiceService {
     return this.http.post(`${this.uri}/deleteFileSubject`, data);
   }
 
+  // DELETE FILE FROM NOTIFICATION
+  deleteFileNotification(code, index, fileName) {
+    const data = {
+      code: code, 
+      index: index, 
+      fileName: fileName
+    }
+    return this.http.post(`${this.uri}/deleteFileNotification`, data);
+  }
+
   // UPDATE SUBJECT EXAM MATERIALS
   updateExamMaterials(code, examMaterials) {
     const data = {

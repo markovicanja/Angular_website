@@ -27,6 +27,7 @@ import { EngagementPlanComponent } from './engagement-plan/engagement-plan.compo
 import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SubjectNotificationsComponent } from './subject-notifications/subject-notifications.component';
+import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SubjectNotificationsComponent } from './subject-notifications/subject-n
     AddSubjectComponent,
     EngagementPlanComponent,
     SubjectsEmployeeComponent,
-    SubjectNotificationsComponent
+    SubjectNotificationsComponent,
+    EditNotificationComponent
   ],
   imports: [
     BrowserModule,

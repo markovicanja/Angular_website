@@ -486,6 +486,15 @@ router.route('/deleteFileSubject').post((req, res) => {
     }
     res.json({ poruka: 1 });
 });
+// DELETE FILE FROM NOTIFICATION
+router.route('/deleteFileNotification').post((req, res) => {
+    let code = req.body.code;
+    let index = req.body.index;
+    let fileName = req.body.fileName;
+    let position = 'notifications.' + index + ".files";
+    subject_1.default.collection.updateOne({ 'code': code }, { $pull: { [position]: { 'file': fileName } } });
+    res.json({ poruka: 1 });
+});
 // UPLOAD PROFILE PICTURE
 const profilePictureUrl = "src/uploaded_files/profile_pictures";
 const subjectInfoFilesUrl = "src/uploaded_files/subjects";

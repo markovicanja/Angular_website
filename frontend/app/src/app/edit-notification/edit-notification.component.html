@@ -1,0 +1,67 @@
+<div *ngFor="let n of notifications; index as i" class="text-center">   
+    <h5 class="my-2">Obavestenje {{ i + 1 }}</h5> 
+    <div class="mx-auto d-flex justify-content-center text-center" style="max-width: 800px;" [class.bgGray]="i % 2 == 0">        
+        <form class="text-center mx-5 my-3" style="width: 100%;">
+            <input name="title" class="form-control mb-3" placeholder="Naslov vesti" [(ngModel)]="n.title">
+    
+            <angular-editor name="content" [(ngModel)]="n.content" [config]="config"></angular-editor>
+
+            <input name="subject" class="form-control mb-3" [(ngModel)]="subjects[i].title" readonly="readonly">
+
+            <input name="creator" class="form-control mb-3" [(ngModel)]="n.creator" readonly="readonly">
+    
+            <input name="date" class="form-control" placeholder="Datum" value="{{ n.dateCreation | date }}" readonly="readonly">
+
+            <table class="table table-white text-center">
+                <thead>
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Tip</th>
+                        <th>Datim postavljanja</th>
+                        <th>Velicina</th>
+                        <th>Nastavnik</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let file of n.files'>
+                        <td>{{file.file}}</td>
+                        <td>{{file.type}}</td>
+                        <td>{{file.date | date}}</td>
+                        <td>{{file.size}}KB</td>
+                        <td>{{file.employee}}</td>
+                        <td>
+                            <button (click)="deleteFile(subjects[i], i, file)" type="button" class="btn btn-outline-danger mx-2">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div class="form-group input-group mt-3">                    
+                                <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                    (change)="onFileChange($event)" #UploadFileInput>
+                                <div class="input-group-append">
+                                    <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button (click)="addFile(subjects[i], i)" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>            
+    
+            <button (click)="edit(subjects[i], n)" type="button" class="btn btn-outline-primary mx-2">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="delete(subjects[i], n)" type="button" class="btn btn-outline-danger mx-2">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+    
+        </form>
+    </div>
+</div>

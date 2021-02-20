@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { BachelorStudiesComponent } from './bachelor-studies/bachelor-studies.component';
 import { ContactComponent } from './contact/contact.component';
+import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'engagementPlan', component: EngagementPlanComponent },
   { path: 'subjectsEmployee', component: SubjectsEmployeeComponent },
   { path: 'subjectsNotifications', component: SubjectNotificationsComponent },
+  { path: 'editNotifications', component: EditNotificationComponent },
 ];
 
 @NgModule({

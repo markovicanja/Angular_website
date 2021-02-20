@@ -54,8 +54,15 @@
               <a routerLink='/subjectsEmployee' class="nav-link">Predmeti</a>
             </li>
 
-            <li class="nav-item" *ngIf="employeeLogged">
-              <a routerLink='/subjectsNotifications' class="nav-link">Obavestenja o predmetima</a>
+            <li class="nav-item dropdown" *ngIf="employeeLogged">
+              <a class="nav-link" id="navbarDropdown"
+                  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Vesti
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink='/subjectsNotifications'>Dodavanje</a>
+                  <a class="dropdown-item" routerLink='/editNotifications'>Izmena</a>
+              </div>
             </li>
 
             <li class="nav-item" *ngIf="employeeLogged">

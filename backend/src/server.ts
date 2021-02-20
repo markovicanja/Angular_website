@@ -498,13 +498,26 @@ router.route('/deleteFileSubject').post((req, res) => {
     else if (material.substring(0, 3) == 'lab') {     
         let index = (material.split("."))[1];
         let position = 'lab.labDetails.' + index + '.materials';
-        subject.collection.updateOne({'code' : code}, {$pull : {[position] : { 'file': fileName } }});
+        subject.collection.updateOne({'code' : code}, {$pull : { [position] : { 'file': fileName } }});
     }
     else if (material.substring(0, 2) == 'dz') {     
         let index = (material.split("."))[1];
         let position = 'project.projects.' + index + '.projectMaterials';
-        subject.collection.updateOne({'code' : code}, {$pull : {[position] : { 'file': fileName } }});
+        subject.collection.updateOne({'code' : code}, {$pull : { [position] : { 'file': fileName } }});
     }
+    
+    res.json({poruka: 1});
+});
+
+// DELETE FILE FROM NOTIFICATION
+router.route('/deleteFileNotification').post((req, res) => {
+    let code = req.body.code;
+    let index = req.body.index;
+    let fileName = req.body.fileName;
+
+    let position = 'notifications.' + index + ".files";
+
+    subject.collection.updateOne({'code' : code}, {$pull : { [position] : { 'file': fileName }}});
     
     res.json({poruka: 1});
 });
