@@ -7,7 +7,6 @@ import { FileModel } from '../model/file.model';
 import { Subject } from '../model/subject.model';
 import { ServiceService } from '../service.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-subjects-employee',

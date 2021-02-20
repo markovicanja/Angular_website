@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 import { FileService } from '../file.service';
 import { Employee } from '../model/employee.model';
 import { EngagementPlan } from '../model/engagementPlan.model';
+import { ListModel } from '../model/list.model';
 import { Subject } from '../model/subject.model';
 import { ServiceService } from '../service.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Student } from '../model/student.model';
 
 @Component({
   selector: 'app-subject',
@@ -13,9 +16,17 @@ import { ServiceService } from '../service.service';
 })
 export class SubjectComponent implements OnInit {
 
-  constructor(private service: ServiceService, private router: Router, private fileService: FileService) { }
+  public formGroup = this.fb.group({
+    file: [null, Validators.required]
+  });
+
+  constructor(private service: ServiceService, private router: Router, private fileService: FileService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("user") != "student") this.student = null;
+    else {
+      this.student = JSON.parse(localStorage.getItem("student"));
+    }
     this.subject = JSON.parse(localStorage.getItem("chosenSubject"));
     this.subject.notifications.sort(function (a, b) {
       var aDate = new Date(a.dateCreation);
@@ -30,10 +41,14 @@ export class SubjectComponent implements OnInit {
         })
       })
     });
+    this.getAllLists();
   }
 
+  student: Student;
   subject: Subject;
   employees: Employee[];
+  lists: ListModel[];
+  fileName: string;
 
   inLastWeek(date) {
     if (date == null) return false;
@@ -53,6 +68,42 @@ export class SubjectComponent implements OnInit {
 
   download(fileName) {
     this.fileService.download(fileName);
+  }
+
+  getAllLists() {
+    this.lists = [];
+    this.service.getAllLists().subscribe((l: ListModel[]) => {
+      l.forEach(list => {
+        if(list.subject == this.subject.code) {
+          let today = new Date();
+          let deadline = new Date(list.deadline);
+          if (list.valid == true && deadline > today) this.lists.push(list);
+        }
+      })
+    })
+  }
+
+  public onFileChange(event) {
+    const reader = new FileReader();  
+    if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          file: reader.result
+        });
+      };
+    }
+  }
+
+  addFile(list: ListModel) {
+    let file = {
+      student: this.student.username,
+      file: this.fileName
+    }
+    this.fileService.uploadListFiles(this.fileName, this.formGroup.get('file').value, file, list.title).subscribe(res => {})
   }
 
 }

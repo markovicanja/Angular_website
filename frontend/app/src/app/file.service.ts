@@ -61,6 +61,17 @@ export class FileService {
     this.displayLoader$.next(true);    
     return this.http.put(`${this.uri}/uploadNotificationFiles`, data);
   }
+  
+  public uploadListFiles(fileName: string, fileContent: string, file, listTitle) {
+    const data = {
+      name: fileName,
+      content: fileContent,
+      file: file,
+      listTitle: listTitle
+    }
+    this.displayLoader$.next(true);    
+    return this.http.put(`${this.uri}/uploadListFiles`, data);
+  }
 
   public download(fileName: string): void {
     this.http.get(`${this.uri}/files/${fileName}`, { responseType: 'blob'}).subscribe(res => {

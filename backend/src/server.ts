@@ -524,6 +524,28 @@ app.put('/notificationFiles', (req, res) => {
     });
 });
 
+app.put('/uploadListFiles', (req, res) => {
+    const file = req.body;
+    const fileObject = req.body.file;
+    const listTitle = req.body.listTitle;
+
+    const base64data = file.content.replace(/^data:.*,/, '');
+    fs.writeFile(userFiles + file.name, base64data, 'base64', (err) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        } else {
+            var stats = fs.statSync(userFiles + file.name);
+
+            list.collection.updateOne({'title': listTitle}, {$push: {'files' : fileObject}});
+
+            res.set('Location', userFiles + file.name);
+            res.status(200);
+            res.send(file);
+        }
+    });
+});
+
 app.put('/uploadNotificationFiles', (req, res) => {
     const file = req.body;
     const fileObject = req.body.file;
