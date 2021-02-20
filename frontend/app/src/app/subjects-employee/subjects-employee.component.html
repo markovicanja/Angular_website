@@ -147,101 +147,99 @@
         </div>
 
         <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab">
-            <div class="card-body pb-0">
-                <div class="mx-auto d-flex justify-content-center mb-4" style="max-width: 600px;">
-                    <button class='btn btn-outline-secondary' *ngIf='!selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(true)'>Sakrij materijale sa ispitnih rokova</button>
-                    <button class='btn btn-outline-secondary' *ngIf='selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(false)'>Prikazi materijale sa ispitnih rokova</button>
-                </div>                        
-                <h6 class="text-center">Tekstovi ispitnih rokova</h6>
-                <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                    <table class="table table-white text-center">
-                        <thead>
-                            <tr>
-                                <th>Naziv</th>
-                                <th>Tip</th>
-                                <th>Datim postavljanja</th>
-                                <th>Velicina</th>
-                                <th>Nastavnik</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
-                                <td>{{file.file}}</td>
-                                <td>{{file.type}}</td>
-                                <td>{{file.date | date}}</td>
-                                <td>{{file.size}}KB</td>
-                                <td>{{file.employee}}</td>
-                                <td>
-                                    <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="5">
-                                    <div class="form-group input-group mt-3">                    
-                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                            (change)="onFileChange($event)" #UploadFileInput>
-                                        <div class="input-group-append">
-                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                        </div>
+            <div class="mx-auto d-flex justify-content-center my-4" style="max-width: 600px;">
+                <button class='btn btn-outline-secondary' *ngIf='!selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(true)'>Sakrij materijale sa ispitnih rokova</button>
+                <button class='btn btn-outline-secondary' *ngIf='selectedSubject.examMaterials.hidden' (click)='hideExamMaterials(false)'>Prikazi materijale sa ispitnih rokova</button>
+            </div>                        
+            <h6 class="text-center">Tekstovi ispitnih rokova</h6>
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Tip</th>
+                            <th>Datim postavljanja</th>
+                            <th>Velicina</th>
+                            <th>Nastavnik</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
+                            <td>{{file.file}}</td>
+                            <td>{{file.type}}</td>
+                            <td>{{file.date | date}}</td>
+                            <td>{{file.size}}KB</td>
+                            <td>{{file.employee}}</td>
+                            <td>
+                                <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="form-group input-group mt-3">                    
+                                    <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                        (change)="onFileChange($event)" #UploadFileInput>
+                                    <div class="input-group-append">
+                                        <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                     </div>
-                                </td>
-                                <td>
-                                    <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <h6 class="text-center">Resenja ispitnih rokova</h6>
-                <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                    <table class="table table-white text-center">
-                        <thead>
-                            <tr>
-                                <th>Naziv</th>
-                                <th>Tip</th>
-                                <th>Datim postavljanja</th>
-                                <th>Velicina</th>
-                                <th>Nastavnik</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
-                                <td>{{file.file}}</td>
-                                <td>{{file.type}}</td>
-                                <td>{{file.date | date}}</td>
-                                <td>{{file.size}}KB</td>
-                                <td>{{file.employee}}</td>
-                                <td>
-                                    <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="5">
-                                    <div class="form-group input-group mt-3">                    
-                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
-                                            (change)="onFileChange($event)" #UploadFileInput>
-                                        <div class="input-group-append">
-                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
-                                        </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h6 class="text-center">Resenja ispitnih rokova</h6>
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Tip</th>
+                            <th>Datim postavljanja</th>
+                            <th>Velicina</th>
+                            <th>Nastavnik</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let file of selectedSubject.examMaterials.examText'>
+                            <td>{{file.file}}</td>
+                            <td>{{file.type}}</td>
+                            <td>{{file.date | date}}</td>
+                            <td>{{file.size}}KB</td>
+                            <td>{{file.employee}}</td>
+                            <td>
+                                <button (click)="deleteFile(file, 'examText')" type="button" class="btn btn-outline-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="form-group input-group mt-3">                    
+                                    <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                        (change)="onFileChange($event)" #UploadFileInput>
+                                    <div class="input-group-append">
+                                        <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
                                     </div>
-                                </td>
-                                <td>
-                                    <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="addFile('examText')" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -328,8 +326,70 @@
         </div>
 
         <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab">
-            Projekat
-        </div>
+            <div class="mx-auto d-flex justify-content-center my-4" style="max-width: 600px;">
+                <button class='btn btn-outline-secondary' *ngIf='!selectedSubject.project.hidden' (click)='hideProjectMaterials(true)'>Sakrij informacije o domacim zadacima</button>
+                <button class='btn btn-outline-secondary' *ngIf='selectedSubject.project.hidden' (click)='hideProjectMaterials(false)'>Prikazi informacije o domacim zadacima</button>
+            </div>  
 
+            <div class="text-success text-center">
+                {{ message }}
+            </div>    
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;"
+             *ngFor="let dz of selectedSubject.project.projects; index as i" [class.bgGray]='i%2==1'>                
+                <div> 
+                    <div class="text-center">
+                        <input name="basicInfo" class="form-control" placeholder="Osnovne informacije" [(ngModel)]="dz.basicInfo"> 
+                        <input name="description" class="form-control" placeholder="Opis" [(ngModel)]="dz.description">  
+                        <button class='btn btn-outline-secondary my-3' (click)='updateProject(dz)'>Azuriraj</button>
+                    </div>                     
+
+                    <table class="table table-white text-center">
+                        <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Tip</th>
+                                <th>Datim postavljanja</th>
+                                <th>Velicina</th>
+                                <th>Nastavnik</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let file of dz.projectMaterials'>
+                                <td>{{file.file}}</td>
+                                <td>{{file.type}}</td>
+                                <td>{{file.date | date}}</td>
+                                <td>{{file.size}}KB</td>
+                                <td>{{file.employee}}</td>
+                                <td>
+                                    <button (click)="deleteFile(file, 'dz.' + i)" type="button" class="btn btn-outline-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="form-group input-group mt-3">                    
+                                        <input type="file" class="custom-file-input form-control" name="uploadedFile"
+                                            (change)="onFileChange($event)" #UploadFileInput>
+                                        <div class="input-group-append">
+                                            <label class="custom-file-label">{{fileName || 'Izaberite fajl'}}</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button (click)="addFile('dz.' + i)" type="button" class="btn btn-outline-success mx-2 mt-3">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                    
+            </div>
+        </div>
+        <div class="text-center"> 
+            <button class='btn btn-outline-secondary my-3' (click)='addNewProject()'>Dodaj novi projekat</button>
+        </div>   
     </div>
 </div>

@@ -249,6 +249,15 @@ export class ServiceService {
     return this.http.post(`${this.uri}/updateExamMaterials`, data);
   }
 
+  // UPDATE PROJECT MATERIALS
+  updateProjectMaterials(code, project) {
+    const data = {
+      code: code, 
+      project: project
+    }
+    return this.http.post(`${this.uri}/updateProjectMaterials`, data);
+  }
+
   // UPDATE LAB
   updateLabInfo(code, lab) {
     const data = {
@@ -264,6 +273,14 @@ export class ServiceService {
       code: code,
     }
     return this.http.post(`${this.uri}/addNewLab`, data);
+  }
+  
+  // ADD NEW PROJECT
+  addNewProject(code) {
+    const data = {
+      code: code,
+    }
+    return this.http.post(`${this.uri}/addNewProject`, data);
   }
 
   // POST IMAGE

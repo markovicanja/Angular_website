@@ -104,6 +104,11 @@ export class SubjectsEmployeeComponent implements OnInit {
     this.service.updateExamMaterials(this.selectedSubject.code, this.selectedSubject.examMaterials).subscribe(res => {});
   }
 
+  hideProjectMaterials(hide: boolean) {
+    this.selectedSubject.project.hidden = hide;
+    this.service.updateProjectMaterials(this.selectedSubject.code, this.selectedSubject.project).subscribe(res => {});
+  }
+
   updateLab(lab) {
     this.service.updateLabInfo(this.selectedSubject.code, this.selectedSubject.lab).subscribe(res => {
       if (lab == null) this.message = "Uspesno ste azurirali informacije";
@@ -114,6 +119,18 @@ export class SubjectsEmployeeComponent implements OnInit {
   addNewLab() {
     this.service.addNewLab(this.selectedSubject.code).subscribe(res => {
       this.messageLabDetails = "Dodali ste novu laboratorijsku vezbu";
+    })
+  }
+
+  updateProject(p) {
+    this.service.updateProjectMaterials(this.selectedSubject.code, this.selectedSubject.project).subscribe(res => {
+      this.message = "Uspesno ste azurirali informacije";
+    })
+  }
+
+  addNewProject() {
+    this.service.addNewProject(this.selectedSubject.code).subscribe(res => {
+      this.message = "Dodali ste novi domaci zadatak";
     })
   }
 

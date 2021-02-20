@@ -257,6 +257,15 @@ router.route('/updateExamMaterials').post((req, res) => {
     res.json({poruka: 1});
 });
 
+// UPDATE PROJECT MATERIALS  
+router.route('/updateProjectMaterials').post((req, res) => {
+    let code = req.body.code;
+    let project = req.body.project;
+
+    subject.collection.updateOne({'code' : code}, {$set : {'project' : project }});
+    res.json({poruka: 1});
+});
+
 // DELETE SUBJECT
 router.route('/deleteSubject').post((req, res) => {
     let code = req.body.code;
@@ -276,6 +285,19 @@ router.route('/addNewLab').post((req, res) => {
     };
 
     subject.collection.updateOne({'code' : code}, {$push : {'lab.labDetails' : lab }, $inc: {'lab.numberOfLabs': 1 }});
+    res.json({poruka: 1});
+});
+
+// ADD NEW PROJECT
+router.route('/addNewProject').post((req, res) => {
+    let code = req.body.code;
+    let project: any = {
+        "basicInfo": "",
+        "description": "",
+        "projectMaterials": []
+    };
+
+    subject.collection.updateOne({'code' : code}, {$push : {'project.projects' : project } });
     res.json({poruka: 1});
 });
 
@@ -388,6 +410,13 @@ app.put('/files', (req, res) => {
                     [position] : fileObject
                 }});
             }
+            else if (material.substring(0, 2) == 'dz') {
+                let index = (material.split("."))[1];
+                let position = 'project.projects.' + index + '.projectMaterials';
+                subject.collection.updateOne({'code' : subjectCode}, { $push : {
+                    [position] : fileObject
+                }});
+            }
 
             res.set('Location', userFiles + file.name);
             res.status(200);
@@ -436,6 +465,11 @@ router.route('/deleteFileSubject').post((req, res) => {
     else if (material.substring(0, 3) == 'lab') {     
         let index = (material.split("."))[1];
         let position = 'lab.labDetails.' + index + '.materials';
+        subject.collection.updateOne({'code' : code}, {$pull : {[position] : { 'file': fileName } }});
+    }
+    else if (material.substring(0, 2) == 'dz') {     
+        let index = (material.split("."))[1];
+        let position = 'project.projects.' + index + '.projectMaterials';
         subject.collection.updateOne({'code' : code}, {$pull : {[position] : { 'file': fileName } }});
     }
     
