@@ -1,3 +1,7 @@
 .grayBackgroud {
     background-color: rgba(200, 200, 200, 0.5);
 }
+
+.link {
+    color: #007bff;
+}

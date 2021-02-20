@@ -10,6 +10,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EngagementPlanComponent } from './engagement-plan/engagement-plan.component';
 import { HomeComponent } from './home/home.component';
+import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { MasterStudiesComponent } from './master-studies/master-studies.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'subjectsEmployee', component: SubjectsEmployeeComponent },
   { path: 'subjectsNotifications', component: SubjectNotificationsComponent },
   { path: 'editNotifications', component: EditNotificationComponent },
+  { path: 'lists', component: ListComponent },
 ];
 
 @NgModule({

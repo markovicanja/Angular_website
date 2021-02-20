@@ -33,6 +33,7 @@ const employee_1 = __importDefault(require("./model/employee"));
 const fs = __importStar(require("fs"));
 const subject_1 = __importDefault(require("./model/subject"));
 const engagementPlan_1 = __importDefault(require("./model/engagementPlan"));
+const list_1 = __importDefault(require("./model/list"));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json({ limit: '50mb' }));
@@ -372,6 +373,28 @@ router.route('/deleteNotification').post((req, res) => {
     let subjectCode = req.body.subjectCode;
     let title = req.body.title;
     subject_1.default.collection.updateOne({ 'code': subjectCode }, { $pull: { "notifications": { 'title': title } } });
+    res.json({ poruka: 1 });
+});
+// GET ALL LISTS
+router.route('/getAllLists').get((req, res) => {
+    list_1.default.find({}, (err, lists) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(lists);
+    });
+});
+// INSERT LIST
+router.route('/insertList').post((req, res) => {
+    let lista = req.body.lista;
+    list_1.default.collection.insertOne({ 'title': lista.title, 'time': lista.time, 'place': lista.place, 'limit': lista.limit,
+        'subject': lista.subject, 'deadline': lista.deadline, 'valid': true, 'files': [] });
+    res.json({ poruka: 1 });
+});
+// CLOSE LIST
+router.route('/closeList').post((req, res) => {
+    let lista = req.body.lista;
+    list_1.default.collection.updateOne({ 'title': lista.title }, { $set: { 'valid': false } });
     res.json({ poruka: 1 });
 });
 // FILES

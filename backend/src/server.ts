@@ -9,6 +9,7 @@ import employee from './model/employee';
 import * as fs from "fs"
 import subject from './model/subject';
 import engagementPlan from './model/engagementPlan';
+import list from './model/list';
 
 const app = express();
 
@@ -388,6 +389,31 @@ router.route('/deleteNotification').post((req, res) => {
 
     subject.collection.updateOne({'code' : subjectCode}, { $pull : 
         { "notifications" : { 'title' : title } }});  
+    res.json({poruka: 1});
+});
+
+// GET ALL LISTS
+router.route('/getAllLists').get((req, res) => {
+    list.find({}, (err, lists) => {
+        if (err) console.log(err);
+        else res.json(lists);
+    })
+});
+
+// INSERT LIST
+router.route('/insertList').post((req, res) => {
+    let lista = req.body.lista;
+
+    list.collection.insertOne({'title' : lista.title, 'time' : lista.time, 'place' : lista.place, 'limit' : lista.limit, 
+    'subject' : lista.subject, 'deadline' : lista.deadline, 'valid' : true, 'files' : [] });
+    res.json({poruka: 1});
+});
+
+// CLOSE LIST
+router.route('/closeList').post((req, res) => {
+    let lista = req.body.lista;
+
+    list.collection.updateOne({'title' : lista.title}, {$set: {'valid': false }});
     res.json({poruka: 1});
 });
 

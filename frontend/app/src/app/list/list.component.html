@@ -1,0 +1,117 @@
+<h4 class="text-center my-3">Spiskovi</h4>
+<div class="mx-auto d-flex justify-content-center">
+    <table class="table table-white text-center">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Termin</th>
+                <th>Mesto</th>
+                <th>Limit</th>
+                <th>Predmet</th>
+                <th>Rok</th>
+                <th>Validan</th>
+                <th>Fajlovi</th>                
+                <th></th>  
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let list of lists; let i = index">
+                <td>
+                    {{list.title}}
+                </td>
+                <td>
+                    {{list.time}}
+                </td>
+                <td>
+                    {{list.place}}
+                </td>
+                <td>
+                    {{list.limit}}
+                </td>
+                <td>
+                    {{list.subject}}
+                </td>
+                <td>
+                    {{list.deadline | date}}
+                </td>
+                <td>
+                    {{list.valid ? 'Da' : 'Ne'}}
+                </td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Fajl</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let f of list.files">
+                                <td>
+                                    {{f.student}}
+                                </td>
+                                <td>
+                                    <div>
+                                        <a class="link" (click)="download(f.file)">{{f.file}}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <button *ngIf='list.valid' (click)="closeList(list)" type="button" class="btn btn-outline-danger mx-2">
+                        <i class="fas fa-lock"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="text-center my-3">Kreirajte novi spisak</h4>
+<div class="mx-auto d-flex justify-content-center">
+    <table class="table table-white text-center">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Termin</th>
+                <th>Mesto</th>
+                <th>Limit</th>
+                <th>Predmet</th>
+                <th>Rok</th>               
+                <th></th>  
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="subjects.length > 0">
+                <td>
+                    <input name="title" class="form-control mb-3" placeholder="Naziv" [(ngModel)]="newList.title">
+                </td>
+                <td>
+                    <input name="time" class="form-control mb-3" placeholder="Termin" [(ngModel)]="newList.time">
+                </td>
+                <td>
+                    <input name="place" class="form-control mb-3" placeholder="Mesto" [(ngModel)]="newList.place">
+                </td>
+                <td>
+                    <input name="limit" class="form-control mb-3" placeholder="Limit" [(ngModel)]="newList.limit">
+                </td>
+                <td>
+                    <select name="subject" class="form-control select" [(ngModel)]="newList.subject">
+                        <option value="" disabled selected hidden class="select-placeholder">Predmet</option>
+                        <option *ngFor='let sub of subjects' value='{{ sub.code }}'>{{ sub.code }} - {{ sub.title }}</option>
+                    </select>
+                </td>
+                <td>
+                    <input name="deadline" type="date" class="form-control mb-3" placeholder="Rok" [(ngModel)]="newList.deadline">
+                </td>
+                <td>
+                    <button (click)="addList()" type="button" class="btn btn-outline-success mx-2">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

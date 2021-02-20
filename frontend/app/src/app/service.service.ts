@@ -321,6 +321,27 @@ export class ServiceService {
     return this.http.post(`${this.uri}/deleteNotification`, data);
   }
 
+  // GET ALL LISTS
+  getAllLists() {
+    return this.http.get(`${this.uri}/getAllLists`);
+  }
+
+  // INSERT LIST
+  insertList(list) {
+    const data = {
+      lista: list
+    }
+    return this.http.post(`${this.uri}/insertList`, data);
+  }
+
+  // CLOSE LIST
+  closeList(list) {
+    const data = {
+      lista: list
+    }
+    return this.http.post(`${this.uri}/closeList`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");
