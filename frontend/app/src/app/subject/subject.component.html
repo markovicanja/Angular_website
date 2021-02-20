@@ -1,259 +1,203 @@
-<div class="container">
+<div class="card-body mx-auto">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="obavestenja-tab" data-toggle="tab" href="#obavestenja" role="tab" aria-controls="obavestenja" aria-selected="true">Obavestenja o predmetu</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="informacije-tab" data-toggle="tab" href="#informacije" role="tab" aria-controls="informacije" aria-selected="false">Informacije o predmetu</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="predavanja-tab" data-toggle="tab" href="#predavanja" role="tab" aria-controls="predavanja" aria-selected="false">Materijali sa predavanja</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" id="vezbe-tab" data-toggle="tab" href="#vezbe" role="tab" aria-controls="vezbe" aria-selected="false">Materijali sa vezbi</a>
+        </li>
+        <li class="nav-item"  >
+            <a class="nav-link" id="ispit-tab" data-toggle="tab" href="#ispit" role="tab" aria-controls="ispit" aria-selected="false">Materijali sa ispitnih rokova</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="lab-tab" data-toggle="tab" href="#lab" role="tab" aria-controls="lab" aria-selected="false">Laboratorijske vezbe</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="projekat-tab" data-toggle="tab" href="#projekat" role="tab" aria-controls="projekat" aria-selected="false">Projekat</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="obavestenja" role="tabpanel" aria-labelledby="obavestenja-tab">
+            <div class="row card-row" *ngIf="subject.notifications">
+                <div class="col-md-12" *ngFor="let n of subject.notifications">
+                    <div class="card" [class.grayBackgroud]="!inLastWeek(n.dateCreation)">
+                        <div class="card-body" (click)="open(emp)">
+                            <h6 class="card-title">{{ n.title }}</h6>
+                            <p>{{ n.content }}</p>
+                            <i>{{ n.creator }} - {{ n.dateCreation | date: 'dd/MM/yyyy'}}</i>
+                        </div>             
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div id="accordion">
-        <div class="card my-4">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Obavestenja o predmetu
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="tab-pane fade" id="informacije" role="tabpanel" aria-labelledby="informacije-tab">
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <tr>
+                        <td> Tip:</td>
+                        <td><i>{{ subject.type }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Semestar:</td>
+                        <td><i>{{ subject.semestar }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Odsek:</td>
+                        <td><i>{{ subject.department }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Sifra predmeta:</td>
+                        <td><i>{{ subject.code }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Fond:</td>
+                        <td><i>
+                            Predavanja: {{ subject.fondLecture }}
+                            <br/><br/>
+                            Vezbe: {{ subject.fondExercise }}
+                            <br/><br/>
+                            Laboratorijske vezbe: {{ subject.fondLab }}
+                        </i></td>
+                    </tr>
+                    <tr>
+                        <td> Espb:</td>
+                        <td><i>{{ subject.espb }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Cilj i ishod:</td>
+                        <td><i>{{ subject.goal }}</i></td>
+                    </tr>
+                    <tr>
+                        <td> Termini predavanja:</td>
+                        <td><i>
+                            <span *ngFor="let t of subject.classTime">
+                                {{ t }}h <br/><br/>
+                            </span>
+                        </i></td>
+                    </tr>
+                    <tr>
+                        <td> Termini vezbi:</td>
+                        <td><i>
+                            <span *ngFor="let t of subject.excerciseTime">
+                                {{ t }}h <br/><br/>
+                            </span>
+                        </i></td>
+                    </tr>
+                    <tr>
+                        <td> Predavaci:</td>
+                        <td><i>
+                            <span *ngFor="let e of employees" (click)="open(e)">
+                                {{ e.firstName }} {{ e.lastName }}<br/><br/>
+                            </span>
+                        </i></td>
+                    </tr>
+                    <tr *ngIf="subject.hasLab">
+                        <td> Broj laboratorijskih vezbi:</td>
+                        <td><i>{{ subject.lab.numberOfLabs }}</i></td>
+                    </tr>
+                    <tr >
+                        <td> Propozicije:</td>
+                        <td><i>{{ subject.propositions }}</i></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="predavanja" role="tabpanel" aria-labelledby="predavanja-tab">
             <div class="card-body pb-0">
-                <div class="row card-row" *ngIf="subject.notifications">
-                    <div class="col-md-12" *ngFor="let n of subject.notifications">
-                        <div class="card" [class.grayBackgroud]="!inLastWeek(n.dateCreation)">
-                            <div class="card-body" (click)="open(emp)">
-                                <h6 class="card-title">{{ n.title }}</h6>
-                                <p>{{ n.content }}</p>
-                                <i>{{ n.creator }} - {{ n.dateCreation | date: 'dd/MM/yyyy'}}</i>
-                            </div>             
-                        </div>
-                    </div>
+                <div *ngFor="let s of subject.lectureMaterials">
+                    {{ s }}
                 </div>
-            </div>
           </div>
         </div>
 
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapswTwo" aria-expanded="true" aria-controls="collapswTwo">
-                    Informacije o predmetu
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pb-0" >
-                <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                    <table class="table table-white text-center">
-                        <tr>
-                            <td> Tip:</td>
-                            <td><i>{{ subject.type }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Semestar:</td>
-                            <td><i>{{ subject.semestar }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Odsek:</td>
-                            <td><i>{{ subject.department }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Sifra predmeta:</td>
-                            <td><i>{{ subject.code }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Fond:</td>
-                            <td><i>
-                                Predavanja: {{ subject.fondLecture }}
-                                <br/><br/>
-                                Vezbe: {{ subject.fondExercise }}
-                                <br/><br/>
-                                Laboratorijske vezbe: {{ subject.fondLab }}
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td> Espb:</td>
-                            <td><i>{{ subject.espb }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Cilj i ishod:</td>
-                            <td><i>{{ subject.goal }}</i></td>
-                        </tr>
-                        <tr>
-                            <td> Termini predavanja:</td>
-                            <td><i>
-                                <span *ngFor="let t of subject.classTime">
-                                    {{ t }}h <br/><br/>
-                                </span>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td> Termini vezbi:</td>
-                            <td><i>
-                                <span *ngFor="let t of subject.excerciseTime">
-                                    {{ t }}h <br/><br/>
-                                </span>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td> Predavaci:</td>
-                            <td><i>
-                                <span *ngFor="let e of employees" (click)="open(e)">
-                                    {{ e.firstName }} {{ e.lastName }}<br/><br/>
-                                </span>
-                            </i></td>
-                        </tr>
-                        <tr *ngIf="subject.hasLab">
-                            <td> Broj laboratorijskih vezbi:</td>
-                            <td><i>{{ subject.lab.numberOfLabs }}</i></td>
-                        </tr>
-                        <tr >
-                            <td> Propozicije:</td>
-                            <td><i>{{ subject.propositions }}</i></td>
-                        </tr>
-                    </table>
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="card my-4">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    Materijali sa predavanja
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pb-0">
-                    <div *ngFor="let s of subject.lectureMaterials">
-                        {{ s }}
-                    </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="card my-4">
-              <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                    Materijali sa vezbi
-                  </button>
-                </h5>
-              </div>
-          
-              <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <div *ngFor="let s of subject.exerciseMaterials">
-                        {{ s }}
-                    </div>
-                </div>
-              </div>
-        </div>
-
-        <div class="card my-4" *ngIf="!subject.examMaterials.hidden">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFour">
-                  Materijali sa vezbi
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pb-0">
-                    <h6 class="text-center my-3">Tekstovi ispitnih rokova i kolokvijuma</h6>
-                    <div *ngFor="let e of subject.examMaterials.examText">
-                        {{ e }}
-                    </div>
-                    <h6 class="text-center my-3">Resenja ispitnih rokova i kolokvijuma</h6>
-                    <div *ngFor="let e of subject.examMaterials.examSolution">
-                        {{ e }}
-                    </div>
-              </div>
-            </div>
-      </div>
-
-        <div class="card my-4" *ngIf="!subject.lab.hidden">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseFour">
-                        Laboratorijske vezbe
-                    </button>
-                </h5>
-            </div>
-    
-            <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    {{ subject.lab.basicInfo }} <br/>
-                    Broj laboratorijskih vezbi: {{ subject.lab.numberOfLabs }}
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <table class="table table-white text-center">
-                            <thead>
-                                <tr>
-                                    <th>Broj vezbe</th>
-                                    <th>Informacije</th>
-                                    <th>Materijali za pripremu laboratorijske vezbe</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let l of subject.lab.labDetails; index as i">
-                                <td>
-                                    {{ i + 1 }}.
-                                </td>
-                                <td>
-                                    {{ l.description }}
-                                </td>
-                                <td>                    
-                                    <div *ngFor="let m of l.materials">
-                                        {{ m }}
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <div class="tab-pane fade" id="vezbe" role="tabpanel" aria-labelledby="vezbe-tab">
+            <div class="card-body pb-0">
+                <div *ngFor="let s of subject.exerciseMaterials">
+                    {{ s }}
                 </div>
             </div>
         </div>
 
-        <div class="card my-4" *ngIf="!subject.project.hidden">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseFour">
-                    Projekat
-                </button>
-              </h5>
+        <div class="tab-pane fade" id="ispit" role="tabpanel" aria-labelledby="ispit-tab" *ngIf="!subject.examMaterials.hidden">
+            <h6 class="text-center my-3">Tekstovi ispitnih rokova i kolokvijuma</h6>
+            <div *ngFor="let e of subject.examMaterials.examText">
+                {{ e }}
             </div>
+            <h6 class="text-center my-3">Resenja ispitnih rokova i kolokvijuma</h6>
+            <div *ngFor="let e of subject.examMaterials.examSolution">
+                {{ e }}
+            </div>
+        </div>
         
-            <div id="collapseSeven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pb-0">
-                    <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
-                        <table class="table table-white text-center">
-                            <thead>
-                                <tr>
-                                    <th>Informacije</th>
-                                    <th>Opis</th>
-                                    <th>Materijali potrebni za izradu</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let p of subject.project.projects">
-                                <td>
-                                    {{ p.basicInfo }}
-                                </td>
-                                <td>
-                                    {{ p.description }}
-                                </td>
-                                <td>                    
-                                    <div *ngFor="let m of p.projectMaterials">
-                                        {{ m }}
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="tab-pane fade" id="lab" role="tabpanel" aria-labelledby="lab-tab" *ngIf="!subject.lab.hidden">
+            <div class=" text-center my-3">
+                {{ subject.lab.basicInfo }} <br/>
+                Broj laboratorijskih vezbi: {{ subject.lab.numberOfLabs }}
             </div>
-      </div>
+            
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Broj vezbe</th>
+                            <th>Informacije</th>
+                            <th>Materijali za pripremu laboratorijske vezbe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let l of subject.lab.labDetails; index as i">
+                        <td>
+                            {{ i + 1 }}.
+                        </td>
+                        <td>
+                            {{ l.description }}
+                        </td>
+                        <td>                    
+                            <div *ngFor="let m of l.materials">
+                                {{ m }}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+        <div class="tab-pane fade" id="projekat" role="tabpanel" aria-labelledby="projekat-tab" *ngIf="!subject.project.hidden">
+            <div class="mx-auto d-flex justify-content-center" style="max-width: 600px;">
+                <table class="table table-white text-center">
+                    <thead>
+                        <tr>
+                            <th>Informacije</th>
+                            <th>Opis</th>
+                            <th>Materijali potrebni za izradu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of subject.project.projects">
+                        <td>
+                            {{ p.basicInfo }}
+                        </td>
+                        <td>
+                            {{ p.description }}
+                        </td>
+                        <td>                    
+                            <div *ngFor="let m of p.projectMaterials">
+                                {{ m }}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
