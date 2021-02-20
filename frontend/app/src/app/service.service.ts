@@ -283,6 +283,15 @@ export class ServiceService {
     return this.http.post(`${this.uri}/addNewProject`, data);
   }
 
+  // ADD SUBJECT NOTIFICATION
+  addNotification(code, notification) {
+    const data = {
+      code: code,
+      notification: notification,
+    }
+    return this.http.post(`${this.uri}/addNotification`, data);
+  }
+
   // POST IMAGE
   public postImage(formData: FormData){
     alert("Service post image");

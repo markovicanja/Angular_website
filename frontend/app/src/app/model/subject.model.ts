@@ -1,4 +1,5 @@
 import { FileModel } from "./file.model";
+import { SubjectNotification } from "./subjectNotification.model";
 
 export class Subject {
     code: string;
@@ -43,13 +44,5 @@ export class Subject {
             }
         ]
     };
-    notifications: [
-        {
-            title: string;
-            content: string;
-            creator: string;
-            dateCreation: Date;
-            files: Array<FileModel>;
-        }
-    ];
+    notifications: Array<SubjectNotification>;
 }

@@ -25,6 +25,8 @@ import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EngagementPlanComponent } from './engagement-plan/engagement-plan.component';
 import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { SubjectNotificationsComponent } from './subject-notifications/subject-notifications.component';
 
 @NgModule({
   declarations: [
@@ -48,16 +50,19 @@ import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee
     EditSubjectComponent,
     AddSubjectComponent,
     EngagementPlanComponent,
-    SubjectsEmployeeComponent
+    SubjectsEmployeeComponent,
+    SubjectNotificationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -40,6 +40,16 @@ export class FileService {
     });
   }
 
+  public uploadFiles(fileName: string, fileContent: string, file: FileModel) {
+    const data = {
+      name: fileName,
+      content: fileContent,
+      file: file
+    }
+    this.displayLoader$.next(true);    
+    return this.http.put(`${this.uri}/notificationFiles`, data);
+  }
+
   public download(fileName: string): void {
     this.http.get(`${this.uri}/files/${fileName}`, { responseType: 'blob'}).subscribe(res => {
       window.open(window.URL.createObjectURL(res));

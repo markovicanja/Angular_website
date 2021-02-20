@@ -296,6 +296,13 @@ router.route('/addNewProject').post((req, res) => {
     subject_1.default.collection.updateOne({ 'code': code }, { $push: { 'project.projects': project } });
     res.json({ poruka: 1 });
 });
+// ADD SUBJECT NOTIFICATION
+router.route('/addNotification').post((req, res) => {
+    let code = req.body.code;
+    let notification = req.body.notification;
+    subject_1.default.collection.updateOne({ 'code': code }, { $push: { 'notifications': notification } });
+    res.json({ poruka: 1 });
+});
 // NOTIFICATIONS
 router.route('/getAllNotifications').get((req, res) => {
     let currentDate = new Date(Date.now());
@@ -408,6 +415,27 @@ app.put('/files', (req, res) => {
             res.set('Location', userFiles + file.name);
             res.status(200);
             res.send(file);
+        }
+    });
+});
+app.put('/notificationFiles', (req, res) => {
+    const file = req.body;
+    const fileObject = req.body.file;
+    const base64data = file.content.replace(/^data:.*,/, '');
+    fs.writeFile(userFiles + file.name, base64data, 'base64', (err) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        }
+        else {
+            var stats = fs.statSync(userFiles + file.name);
+            var fileSize = stats.size / 1024;
+            var fileType = ((path.extname(file.name)).substring(1)).toUpperCase();
+            fileObject.type = fileType;
+            fileObject.size = Math.round(fileSize);
+            res.set('Location', userFiles + file.name);
+            res.status(200);
+            res.send(fileObject);
         }
     });
 });

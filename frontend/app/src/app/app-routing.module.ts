@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ResearchComponent } from './research/research.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SubjectNotificationsComponent } from './subject-notifications/subject-notifications.component';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectsEmployeeComponent } from './subjects-employee/subjects-employee.component';
 import { SubjectsComponent } from './subjects/subjects.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'addSubject', component: AddSubjectComponent },
   { path: 'engagementPlan', component: EngagementPlanComponent },
   { path: 'subjectsEmployee', component: SubjectsEmployeeComponent },
+  { path: 'subjectsNotifications', component: SubjectNotificationsComponent },
 ];
 
 @NgModule({
