@@ -30,6 +30,7 @@ import { SubjectNotificationsComponent } from './subject-notifications/subject-n
 import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 import { ListComponent } from './list/list.component';
 import { StudentSubjectsComponent } from './student-subjects/student-subjects.component';
+import { ResearchProjectsComponent } from './research-projects/research-projects.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { StudentSubjectsComponent } from './student-subjects/student-subjects.co
     SubjectNotificationsComponent,
     EditNotificationComponent,
     ListComponent,
-    StudentSubjectsComponent
+    StudentSubjectsComponent,
+    ResearchProjectsComponent
   ],
   imports: [
     BrowserModule,

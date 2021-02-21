@@ -16,6 +16,7 @@ import { MasterStudiesComponent } from './master-studies/master-studies.componen
 import { NotificationComponent } from './notification/notification.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { ResearchProjectsComponent } from './research-projects/research-projects.component';
 import { ResearchComponent } from './research/research.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { StudentSubjectsComponent } from './student-subjects/student-subjects.component';
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'editNotifications', component: EditNotificationComponent },
   { path: 'lists', component: ListComponent },
   { path: 'studentSubjects', component: StudentSubjectsComponent },  
+  { path: 'researchProjects', component: ResearchProjectsComponent },  
 ];
 
 @NgModule({

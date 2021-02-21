@@ -1,0 +1,26 @@
+<h4 class="text-center my-3">Projekti</h4>
+<div class="container justify-content-center" *ngFor="let project of projects" style="max-width: 600px">
+    <div class="card bg-light my-3" >
+        <div class="card-header font-weight-bold">{{project.title}}</div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td><b>Rukovodilac</b></td>
+                    <td>{{project.head}}</td>
+                </tr>
+                <tr>
+                    <td><b>Tip projekta</b></td>
+                    <td>{{project.type}}</td>
+                </tr>
+                <tr>
+                    <td><b>Finansijer</b></td>
+                    <td>{{project.partner}}</td>
+                </tr>
+                <tr>
+                    <td><b>Pocetak realizacije</b></td>
+                    <td>{{project.startDate}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>  
+</div>
