@@ -100,11 +100,11 @@ router.route('/registerEmployee').post((req, res) => {
     let status = req.body.status;
     let webpage = req.body.webpage;
     let type = req.body.type;
-    // let profilePicture = req.body.profilePicture;
+    let profilePicture = req.body.profilePicture;
     user_1.default.collection.insertOne({ 'username': username, 'password': password, 'type': 'zaposlen', 'changedPassword': false });
     employee_1.default.collection.insertOne({ 'username': username, 'firstName': firstName, 'lastName': lastName, 'address': address,
         'phoneNumber': phoneNumber, 'webpage': webpage, 'personalInfo': personalInfo, 'title': title, 'room': room, 'status': status,
-        'type': type, 'profilePicture': {} });
+        'type': type, 'profilePicture': profilePicture });
     res.json({ poruka: 1 });
 });
 // RESET PASSWORD
@@ -594,88 +594,6 @@ router.route('/deleteFileNotification').post((req, res) => {
     let position = 'notifications.' + index + ".files";
     subject_1.default.collection.updateOne({ 'code': code }, { $pull: { [position]: { 'file': fileName } } });
     res.json({ poruka: 1 });
-});
-// UPLOAD PROFILE PICTURE
-const profilePictureUrl = "src/uploaded_files/profile_pictures";
-const subjectInfoFilesUrl = "src/uploaded_files/subjects";
-const multer = require('multer');
-var sizeOf = require('image-size');
-var fileExtension = require('file-extension');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, profilePictureUrl);
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname));
-    }
-});
-var upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 2000000
-    },
-    fileFilter(req, file, cb) {
-        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-            cb(new Error('Please upload JPG and PNG images only!'));
-        }
-        cb(undefined, true);
-    }
-});
-app.post('/uploadfile', upload.single('uploadedImage'), (req, res, next) => {
-    const username = req.body.employeeUsername;
-    const file = req.file;
-    if (!file) {
-        res.status(400).json({ error: "Greska pri otpremanju slike." });
-        return;
-    }
-    let fileUrl = file.destination + '/' + file.filename;
-    const dimensions = sizeOf(fileUrl);
-    if (dimensions.width > 300 || dimensions.height > 300) {
-        res.status(400).json({ error: "Slika ne moze da bude vecih dimenzija od 300x300." });
-        return;
-    }
-    let newFileUrl = file.destination + '/' + username + "." + fileExtension(file.originalname);
-    fs.renameSync(fileUrl, newFileUrl);
-    var img = fs.readFileSync(newFileUrl);
-    var encode_image = Buffer.from(img).toString('base64');
-    var finalImg = {
-        contentType: file.mimetype,
-        image: encode_image
-    };
-    employee_1.default.findOneAndUpdate({ username: username }, { profilePicture: finalImg }, (err, result) => {
-        if (err) {
-            res.status(400).send({
-                error: "GRESKA"
-            });
-        }
-        res.status(200).send({
-            statusCode: 200,
-            status: 'success',
-            finalImg: finalImg
-        });
-    });
-});
-var storageInfoFile = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, subjectInfoFilesUrl);
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname));
-    }
-});
-var uploadInfoFile = multer({
-    storage: storageInfoFile,
-    limits: {
-        fileSize: 10000000 //2MBs
-    },
-    fileFilter(req, file, cb) {
-        if (!file.originalname.match(/\.(pdf|pptx|zip|7z)$/)) {
-            //Error
-            cb(new Error('Please upload PDF, PPTX, ZIP, 7Z files only!'));
-        }
-        //Success
-        cb(undefined, true);
-    }
 });
 app.use('/', router);
 app.use('/files', express_1.default.static(userFiles));

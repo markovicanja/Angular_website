@@ -1,4 +1,7 @@
-<div class="card-body">
+<div class="text-center my-3" *ngIf="employee.profilePicture">
+    <img src="{{ '../../assets/' + employee.profilePicture }}" style="height: 100px; width: 100px;">
+</div>
+<div class="card-body">    
     <h2 class="card-title text-center">{{employee.firstName}} {{employee.lastName}}</h2>
 </div>
 

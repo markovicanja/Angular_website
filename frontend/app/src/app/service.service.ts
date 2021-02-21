@@ -48,7 +48,7 @@ export class ServiceService {
     return this.http.post(`${this.uri}/registerStudent`, data);
   }
 
-  registerEmployee(username, password, firstName, lastName, address, phoneNumber, title, room, status, webpage, type, personalInfo) {
+  registerEmployee(username, password, firstName, lastName, address, phoneNumber, title, room, status, webpage, type, personalInfo, profilePicture) {
     const data = {
       username: username,
       password: password,
@@ -61,7 +61,8 @@ export class ServiceService {
       status: status,
       webpage: webpage,
       type: type,
-      personalInfo: personalInfo
+      personalInfo: personalInfo,
+      profilePicture: profilePicture
     }
     return this.http.post(`${this.uri}/registerEmployee`, data);
   }

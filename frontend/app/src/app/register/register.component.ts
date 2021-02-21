@@ -50,6 +50,8 @@ export class RegisterComponent implements OnInit {
     this.employeeTitle = "";
     this.employeeRoom = "";
     this.employeeStatus = "";
+
+    this.fileInputLabel = "";
   }
 
   adminLogged: boolean;
@@ -115,10 +117,9 @@ export class RegisterComponent implements OnInit {
       }
       this.service.registerEmployee(this.employeeUsername, this.employeePassword, this.employeeName, this.employeeSurname, 
         this.employeeAddress,  this.employeePhone, this.employeeTitle, this.employeeRoom,
-        this.employeeStatus, this.employeeWebsite, empolyeeType, this.employeeInfo).subscribe(res => {
+        this.employeeStatus, this.employeeWebsite, empolyeeType, this.employeeInfo, this.fileInputLabel).subscribe(res => {
           if (!this.adminLogged) this.router.navigate(["login"]);
           else {
-            this.uploadImage(res);
             this.router.navigate(["users"]);
           } 
       });
@@ -139,32 +140,6 @@ export class RegisterComponent implements OnInit {
     };
     this.fileInputLabel = file.name;
     this.fileUploadForm.get('uploadedImage').setValue(file);
-  }
-
-  public uploadImage(result: any): void {
-    if (!this.fileUploadForm.get('uploadedImage').value) {
-      this.error = "Greska pri ucitavanju slike";
-      return;
-    }
-    const formData = new FormData();
-    formData.append('uploadedImage', this.fileUploadForm.get('uploadedImage').value);
-
-    this.service.postImage(formData).subscribe((response: any) => {
-      alert("Post image");
-      console.log(response);
-      if (response.statusCode === 200) {
-        this.uploadFileInput.nativeElement.value = "";
-        this.fileInputLabel = undefined;
-        this.fileUploadForm.get('uploadedImage').setValue(null);
-
-        this.error = "Greska pri ucitavanju slike";
-        this.slika = `data:image/png;base64,${response.finalImg.image}`;
-      }
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-      alert(error.error.error);
-    });
-
   }
 
 }
