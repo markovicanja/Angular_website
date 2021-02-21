@@ -186,7 +186,6 @@ router.route('/deleteUser').post((req, res) => {
 
     user.collection.deleteOne({'username': username}, (err, res) => {
         if (err) console.log(err);
-        // else console.log("1 document deleted");
     });
 
     if (type == "student") {

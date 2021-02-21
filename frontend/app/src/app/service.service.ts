@@ -357,10 +357,4 @@ export class ServiceService {
     return this.http.post(`${this.uri}/closeList`, data);
   }
 
-  // POST IMAGE
-  public postImage(formData: FormData){
-    alert("Service post image");
-    return this.http.post(`${this.uri}/register/uploadFile`, formData);
-  }
-
 }
