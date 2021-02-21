@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { MasterStudiesComponent } from './master-studies/master-studies.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProjectsComponent } from './projects/projects.component';
 import { RegisterComponent } from './register/register.component';
 import { ResearchProjectsComponent } from './research-projects/research-projects.component';
 import { ResearchComponent } from './research/research.component';
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'lists', component: ListComponent },
   { path: 'studentSubjects', component: StudentSubjectsComponent },  
   { path: 'researchProjects', component: ResearchProjectsComponent },  
+  { path: 'projects', component: ProjectsComponent },  
 ];
 
 @NgModule({

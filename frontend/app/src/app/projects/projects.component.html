@@ -1,0 +1,27 @@
+<h4 class="text-center my-3">Projekti</h4>
+<div class="container justify-content-center" *ngFor="let project of projects" style="max-width: 800px">
+    <div class="card bg-light my-3" >
+        <div class="card-header font-weight-bold">{{project.title}}</div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td><b>Oblast</b></td>
+                    <td>{{project.subject}}</td>
+                </tr>
+                <tr>
+                    <td><b>Kontakt</b></td>
+                    <td>{{project.contact}}</td>
+                </tr>
+                <tr>
+                    <td><b>Datum</b></td>
+                    <td>{{project.date}}</td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <small>{{ project.description }}</small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>  
+</div>
