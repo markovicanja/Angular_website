@@ -235,10 +235,28 @@ router.route('/insertSubject').post((req, res) => {
     let classTime = req.body.classTime;
     let excerciseTime = req.body.excerciseTime;
 
+    let examMaterials: any = {
+        hidden: false,
+        examText: [],
+        examSolution: []
+    }
+
+    let lab: any = {
+        hidden: false,
+        numberOfLabs: 0,
+        basicInfo: "",
+        labDetails: []
+    }
+
+    let project: any = {
+        hidden: false,
+        projects: []
+    }
+
     subject.collection.insertOne({'code' : code, 'title' : title, 'type' : type, 'department': department, 'semestar': semestar,
     'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExercise': fondExercise,
     'fondLab' : fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime, 'lectureMaterials' : [], 'exerciseMaterials': [],
-    'examMaterials': {}, 'hasLab': false, 'lab': {}, 'project': {}, 'notifications': []
+    'examMaterials': examMaterials, 'hasLab': false, 'lab': lab, 'project': project, 'notifications': []
     });
     res.json({poruka: 1});
 });

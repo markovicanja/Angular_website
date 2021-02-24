@@ -33,8 +33,7 @@ const Employee = new Schema({
     },
     title: {
         type: String,
-        required: true,
-        enum: ["redovni profesor", "vanredni profesor", "docent", "asistent", "saradnik u nastavi", "istrazivac", "laboratorijski inzenjer", "laboratorijski tehnicar"]
+        required: true
     },
     room: {
         type: String,
@@ -42,13 +41,11 @@ const Employee = new Schema({
     },
     status: {
         type: String,
-        required: true,
-        enum: ["aktivan", "neaktivan"]
+        required: true
     },
     type: {
         type: String,
-        required: true,
-        enum: ["nastavnik", "laborant"]
+        required: true
     },
     profilePicture: {
         type: String,

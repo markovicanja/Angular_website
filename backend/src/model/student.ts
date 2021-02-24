@@ -13,8 +13,7 @@ const Student = new Schema({
     },
     type: {
         type: String,
-        required: true,
-        enum: ["d", "m", "p"]
+        required: true
     },
     firstName: {
         type: String,
@@ -26,8 +25,7 @@ const Student = new Schema({
     },
     status: {
         type: String,
-        required: true,
-        enum: ["aktivan", "neaktivan"]
+        required: true
     },
     subjects: {
         type: [String],

@@ -192,7 +192,6 @@ router.route('/deleteUser').post((req, res) => {
     user_1.default.collection.deleteOne({ 'username': username }, (err, res) => {
         if (err)
             console.log(err);
-        // else console.log("1 document deleted");
     });
     if (type == "student") {
         student_1.default.collection.deleteOne({ 'username': username }, (err, res) => {
@@ -242,10 +241,25 @@ router.route('/insertSubject').post((req, res) => {
     let fondLab = req.body.fondLab;
     let classTime = req.body.classTime;
     let excerciseTime = req.body.excerciseTime;
+    let examMaterials = {
+        hidden: false,
+        examText: [],
+        examSolution: []
+    };
+    let lab = {
+        hidden: false,
+        numberOfLabs: 0,
+        basicInfo: "",
+        labDetails: []
+    };
+    let project = {
+        hidden: false,
+        projects: []
+    };
     subject_1.default.collection.insertOne({ 'code': code, 'title': title, 'type': type, 'department': department, 'semestar': semestar,
         'espb': espb, 'goal': goal, 'propositions': propositions, 'fondLecture': fondLecture, 'fondExercise': fondExercise,
         'fondLab': fondLab, 'classTime': classTime, 'excerciseTime': excerciseTime, 'lectureMaterials': [], 'exerciseMaterials': [],
-        'examMaterials': {}, 'hasLab': false, 'lab': {}, 'project': {}, 'notifications': []
+        'examMaterials': examMaterials, 'hasLab': false, 'lab': lab, 'project': project, 'notifications': []
     });
     res.json({ poruka: 1 });
 });

@@ -12,7 +12,7 @@
       
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body pb-0" *ngFor="let n of poziviZaTakmicenja">
-                <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd.MM.yyyy'}} </p>
                 <h5>{{n.title}}</h5>
                 <p>{{n.content}}</p>
                 <hr>
@@ -31,7 +31,7 @@
         
             <div id="collapswTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body pb-0" *ngFor="let n of obavestenjaOKonferencijama">
-                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd.MM.yyyy'}} </p>
                     <h5>{{n.title}}</h5>
                     <p>{{n.content}}</p>
                     <hr>
@@ -50,7 +50,7 @@
         
             <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body pb-0" *ngFor="let n of ponudeZaPrakse">
-                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd.MM.yyyy'}} </p>
                     <h5>{{n.title}}</h5>
                     <p>{{n.content}}</p>
                     <hr>
@@ -69,7 +69,7 @@
           
               <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body pb-0" *ngFor="let n of ponudeZaPosao">
-                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd/MM/yyyy'}} </p>
+                    <p class="date text-sm font-weight-light" style="font-size: small"> {{n.dateCreation | date: 'dd.MM.yyyy'}} </p>
                     <h5>{{n.title}}</h5>
                     <p>{{n.content}}</p>
                     <hr>
